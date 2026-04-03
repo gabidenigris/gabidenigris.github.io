@@ -5,13 +5,13 @@
 
 # Configurações gerais
 locale                   : "pt-BR"
-title                    : "Gabriela Alvim De Nigris"
+title                    : "Gabriela De Nigris"
 title_separator          : "-"
-name                     : &name "Gabriela Alvim De Nigris"
+name                     : &name "Gabriela De Nigris"
 description              : &description "Economista e Pesquisadora"
-url                      : https://gabidenigris.github.io   # ← EDITE AQUI se mudar o usuário
+url                      : https://gabidenigris.github.io   
 baseurl                  : ""
-repository               : "gabidenigris/gabidenigris.github.io"  # ← EDITE AQUI
+repository               : "gabidenigris/gabidenigris.github.io"  
 teaser                   :
 breadcrumbs              : false
 words_per_minute         : 160
@@ -19,7 +19,7 @@ future                   : true
 read_more                : "disabled"
 talkmap_link             : false
 
-# Comentários (deixe false por enquanto)
+# Comentários 
 comments:
   provider               : false
 
@@ -29,21 +29,21 @@ atom_feed:
 
 # Configurações do autor
 author:
-  name             : "Gabriela Alvim De Nigris"
+  name             : "Gabriela De Nigris"
   avatar           : "profile.jpg"          # ← Coloque sua foto com esse nome na pasta /images/
-  bio              : "Economista | Mestranda FGV EPPGE | CNC"
+  bio              : "Economista pelo Ibmec | CNC"
   location         : "Brasília, Brasil"
-  employer         : "Confederação Nacional do Comércio"
+  employer         : "Conf. Nacional do Comércio"
   email            : "denigrisgabriela@gmail.com"
   uri              :
-  googlescholar    :                          # ← Cole aqui o link do seu Google Scholar (opcional)
-  orcid            :                          # ← Cole aqui o link do seu ORCID (opcional)
+  googlescholar    :                      
+  orcid            :                        
   lattes           :                          # ← Cole aqui o link do seu Lattes (opcional)
   github           : "gabidenigris"
   instagram        : "gabidenigris"
   linkedin         : "gabrieladenigris"
-  twitter          :                          # ← "@seutwitter" (opcional)
-  researchgate     :                          # ← Link do ResearchGate (opcional)
+  twitter          :                      
+  researchgate     :                        
 
 # Configuração de leitura de arquivos
 include:
