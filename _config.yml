@@ -14,7 +14,7 @@ baseurl                  : ""
 repository               : "gabidenigris/gabidenigris.github.io"  
 teaser                   :
 breadcrumbs              : false
-words_per_minute         : 160
+words_per_minute         : 150
 future                   : true
 read_more                : "disabled"
 talkmap_link             : false
@@ -31,7 +31,7 @@ atom_feed:
 author:
   name             : "Gabriela De Nigris"
   avatar           : "profile.jpg"          # ← Coloque sua foto com esse nome na pasta /images/
-  bio              : "Economista pelo Ibmec | CNC"
+  bio              : "Economista e Pesquisadora"
   location         : "Brasília, Brasil"
   employer         : "Conf. Nacional do Comércio"
   email            : "denigrisgabriela@gmail.com"
