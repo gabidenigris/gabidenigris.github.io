@@ -15,7 +15,7 @@ redirect_from:
 Fundação Getúlio Vargas — FGV EPPGE  
 
 **Bacharelado em Economia**  
-Ibmec Brasília  
+Instituto Brasileiro de Mercado de Capitais - Ibmec Brasília  
 
 ---
 
