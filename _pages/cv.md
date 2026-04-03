@@ -14,7 +14,7 @@ redirect_from:
 **Mestrado em Economia e Finanças** *(2027-2029)*  
 Fundação Getúlio Vargas — FGV EPPGE  
 
-**Bacharelado em Economia** *(2022-2026)*  
+**Bacharelado em Economia** *(2022-2026)*    
 Instituto Brasileiro de Mercado de Capitais - Ibmec Brasília  
 
 ---
