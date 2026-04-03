@@ -11,39 +11,46 @@ redirect_from:
 
 ## Formação Acadêmica
 
-**Mestrado em Economia e Finanças** *(em andamento)*  
+**Mestrado em Economia e Finanças** *(2027-2029)*  
 Fundação Getúlio Vargas — FGV EPPGE  
 
-**Bacharelado em Economia**  
+**Bacharelado em Economia** *(2022-2026)*
 Instituto Brasileiro de Mercado de Capitais - Ibmec Brasília  
 
 ---
 
 ## Experiência Profissional
 
-**Economista**  
+**Economista I**  
 Confederação Nacional do Comércio (CNC) — *Brasília, DF*  
-- Formulação de pareceres técnicos sobre o impacto de políticas no setor terciário  
-- Análise econométrica para suporte à tomada de decisão  
-- Elaboração de relatórios e estudos econômicos  
+- Formulação de pareceres técnicos sobre o impacto de políticas no setor terciário; 
+- Análise econométrica para suporte à tomada de decisão;
+- Elaboração de relatórios e estudos econômicos.
 
 **Assessora Econômica Parlamentar**  
 Câmara dos Deputados — *Brasília, DF*  
-- Elaboração e defesa de iniciativas legislativas nas áreas de economia  
-- Análise de reformas macroeconômicas relacionadas à tributação e regime fiscal  
-- Produção de notas técnicas e pareceres econômicos  
+- Elaboração e defesa de iniciativas legislativas nas áreas de economia; 
+- Análise de reformas macroeconômicas relacionadas à tributação e regime fiscal; 
+- Produção de notas técnicas e pareceres econômicos.
 
+**Consultora Econômica**  
+Paribus Analytics — *São Paulo, SP*  
+- Modelagem econométrica e avaliação de impacto de políticas públicas, legislações e regulações de mercado.
+- Extração, tratamento e análise de microdados econômicos e sociais (utilizando linguagens como R) para embasar decisões estratégicas e institucionais.
+- Projeção de cenários macroeconômicos e modelagem preditiva aplicada a indicadores fiscais, financeiros e setoriais.
+- Desenvolvimento de dashboards e automatização de rotinas de coleta e análise de dados conjunturais.
+  
 ---
 
 ## Habilidades
 
-- Econometria aplicada  
-- Análise de políticas públicas  
-- Análise de impacto regulatório  
-- R, Python, Stata  
-- Elaboração de pareceres técnicos  
-- Finanças públicas e tributação
-- Finanças corporativas e análise contábil
+- Econometria aplicada;
+- Análise de políticas públicas;  
+- Análise de impacto regulatório;
+- R, Python, Stata;
+- Elaboração de pareceres técnicos;
+- Finanças públicas e tributação;
+- Finanças corporativas e análise contábil.
 
 ---
 
