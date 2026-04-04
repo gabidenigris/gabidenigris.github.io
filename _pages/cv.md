@@ -55,4 +55,4 @@ Paribus Analytics — *São Paulo, SP*
 
 ---
 
-[📄 Baixar CV completo em PDF](/files/CV_Gabriela_DeNigris.pdf)
+[Baixar CV completo em PDF](/files/CV_Gabriela_DeNigris.pdf){: .btn .btn--primary}
