@@ -2,17 +2,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-html { font-size: 14px; }
+/* === Tamanho base confortável === */
+html { font-size: 15.5px; }
 
 body {
   font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   color: #1c1c1c;
 }
 
 .page__content p {
-  font-size: 0.97em;
-  line-height: 1.78;
+  font-size: 1em;
+  line-height: 1.75;
   text-align: justify;
   hyphens: auto;
 }
@@ -28,52 +29,57 @@ body {
   letter-spacing: 0.01em;
 }
 
-.page__title { font-size: 1.65em; }
+.page__title { font-size: 1.75em; }
 
 .page__content h2 {
-  font-size: 1.25em;
+  font-size: 1.3em;
   border-bottom: 1px solid #ddd;
   padding-bottom: 0.25em;
   margin-top: 1.6em;
 }
 
-.page__content h3 { font-size: 1.08em; }
+.page__content h3 { font-size: 1.12em; }
 
 .page__content ul,
 .page__content ol {
-  font-size: 0.95em;
+  font-size: 1em;
   line-height: 1.7;
 }
 
-.sidebar { font-size: 0.84em; }
+/* === Sidebar — tamanho legível === */
+.sidebar { font-size: 0.95em; }
 
 .author__name {
   font-family: 'EB Garamond', Georgia, serif;
-  font-size: 1.2em;
+  font-size: 1.25em;
   font-weight: 500;
   color: #111;
 }
 
 .author__bio {
-  font-size: 0.82em;
+  font-size: 0.9em;
   font-style: italic;
   color: #555;
 }
 
 .author__urls a,
-.author__urls-wrapper a { font-size: 0.82em; color: #333; }
+.author__urls-wrapper a {
+  font-size: 0.9em;
+  color: #333;
+}
 
 .author__avatar img { border-radius: 3px; }
 
+/* === Navegação === */
 .greedy-nav .site-title {
   font-family: 'EB Garamond', Georgia, serif;
-  font-size: 1.1em;
+  font-size: 1.15em;
   font-weight: 500;
 }
 
 .greedy-nav a:not(.site-title) {
-  font-size: 0.78em;
-  letter-spacing: 0.07em;
+  font-size: 0.85em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 400;
 }
@@ -83,12 +89,12 @@ a:hover { color: #0d2e49; text-decoration: underline; }
 
 .archive__item-title {
   font-family: 'EB Garamond', Georgia, serif;
-  font-size: 1.1em;
+  font-size: 1.15em;
   font-weight: 500;
 }
 
 .archive__item-title a { color: #1a4a72; }
-.archive__item-excerpt { font-size: 0.88em; color: #555; }
-.page__footer { font-size: 0.75em; color: #999; }
-.btn { font-size: 0.8em; letter-spacing: 0.04em; border-radius: 2px; }
+.archive__item-excerpt { font-size: 0.93em; color: #555; }
+.page__footer { font-size: 0.8em; color: #999; }
+.btn { font-size: 0.85em; letter-spacing: 0.04em; border-radius: 2px; }
 </style>
