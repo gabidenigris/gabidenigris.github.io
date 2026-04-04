@@ -66,7 +66,6 @@ exclude:
   - tmp
   - vendor
 plugins:
-  - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
