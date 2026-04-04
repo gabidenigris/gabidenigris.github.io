@@ -9,6 +9,14 @@ Minha pesquisa utiliza métodos econométricos para investigar questões aplicad
 
 ---
 
+## Estudos Estratégicos   
+
+**Nota Técnica — Projetos do Governo**   
+*Tema: Impacto do Decreto 12.875/2026 - zera PIS/Cofins sobre Diesel.*    
+
+
+---
+
 ## Projetos em Andamento
 
 **Dissertação de Mestrado — FGV EPPGE** *(em andamento)*   
@@ -18,8 +26,8 @@ Orientador(a): A decidir.
 ---
 
 **Dissertação de Bacharelado — Ibmec Brasília**   
-*O Impacto do Programa Remessa Conforme no Varejo Nacional: Uma Análise de Diferenças em Diferenças*   
-Orientador(a): Prof. Raphael Rocha Gouvea, PhD   
+*Tema: O Impacto do Programa Remessa Conforme no Varejo Nacional: Uma Análise de Diferenças em Diferenças*   
+Orientador: Prof. Raphael Rocha Gouvea, PhD   
 
 ---
 
