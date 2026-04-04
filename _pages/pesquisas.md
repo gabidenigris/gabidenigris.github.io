@@ -23,7 +23,7 @@ Minha pesquisa utiliza métodos econométricos para investigar questões aplicad
 *Tema: A decidir.*   
 Orientador(a): A decidir.   
 
----
+
 
 **Dissertação de Bacharelado — Ibmec Brasília**   
 *Tema: O Impacto do Programa Remessa Conforme no Varejo Nacional: Uma Análise de Diferenças em Diferenças*   
