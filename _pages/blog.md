@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: archive
 title: "Blog"
 permalink: /blog/
 author_profile: true
@@ -12,7 +12,3 @@ Aqui compartilho análises, reflexões e artigos sobre economia, políticas púb
 {% for post in site.posts %}
   {% include archive-single.html %}
 {% endfor %}
-
-{% if site.posts.size == 0 %}
-*Nenhum post publicado ainda. Em breve, novos conteúdos!*
-{% endif %}
