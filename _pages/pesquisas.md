@@ -9,7 +9,7 @@ Minha pesquisa utiliza métodos econométricos para investigar questões aplicad
 
 ---
 
-## Estudos Estratégicos   
+### Estudos Estratégicos   
 
 **Nota Técnica — Projetos do Governo**   
 *Tema: Impacto do Decreto 12.875/2026 - zera PIS/Cofins sobre Diesel.*    
@@ -17,7 +17,7 @@ Minha pesquisa utiliza métodos econométricos para investigar questões aplicad
 
 ---
 
-## Projetos em Andamento
+### Acadêmicos
 
 **Dissertação de Mestrado — FGV EPPGE** *(em andamento)*   
 *Tema: A decidir.*   
