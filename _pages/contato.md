@@ -20,3 +20,7 @@ Estou aberta a colaborações em pesquisa, consultorias e oportunidades de escri
 
 📸 **Instagram**
 [@gabidenigris](https://www.instagram.com/gabidenigris/)
+
+--
+
+[📋 Solicitar análise econômica](https://form.typeform.com/to/SDOKdO54)
