@@ -2,18 +2,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-/* === BASE (modo claro) === */
+/* === Tamanho base confortável === */
 html { font-size: 15.5px; }
 
-body {
-  font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
-  font-weight: 400;
-  color: #1c1c1c;
-  background-color: #f4f4f4;
-}
-
-.page__content, .initial-content, .sidebar {
-  background-color: #f4f4f4;
+body, .page__content, .initial-content {
+  background-color: #fafaf8;
 }
 
 .page__content p {
@@ -21,7 +14,6 @@ body {
   line-height: 1.75;
   text-align: justify;
   hyphens: auto;
-  color: #1c1c1c;
 }
 
 .page__title,
@@ -50,9 +42,9 @@ body {
 .page__content ol {
   font-size: 1em;
   line-height: 1.7;
-  color: #1c1c1c;
 }
 
+/* === Sidebar — tamanho legível === */
 .sidebar { font-size: 0.95em; }
 
 .author__name {
@@ -74,8 +66,9 @@ body {
   color: #333;
 }
 
-.author__avatar img { border-radius: 50%; }
+.author__avatar img { border-radius: 30%; }
 
+/* === Navegação === */
 .greedy-nav .site-title {
   font-family: 'EB Garamond', Georgia, serif;
   font-size: 1.15em;
@@ -102,61 +95,4 @@ a:hover { color: #0d2e49; text-decoration: underline; }
 .archive__item-excerpt { font-size: 0.93em; color: #555; }
 .page__footer { font-size: 0.8em; color: #999; }
 .btn { font-size: 0.85em; letter-spacing: 0.04em; border-radius: 2px; }
-
-
-/* =============================================
-   MODO ESCURO — corrige texto invisível
-   ============================================= */
-@media (prefers-color-scheme: dark) {
-  body {
-    color: #e8e8e8;
-    background-color: #1a1a1a;
-  }
-
-  .page__content,
-  .initial-content,
-  .sidebar {
-    background-color: #1a1a1a;
-  }
-
-  .page__content p,
-  .page__content ul,
-  .page__content ol,
-  .page__content li {
-    color: #e8e8e8;
-  }
-
-  .page__title,
-  .page__content h1,
-  .page__content h2,
-  .page__content h3,
-  .page__content h4 {
-    color: #f0f0f0;
-  }
-
-  .page__content h2 {
-    border-bottom-color: #444;
-  }
-
-  .author__name { color: #f0f0f0; }
-  .author__bio { color: #aaa; }
-
-  .author__urls a,
-  .author__urls-wrapper a { color: #ccc; }
-
-  a { color: #7ab3d9; }
-  a:hover { color: #a8cfe8; }
-
-  .archive__item-title a { color: #7ab3d9; }
-  .archive__item-excerpt { color: #aaa; }
-
-  .page__footer { color: #666; }
-
-  .greedy-nav {
-    background: #222;
-  }
-
-  .greedy-nav a { color: #ddd; }
-  .greedy-nav a:hover { color: #fff; }
-}
 </style>
