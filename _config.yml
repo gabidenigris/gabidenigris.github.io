@@ -3,15 +3,18 @@
 #  Edite apenas os campos marcados com "← EDITE AQUI"
 # =============================================================
 
+# LINHA ESSENCIAL — define o tema AcademicPages
+remote_theme             : "academicpages/academicpages.github.io"
+
 # Configurações gerais
 locale                   : "pt-BR"
 title                    : "Gabriela De Nigris"
 title_separator          : "-"
 name                     : &name "Gabriela De Nigris"
 description              : &description "Economista e Pesquisadora"
-url                      : https://gabidenigris.github.io   
+url                      : https://gabidenigris.github.io
 baseurl                  : ""
-repository               : "gabidenigris/gabidenigris.github.io"  
+repository               : "gabidenigris/gabidenigris.github.io"
 teaser                   :
 breadcrumbs              : false
 words_per_minute         : 150
@@ -19,9 +22,11 @@ future                   : true
 read_more                : "disabled"
 talkmap_link             : false
 
-# Comentários 
 comments:
   provider               : false
+
+atom_feed:
+  path                   :
 
 # SEO
 atom_feed:
