@@ -11,15 +11,15 @@ Minha pesquisa utiliza métodos econométricos para investigar questões aplicad
 
 ## Projetos em Andamento
 
-**Dissertação de Mestrado — FGV EPPGE** *(em andamento)*
-*Tema: A decidir.*
-Orientador(a): A decidir.
+**Dissertação de Mestrado — FGV EPPGE** *(em andamento)*  
+*Tema: A decidir.*  
+Orientador(a): A decidir.  
 
 ---
 
-**Dissertação de Bacharelado — Ibmec Brasília**
-*O Impacto do Programa Remessa Conforme no Varejo Nacional: Uma Análise de Diferenças em Diferenças*
-Orientador(a): Prof. Raphael Rocha Gouvea, PhD
+**Dissertação de Bacharelado — Ibmec Brasília**  
+*O Impacto do Programa Remessa Conforme no Varejo Nacional: Uma Análise de Diferenças em Diferenças*  
+Orientador(a): Prof. Raphael Rocha Gouvea, PhD  
 
 ---
 
