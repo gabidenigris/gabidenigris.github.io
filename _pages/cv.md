@@ -17,19 +17,19 @@ Instituto Brasileiro de Mercado de Capitais — Ibmec Brasília
 
 ## Experiência Profissional
 
-**Economista**
+**Economista**  
 Confederação Nacional do Comércio (CNC) — *Brasília, DF*
 - Formulação de pareceres técnicos sobre o impacto de políticas no setor terciário
 - Análise econométrica para suporte à tomada de decisão
 - Elaboração de relatórios e estudos econômicos
 
-**Assessora Econômica Parlamentar**
+**Assessora Econômica Parlamentar**  
 Câmara dos Deputados — *Brasília, DF*
 - Elaboração e defesa de iniciativas legislativas nas áreas de economia
 - Análise de reformas macroeconômicas relacionadas à tributação e regime fiscal
 - Produção de notas técnicas e pareceres econômicos
 
-**Consultora Econômica**
+**Consultora Econômica**  
 Paribus Analytics — *São Paulo, SP*
 - Modelagem econométrica e avaliação de impacto de políticas públicas, legislações e regulações de mercado
 - Extração, tratamento e análise de microdados econômicos e sociais (R) para embasar decisões estratégicas e institucionais
