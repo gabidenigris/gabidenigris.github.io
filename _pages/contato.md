@@ -10,9 +10,8 @@ Você pode entrar em contato pelos canais abaixo:
 
 ---
 
-📧 **E-mail**  
-[gabrielanigris@cnc.org.br](mailto:gabrielanigris@cnc.org.br)  
-[denigrisgabriela@gmail.com](mailto:denigrisgabriela@gmail.com)  
+📧 **E-mail**   
+[contatodenigris@gmail.com](mailto:contatodenigris@gmail.com)  
 
 💼 **LinkedIn**  
 [linkedin.com/in/gabrieladenigris](https://www.linkedin.com/in/gabrieladenigris/)
