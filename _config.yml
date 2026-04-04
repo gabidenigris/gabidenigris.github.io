@@ -3,9 +3,6 @@
 #  Edite apenas os campos marcados com "← EDITE AQUI"
 # =============================================================
 
-# LINHA ESSENCIAL — define o tema AcademicPages
-remote_theme             : "academicpages/academicpages.github.io"
-
 # Configurações gerais
 locale                   : "pt-BR"
 title                    : "Gabriela De Nigris"
@@ -17,16 +14,14 @@ baseurl                  : ""
 repository               : "gabidenigris/gabidenigris.github.io"
 teaser                   :
 breadcrumbs              : false
-words_per_minute         : 150
+words_per_minute         : 160
 future                   : true
 read_more                : "disabled"
 talkmap_link             : false
 
+# Comentários (deixe false por enquanto)
 comments:
   provider               : false
-
-atom_feed:
-  path                   :
 
 # SEO
 atom_feed:
@@ -35,20 +30,20 @@ atom_feed:
 # Configurações do autor
 author:
   name             : "Gabriela De Nigris"
-  avatar           : "profile.jpg"          # ← Coloque sua foto com esse nome na pasta /images/
-  bio              : "Economista e Pesquisadora"
+  avatar           : "profile.jpg.png"          # ← Coloque sua foto com esse nome na pasta /images/
+  bio              : "Economista"
   location         : "Brasília, Brasil"
   employer         : "Conf. Nacional do Comércio"
-  email            : "denigrisgabriela@gmail.com"
+  email            : "denigriscontato@gmail.com"
   uri              :
-  googlescholar    :                      
-  orcid            :                        
+  googlescholar    :                          # ← Cole aqui o link do seu Google Scholar (opcional)
+  orcid            :                          # ← Cole aqui o link do seu ORCID (opcional)
   lattes           :                          # ← Cole aqui o link do seu Lattes (opcional)
   github           : "gabidenigris"
   instagram        : "gabidenigris"
   linkedin         : "gabrieladenigris"
-  twitter          :                      
-  researchgate     :                        
+  twitter          :                          # ← "@seutwitter" (opcional)
+  researchgate     :                          # ← Link do ResearchGate (opcional)
 
 # Configuração de leitura de arquivos
 include:
