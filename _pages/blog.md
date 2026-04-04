@@ -1,27 +1,28 @@
 ---
-layout: archive
-title: "Blog"
-permalink: /blog/
-author_profile: true
+title: 'Meu Primeiro Post'
+date: 2025-01-01
+permalink: /blog/2025/01/meu-primeiro-post/
+tags:
+  - economia
+  - políticas públicas
 ---
 
-{% include base_path %}
+Este é um exemplo de post para o seu blog. Substitua este conteúdo pelo seu texto.
 
-Aqui compartilho análises, reflexões e artigos sobre economia, políticas públicas e temas que acompanho de perto.
+## Subtítulo de exemplo
 
----
+Você pode escrever seus artigos aqui usando a formatação Markdown. É bem simples:
 
-{% for post in paginator.posts %}
-  {% include archive-single.html %}
-{% endfor %}
+- **Negrito** com dois asteriscos
+- *Itálico* com um asterisco
+- Links: [texto do link](https://url.com)
 
-{% if paginator.total_pages > 1 %}
-<div class="pagination">
-  {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="btn btn--primary">← Mais recentes</a>
-  {% endif %}
-  {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="btn btn--primary">Mais antigas →</a>
-  {% endif %}
-</div>
-{% endif %}
+Para criar um novo post, duplique este arquivo na pasta `_posts/` e mude o nome seguindo o padrão:
+
+```
+AAAA-MM-DD-titulo-do-post.md
+```
+
+Por exemplo: `2025-06-15-reforma-tributaria-e-setor-servicos.md`
+
+Não esqueça de atualizar o cabeçalho (entre os `---`) com o título, data e permalink corretos!
