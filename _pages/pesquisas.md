@@ -50,4 +50,4 @@ Ofereço consultoria especializada em análise econômica aplicada para empresas
 - Projeção de cenários macroeconômicos e setoriais
 
 
-[📋 Solicitar análise econômica](https://form.typeform.com/to/SDOKdO54){: .btn .btn--primary}
+[Solicitar análise econômica](https://form.typeform.com/to/SDOKdO54){: .btn .btn--primary}
