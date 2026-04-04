@@ -12,3 +12,6 @@ Aqui compartilho análises, reflexões e artigos sobre economia, políticas púb
 {% for post in site.posts %}
   {% include archive-single.html %}
 {% endfor %}
+
+---
+
