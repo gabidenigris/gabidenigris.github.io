@@ -8,8 +8,8 @@ main:
   - title: "Pesquisas"
     url: /pesquisas/
 
-  - title: "Artigos"
-    url: /artigos/
+  - title: "Blog"
+    url: /blog/
 
   - title: "Currículo"
     url: /cv/
