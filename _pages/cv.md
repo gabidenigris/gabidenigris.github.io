@@ -13,7 +13,7 @@ Fundação Getúlio Vargas — FGV EPPGE
 **Bacharelado em Economia** *(2022–2026)*  
 Instituto Brasileiro de Mercado de Capitais — Ibmec Brasília
 
----
+
 
 ## Experiência Profissional
 
@@ -36,7 +36,7 @@ Paribus Analytics — *São Paulo, SP*
 - Projeção de cenários macroeconômicos e modelagem preditiva aplicada a indicadores fiscais, financeiros e setoriais
 - Desenvolvimento de dashboards e automatização de rotinas de coleta e análise de dados conjunturais
 
----
+
 
 ## Habilidades
 
@@ -46,7 +46,7 @@ Paribus Analytics — *São Paulo, SP*
 - Elaboração de pareceres técnicos
 - Finanças públicas, tributação e análise contábil
 
----
+
 
 ## Idiomas
 
