@@ -1,0 +1,159 @@
+/* =====================================================
+   Estilos customizados — Gabriela De Nigris
+   Arquivo: assets/css/custom.css
+   ===================================================== */
+
+/* Importa fontes do Google */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+/* --- Tamanho de fonte base menor --- */
+html {
+  font-size: 14px;
+}
+
+body {
+  font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 300;
+  color: #222;
+  line-height: 1.65;
+}
+
+/* --- Parágrafos --- */
+.page__content p {
+  font-size: 0.95em;
+  line-height: 1.75;
+  text-align: justify;
+  margin-bottom: 1em;
+}
+
+/* --- Títulos das páginas --- */
+.page__title,
+h1.page__title {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.6em;
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: 0.01em;
+}
+
+/* --- Subtítulos dentro do conteúdo --- */
+.page__content h1,
+.page__content h2,
+.page__content h3,
+.page__content h4 {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-top: 1.5em;
+  margin-bottom: 0.4em;
+  letter-spacing: 0.01em;
+}
+
+.page__content h2 {
+  font-size: 1.3em;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.3em;
+}
+
+.page__content h3 {
+  font-size: 1.1em;
+}
+
+/* --- Listas --- */
+.page__content ul,
+.page__content ol {
+  font-size: 0.95em;
+  line-height: 1.65;
+}
+
+/* --- Menu de navegação --- */
+.greedy-nav a {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.82em;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #333;
+}
+
+.greedy-nav a:hover {
+  color: #555;
+}
+
+.greedy-nav .site-title {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.05em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+  font-size: 0.85em;
+}
+
+.author__name {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.15em;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.author__bio {
+  font-size: 0.82em;
+  color: #555;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.author__urls a {
+  font-size: 0.82em;
+  color: #444;
+}
+
+.author__urls a:hover {
+  color: #000;
+}
+
+/* Foto quadrada (mais sóbria) */
+.author__avatar img {
+  border-radius: 4px;
+  border: 2px solid #ddd;
+}
+
+/* --- Links --- */
+a {
+  color: #1a5276;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #154360;
+}
+
+/* --- Posts do blog --- */
+.archive__item-title {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.archive__item-excerpt {
+  font-size: 0.88em;
+  color: #555;
+}
+
+/* --- Rodapé --- */
+.page__footer {
+  font-size: 0.75em;
+  color: #888;
+}
+
+/* --- Botões menores --- */
+.btn {
+  font-size: 0.8em;
+  letter-spacing: 0.04em;
+  border-radius: 2px;
+}
