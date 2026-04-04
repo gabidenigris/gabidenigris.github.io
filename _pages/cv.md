@@ -7,10 +7,10 @@ author_profile: true
 
 ## Formação Acadêmica
 
-**Mestrado em Economia e Finanças** *(2027–2029)*
+**Mestrado em Economia e Finanças** *(2027–2029)*  
 Fundação Getúlio Vargas — FGV EPPGE
 
-**Bacharelado em Economia** *(2022–2026)*
+**Bacharelado em Economia** *(2022–2026)*  
 Instituto Brasileiro de Mercado de Capitais — Ibmec Brasília
 
 ---
@@ -19,21 +19,18 @@ Instituto Brasileiro de Mercado de Capitais — Ibmec Brasília
 
 **Economista**
 Confederação Nacional do Comércio (CNC) — *Brasília, DF*
-
 - Formulação de pareceres técnicos sobre o impacto de políticas no setor terciário
 - Análise econométrica para suporte à tomada de decisão
 - Elaboração de relatórios e estudos econômicos
 
 **Assessora Econômica Parlamentar**
 Câmara dos Deputados — *Brasília, DF*
-
 - Elaboração e defesa de iniciativas legislativas nas áreas de economia
 - Análise de reformas macroeconômicas relacionadas à tributação e regime fiscal
 - Produção de notas técnicas e pareceres econômicos
 
 **Consultora Econômica**
 Paribus Analytics — *São Paulo, SP*
-
 - Modelagem econométrica e avaliação de impacto de políticas públicas, legislações e regulações de mercado
 - Extração, tratamento e análise de microdados econômicos e sociais (R) para embasar decisões estratégicas e institucionais
 - Projeção de cenários macroeconômicos e modelagem preditiva aplicada a indicadores fiscais, financeiros e setoriais
