@@ -1,9 +1,9 @@
 # =============================================================
-#  CONFIGURAÇÃO PRINCIPAL DO SITE - Gabriela Alvim De Nigris
-#  Edite apenas os campos marcados com "← EDITE AQUI"
+#  CONFIGURAÇÃO PRINCIPAL — Gabriela De Nigris
 # =============================================================
 
-# Configurações gerais
+remote_theme             : "academicpages/academicpages.github.io"
+
 locale                   : "pt-BR"
 title                    : "Gabriela De Nigris"
 title_separator          : "-"
@@ -14,43 +14,39 @@ baseurl                  : ""
 repository               : "gabidenigris/gabidenigris.github.io"
 teaser                   :
 breadcrumbs              : false
-words_per_minute         : 160
+words_per_minute         : 150
 future                   : true
 read_more                : "disabled"
 talkmap_link             : false
 
-# Comentários (deixe false por enquanto)
 comments:
   provider               : false
 
-# SEO
 atom_feed:
-  path                   : # blank (default) uses feed.xml
+  path                   :
 
-# Configurações do autor
+# --- Perfil do autor ---
 author:
   name             : "Gabriela De Nigris"
-  avatar           : "profile.jpg"          # ← Coloque sua foto com esse nome na pasta /images/
-  bio              : "Economista"
+  avatar           : "profile.jpg"
+  bio              : "Economista e Pesquisadora"
   location         : "Brasília, Brasil"
   employer         : "Conf. Nacional do Comércio"
   email            : "denigriscontato@gmail.com"
   uri              :
-  googlescholar    :                          # ← Cole aqui o link do seu Google Scholar (opcional)
-  orcid            :                          # ← Cole aqui o link do seu ORCID (opcional)
-  lattes           :                          # ← Cole aqui o link do seu Lattes (opcional)
+  googlescholar    :
+  orcid            :
+  lattes           :
   github           : "gabidenigris"
   instagram        : "gabidenigris"
   linkedin         : "gabrieladenigris"
-  twitter          :                          # ← "@seutwitter" (opcional)
-  researchgate     :                          # ← Link do ResearchGate (opcional)
+  twitter          :
+  researchgate     :
 
-# Configuração de leitura de arquivos
 include:
   - .htaccess
   - _pages
 
-# Excluir da build
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -76,7 +72,6 @@ exclude:
   - tmp
   - vendor
 
-# Plugins
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
@@ -84,11 +79,9 @@ plugins:
   - jekyll-feed
   - jekyll-redirect-from
 
-# Configuração de paginação (para o blog)
-paginate: 5
-paginate_path: /blog/page:num/
+# Desativa paginação — o blog usa layout simples sem paginator
+# paginate: 5
 
-# Configuração de posts/coleções
 timezone: America/Sao_Paulo
 
 collections:
@@ -105,62 +98,64 @@ collections:
     output: true
     permalink: /:collection/:path/
 
-# Valores padrão para páginas e posts
+# --- Layout padrão para TUDO: single + sidebar com foto ---
 defaults:
+  - scope:
+      path: ""
+    values:
+      layout: single
+      author_profile: true
+
   - scope:
       path: ""
       type: posts
     values:
       layout: single
       author_profile: true
-      read_time: true
-      comments: true
-      share: true
-      related: true
+      read_time: false
+      comments: false
+      share: false
+      related: false
+
   - scope:
       path: ""
       type: pages
     values:
       layout: single
       author_profile: true
+
   - scope:
       path: ""
       type: teaching
     values:
       layout: single
       author_profile: true
-      share: true
-      comments: true
+
   - scope:
       path: ""
       type: publications
     values:
       layout: single
       author_profile: true
-      share: true
-      comments: true
+
   - scope:
       path: ""
       type: portfolio
     values:
       layout: single
       author_profile: true
-      share: true
-      comment: true
+
   - scope:
       path: ""
       type: talks
     values:
-      layout: talk
+      layout: single
       author_profile: true
-      share: true
 
-# Configurações do tema
 sass:
   sass_dir: _sass
   style: compressed
 
-# Analytics (opcional - cadastre no Google Analytics e cole o ID aqui)
 analytics:
   provider: false
   google:
