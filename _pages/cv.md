@@ -14,14 +14,16 @@ redirect_from:
 **Mestrado em Economia e Finanças** *(2027-2029)*  
 Fundação Getúlio Vargas — FGV EPPGE  
 
-**Bacharelado em Economia** *(2022-2026)*    
-Instituto Brasileiro de Mercado de Capitais - Ibmec Brasília  
+**Bacharelado em Economia** *(2022-2026)*  
+Instituto Brasileiro de Mercado de Capitais — Ibmec Brasília  
+  
 
 ---
 
+
 ## Experiência Profissional
 
-**Economista I**
+**Economista**
 Confederação Nacional do Comércio (CNC) — *Brasília, DF*  
 - Formulação de pareceres técnicos sobre o impacto de políticas no setor terciário; 
 - Análise econométrica para suporte à tomada de decisão;
@@ -41,7 +43,7 @@ Paribus Analytics — *São Paulo, SP*
 - Extração, tratamento e análise de microdados econômicos e sociais (utilizando linguagens como R) para embasar decisões estratégicas e institucionais.
 - Projeção de cenários macroeconômicos e modelagem preditiva aplicada a indicadores fiscais, financeiros e setoriais.
 - Desenvolvimento de dashboards e automatização de rotinas de coleta e análise de dados conjunturais.
-  
+
 ---
 
 ## Habilidades
