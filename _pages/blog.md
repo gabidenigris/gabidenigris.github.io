@@ -1,28 +1,18 @@
 ---
-title: 'Meu Primeiro Post'
-date: 2025-01-01
-permalink: /blog/2025/01/meu-primeiro-post/
-tags:
-  - economia
-  - políticas públicas
+layout: single
+title: "Blog"
+permalink: /blog/
+author_profile: true
 ---
 
-Este é um exemplo de post para o seu blog. Substitua este conteúdo pelo seu texto.
+Aqui compartilho análises, reflexões e artigos sobre economia, políticas públicas e temas que acompanho de perto.
 
-## Subtítulo de exemplo
+---
 
-Você pode escrever seus artigos aqui usando a formatação Markdown. É bem simples:
+{% for post in site.posts %}
+  {% include archive-single.html %}
+{% endfor %}
 
-- **Negrito** com dois asteriscos
-- *Itálico* com um asterisco
-- Links: [texto do link](https://url.com)
-
-Para criar um novo post, duplique este arquivo na pasta `_posts/` e mude o nome seguindo o padrão:
-
-```
-AAAA-MM-DD-titulo-do-post.md
-```
-
-Por exemplo: `2025-06-15-reforma-tributaria-e-setor-servicos.md`
-
-Não esqueça de atualizar o cabeçalho (entre os `---`) com o título, data e permalink corretos!
+{% if site.posts.size == 0 %}
+*Nenhum post publicado ainda. Em breve, novos conteúdos!*
+{% endif %}
