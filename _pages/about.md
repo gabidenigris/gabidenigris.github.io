@@ -15,3 +15,17 @@ Atualmente, exerço o cargo de **Economista na Confederação Nacional do Comér
 Antes de assumir minha posição atual, atuei como **Assessora Econômica Parlamentar na Câmara dos Deputados**. No Congresso, colaborei na elaboração e defesa de iniciativas nas áreas de reformas macroeconômicas relacionadas à tributação e ao regime fiscal.
 
 Sou bacharel em Economia pelo **Ibmec Brasília** e mestranda em Economia e Finanças pela **Fundação Getúlio Vargas (FGV EPPGE)**.
+
+---
+
+## Consultoria Econômica
+
+Ofereço consultoria especializada em análise econômica aplicada para empresas, associações setoriais, escritórios de advocacia e instituições que precisam de evidências robustas para embasar decisões estratégicas. Entre os serviços disponíveis:
+
+- Avaliação de impacto de políticas públicas e regulações
+- Modelagem econométrica e análise de microdados
+- Pareceres técnicos e notas econômicas
+- Projeção de cenários macroeconômicos e setoriais
+
+
+[📋 Solicitar análise econômica](https://form.typeform.com/to/SDOKdO54)
