@@ -11,7 +11,7 @@ Você pode entrar em contato pelos canais abaixo:
 ---
 
 📧 **E-mail**   
-[contatodenigris@gmail.com](mailto:contatodenigris@gmail.com)  
+[denigriscontato@gmail.com](mailto:denigriscontato@gmail.com)  
 
 💼 **LinkedIn**  
 [linkedin.com/in/gabrieladenigris](https://www.linkedin.com/in/gabrieladenigris/)
