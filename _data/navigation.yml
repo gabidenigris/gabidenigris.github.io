@@ -1,6 +1,3 @@
-# Navegação principal do site
-# Edite aqui para adicionar, remover ou renomear itens do menu
-
 main:
   - title: "Sobre mim"
     url: /
