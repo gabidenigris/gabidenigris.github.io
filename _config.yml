@@ -30,7 +30,7 @@ atom_feed:
 # Configurações do autor
 author:
   name             : "Gabriela De Nigris"
-  avatar           : "profile.jpg.png"          # ← Coloque sua foto com esse nome na pasta /images/
+  avatar           : "profile.jpg"          # ← Coloque sua foto com esse nome na pasta /images/
   bio              : "Economista"
   location         : "Brasília, Brasil"
   employer         : "Conf. Nacional do Comércio"
