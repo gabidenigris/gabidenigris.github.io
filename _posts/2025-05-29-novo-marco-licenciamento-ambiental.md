@@ -11,12 +11,12 @@ tags:
   - regulação
 ---
 
-*A primeira lei nacional de licenciamento ambiental unifica 27 mil regras e promete destravar o agro—sem abrir mão de fiscalização
+*A primeira lei nacional de licenciamento ambiental unifica 27 mil regras e promete destravar o agro—sem abrir mão de fiscalização*
 
 
 Este é um trecho original publicado em Exame.com. Leia a matéria completa em https://exame.com/colunistas/instituto-millenium/entenda-o-novo-marco-do-licenciamento-ambiental/?utm_source=copiaecola&utm_medium=compartilhamento.  
 
-[Exame](https://exame.com/colunistas/instituto-millenium/entenda-o-novo-marco-do-licenciamento-ambiental/).*
+[Exame](https://exame.com/colunistas/instituto-millenium/entenda-o-novo-marco-do-licenciamento-ambiental/)
 
 ---
 
