@@ -9,22 +9,8 @@ Aqui compartilho análises, reflexões e artigos sobre economia, políticas púb
 
 ---
 
-/* === Blog: separação visual entre posts === */
-.blog-post-item {
-  padding: 1.5em 0;
-  border-bottom: 1px solid #e0e0e0;
-  margin-bottom: 0.5em;
-}
-
-.blog-post-item:last-child {
-  border-bottom: none;
-}
-
-.blog-post-item .archive__item-title {
-  margin-bottom: 0.3em;
-}
-
-.blog-post-item .archive__item-excerpt {
-  margin-top: 0.3em;
-  color: #666;
-}
+{% for post in site.posts %}
+  <div class="blog-post-item">
+    {% include archive-single.html %}
+  </div>
+{% endfor %}
