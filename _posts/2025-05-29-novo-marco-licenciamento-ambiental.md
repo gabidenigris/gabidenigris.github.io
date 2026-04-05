@@ -1,20 +1,15 @@
 ---
 layout: single
 title: "Entenda o Novo Marco do Licenciamento Ambiental"
+subtitle: "A primeira lei nacional de licenciamento ambiental unifica 27 mil regras e promete destravar o agro"
 date: 2025-05-29
 permalink: /blog/2025/05/novo-marco-licenciamento-ambiental/
 author_profile: true
+source_name: "Exame"
+source_url: "https://exame.com/colunistas/instituto-millenium/entenda-o-novo-marco-do-licenciamento-ambiental/"
 tags:
   - licenciamento ambiental
   - agronegócio
-  - política ambiental
-  - regulação
----
-
-*A primeira lei nacional de licenciamento ambiental unifica 27 mil regras e promete destravar o agro—sem abrir mão de fiscalização*   
-
-Este artigo foi originalmente publicado na [Exame](https://exame.com/colunistas/instituto-millenium/entenda-o-novo-marco-do-licenciamento-ambiental/)
-
 ---
 
 Depois de 20 anos de idas e vindas, o Senado aprovou o PL 2159/2021, que cria a Lei Geral do Licenciamento Ambiental do país. A medida promete destravar investimentos em infraestrutura e ampliar a competitividade do agronegócio, surgindo em um momento em que o setor já representa 23,2% do PIB nacional e metade das exportações brasileiras.
