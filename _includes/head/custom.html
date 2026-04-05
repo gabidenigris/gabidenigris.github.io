@@ -4,15 +4,18 @@
 <style>
 /* === Tamanho base confortável === */
 html { font-size: 15.5px; color-scheme: only light; }
+
 body, .page__content, .initial-content {
   background-color: #fafaf8;
 }
+
 .page__content p {
   font-size: 1em;
   line-height: 1.75;
   text-align: justify;
   hyphens: auto;
 }
+
 .page__title,
 .page__content h1,
 .page__content h2,
@@ -23,61 +26,92 @@ body, .page__content, .initial-content {
   color: #111;
   letter-spacing: 0.01em;
 }
+
 .page__title { font-size: 1.75em; }
+
 .page__content h2 {
   font-size: 1.3em;
   border-bottom: 1px solid #ddd;
   padding-bottom: 0.25em;
   margin-top: 1.6em;
 }
+
 .page__content h3 { font-size: 1.12em; }
+
 .page__content ul,
 .page__content ol {
   font-size: 1em;
   line-height: 1.7;
 }
+
 /* === Sidebar — tamanho legível === */
 .sidebar { font-size: 1.05em; }
+
 .author__name {
   font-family: 'EB Garamond', Georgia, serif;
   font-size: 1.35em;
   font-weight: 500;
   color: #111;
 }
+
 .author__bio {
   font-size: 0.9em;
   font-style: italic;
   color: #555;
 }
+
 .author__urls a,
 .author__urls-wrapper a {
   font-size: 0.9em;
   color: #333;
 }
+
 .author__avatar img { border-radius: 30%; }
+
 /* === Navegação === */
 .greedy-nav .site-title {
   font-family: 'EB Garamond', Georgia, serif;
   font-size: 1.15em;
   font-weight: 500;
 }
+
 .greedy-nav a:not(.site-title) {
   font-size: 0.85em;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 400;
 }
+
 a { color: #1a4a72; }
 a:hover { color: #0d2e49; text-decoration: underline; }
+
+/* === Blog === */
 .archive__item-title {
   font-family: 'EB Garamond', Georgia, serif;
   font-size: 1.15em;
   font-weight: 500;
 }
-.archive__item-title a { color: #1a4a72; }
+
+.archive__item-title a { color: #2c2c2c; }
 .archive__item-excerpt { font-size: 0.93em; color: #555; }
+
+/* === Blog: separação visual entre posts === */
+.blog-post-item {
+  padding: 1.5em 0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 0.5em;
+}
+
+.blog-post-item:last-child { border-bottom: none; }
+.blog-post-item .archive__item-title { margin-bottom: 0.3em; }
+.blog-post-item .archive__item-excerpt { margin-top: 0.3em; color: #666; }
+
+/* === Rodapé === */
 .page__footer { font-size: 0.8em; color: #999; }
+
+/* === Botões === */
 .btn { font-size: 0.85em; letter-spacing: 0.04em; border-radius: 2px; }
+
 /* === Remove botão de modo escuro === */
 .theme-toggle,
 .dark-mode-toggle,
