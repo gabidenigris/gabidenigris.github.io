@@ -11,7 +11,9 @@ tags:
   - tributação
 ---
 
-*Este artigo foi originalmente publicado na [Exame](https://exame.com/colunistas/instituto-millenium/2026-o-ensaio-geral-da-reforma-tributaria/), pelo Instituto Millenium, em 9 de janeiro de 2026.*
+*O caos das notas fiscais revela o tamanho do desafio do Comitê Gestor e o preço da nossa complexidade federativa.*   
+
+*Este artigo foi originalmente publicado na [Exame](https://exame.com/colunistas/instituto-millenium/2026-o-ensaio-geral-da-reforma-tributaria/)*
 
 ---
 
