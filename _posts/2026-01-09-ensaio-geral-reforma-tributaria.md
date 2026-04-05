@@ -1,20 +1,15 @@
 ---
 layout: single
 title: "2026: O Ensaio Geral da Reforma Tributária"
+subtitle: "O caos das notas fiscais revela o tamanho do desafio do Comitê Gestor e o preço da nossa complexidade federativa."
 date: 2026-01-09
 permalink: /blog/2026/01/ensaio-geral-reforma-tributaria/
 author_profile: true
+source_name: "Exame"
+source_url: "https://exame.com/colunistas/instituto-millenium/2026-o-ensaio-geral-da-reforma-tributaria/"
 tags:
   - reforma tributária
   - política fiscal
-  - IVA
-  - tributação
----
-
-*O caos das notas fiscais revela o tamanho do desafio do Comitê Gestor e o preço da nossa complexidade federativa.*   
-
-*Este artigo foi originalmente publicado na [Exame](https://exame.com/colunistas/instituto-millenium/2026-o-ensaio-geral-da-reforma-tributaria/)*
-
 ---
 
 A reforma tributária do consumo marca um ponto de inflexão na estrutura fiscal brasileira, mas seus primeiros dias revelaram o tamanho da "herança maldita" que teremos que superar. Iniciada em 1º de janeiro de 2026, a transição estabelecerá um novo paradigma de tributação baseado em um IVA dual (CBS + IBS) que substituirá nosso histórico "manicômio tributário" — o maior redesenho tributário desde a redemocratização. Contudo, o que vimos na primeira semana de janeiro foi a colisão entre a modernidade da lei e a realidade arcaica da infraestrutura municipal.
