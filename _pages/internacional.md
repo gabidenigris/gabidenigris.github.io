@@ -9,41 +9,41 @@ Ao longo da minha trajetória acadêmica e profissional, tive a oportunidade de 
 
 ---
 
-## [American Enterprise Institute (AEI)](https://www.aei.org/)
+### [American Enterprise Institute (AEI)](https://www.aei.org/)
 
 **Programa:** Summer Honors Program 2025 — *Fiscal Foundations: Tax Policy in America*   
 **Local:** Washington, D.C., Estados Unidos   
 
 ---
 
-## [The Fund for American Studies (TFAS)](https://tfas.org/)
+### [The Fund for American Studies (TFAS)](https://tfas.org/)
 
 **Programa:** TFAS Santiago 2025 — *Economia Política na América Latina*    
 **Local:** Santiago, Chile    
 
 ---
 
-## [The Fund for American Studies (TFAS)](https://tfas.org/)
+### [The Fund for American Studies (TFAS)](https://tfas.org/)
 
 **Programa:** TFAS Praga 2026 — *Política Econômica Europeia e Resolução de Conflitos*    
 **Local:** Praga, República Tcheca    
 
 ---
 
-## [The Academy On Capitalism](https://www.academyoncapitalism.org/)
+### [The Academy On Capitalism](https://www.academyoncapitalism.org/)
 
 **Programa:** *Free-market capitalism, classical liberalism, and individual liberty.*    
 **Local:** Springfield, Illinois (EUA)    
 
 ---
 
-## [McKinsey & Company](https://www.mckinsey.org/our-programs/forward/overview)   
+### [McKinsey & Company](https://www.mckinsey.org/our-programs/forward/overview)   
 
 **Programa:** McKinsey Forward Program 2025 - online
 
 ---
 
-## [Students For Liberty](https://studentsforliberty.org/the-prometheus-fellowship/)    
+### [Students For Liberty](https://studentsforliberty.org/the-prometheus-fellowship/)    
 
 **Programa:** The Prometheus Fellowship (2022–2024)    
 **Locais:** Miami (EUA) · Viena (Áustria) · Washington, D.C. (EUA) · Nairobi (Quênia)    
