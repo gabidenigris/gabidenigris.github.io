@@ -1,9 +1,10 @@
 # =============================================================
 #  CONFIGURAÇÃO PRINCIPAL — Gabriela De Nigris
 # =============================================================
-remote_theme             : "academicpages/academicpages.github.io"
-site_theme               : "default"
+
+# Basic Site Settings
 locale                   : "pt-BR"
+site_theme               : "default"
 title                    : "Gabriela De Nigris"
 title_separator          : "-"
 name                     : &name "Gabriela De Nigris"
@@ -11,6 +12,8 @@ description              : &description "Economista e Pesquisadora"
 url                      : https://gabidenigris.github.io
 baseurl                  : ""
 repository               : "gabidenigris/gabidenigris.github.io"
+remote_theme             : "academicpages/academicpages.github.io"
+
 teaser                   :
 breadcrumbs              : false
 words_per_minute         : 150
@@ -22,12 +25,13 @@ comments:
   provider               : false
 
 atom_feed:
+  hide                   : false
   path                   :
 
 # --- Perfil do autor ---
 author:
-  name             : "Gabriela De Nigris"
   avatar           : "profile.jpg"
+  name             : "Gabriela De Nigris"
   bio              : "Economista e Pesquisadora"
   location         : "Brasília, Brasil"
   employer         : "Conf. Nacional do Comércio"
@@ -45,39 +49,58 @@ author:
 include:
   - .htaccess
   - _pages
+  - files
 
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
   - .asset-cache
   - .bundle
+  - .github
   - .jekyll-assets-cache
   - .sass-cache
-  - CHANGELOG
-  - Capfile
-  - Gemfile
-  - Gruntfile.js
-  - LICENSE
-  - README
-  - Rakefile
   - assets/js/_main.js
   - assets/js/plugins
   - assets/js/vendor
+  - CHANGELOG
+  - Capfile
   - config
+  - Dockerfile
+  - Gemfile
+  - Gruntfile.js
   - gulpfile.js
+  - LICENSE
+  - local
   - log
   - node_modules
   - package.json
+  - Rakefile
+  - README
   - tmp
   - vendor
 
-plugins:
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
-  - jekyll-redirect-from
+keep_files:
+  - .git
+  - .svn
 
-timezone: America/Sao_Paulo
+encoding: "utf-8"
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
 
 collections:
   teaching:
@@ -93,13 +116,7 @@ collections:
     output: true
     permalink: /:collection/:path/
 
-# --- Layout padrão para TUDO ---
 defaults:
-  - scope:
-      path: ""
-    values:
-      layout: single
-      author_profile: true
   - scope:
       path: ""
       type: posts
@@ -144,6 +161,37 @@ defaults:
 sass:
   sass_dir: _sass
   style: compressed
+
+permalink: /:categories/:title/
+timezone: America/Sao_Paulo
+
+plugins:
+  - jekyll-feed
+  - jekyll-gist
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-redirect-from
+  - jemoji
+
+whitelist:
+  - jekyll-feed
+  - jekyll-gist
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-redirect-from
+  - jemoji
+
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
+
+compress_html:
+  clippings: all
+  ignore:
+    envs: development
 
 analytics:
   provider: false
