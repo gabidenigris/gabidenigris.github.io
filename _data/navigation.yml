@@ -11,5 +11,8 @@ main:
   - title: "Currículo"
     url: /cv/
 
+  - title: "Internacional"
+    url: /internacional/
+
   - title: "Contato"
     url: /contato/
