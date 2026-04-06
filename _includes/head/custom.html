@@ -2,28 +2,49 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-/* === Tamanho base confortável === */
-html { font-size: 15.5px; color-scheme: only light; }
-
-body, .page__content, .initial-content {
-  background-color: #fafaf8;
+/* === FORÇA MODO CLARO EM TUDO === */
+html {
+  font-size: 15.5px;
+  color-scheme: only light;
 }
 
-.page__content p {
+body,
+.page,
+.page__content,
+.initial-content,
+.sidebar,
+.sidebar__right,
+.nav__list,
+.greedy-nav,
+.page__footer,
+.page__footer footer,
+.archive,
+.archive__item {
+  background-color: #fafaf8 !important;
+  color: #1c1c1c !important;
+}
+
+/* === Parágrafos e texto geral === */
+.page__content p,
+.page__content li,
+.page__content td,
+.page__content span {
+  color: #1c1c1c !important;
   font-size: 1em;
   line-height: 1.75;
   text-align: justify;
   hyphens: auto;
 }
 
+/* === Títulos === */
 .page__title,
 .page__content h1,
 .page__content h2,
 .page__content h3,
 .page__content h4 {
-  font-family: 'EB Garamond', Georgia, serif;
-  font-weight: 500;
-  color: #111;
+  font-family: 'EB Garamond', Georgia, serif !important;
+  font-weight: 500 !important;
+  color: #111 !important;
   letter-spacing: 0.01em;
 }
 
@@ -31,7 +52,7 @@ body, .page__content, .initial-content {
 
 .page__content h2 {
   font-size: 1.3em;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ddd !important;
   padding-bottom: 0.25em;
   margin-top: 1.6em;
 }
@@ -44,35 +65,38 @@ body, .page__content, .initial-content {
   line-height: 1.7;
 }
 
-/* === Sidebar — tamanho legível === */
+/* === Sidebar === */
 .sidebar { font-size: 1.05em; }
 
 .author__name {
-  font-family: 'EB Garamond', Georgia, serif;
-  font-size: 1.35em;
-  font-weight: 500;
-  color: #111;
+  font-family: 'EB Garamond', Georgia, serif !important;
+  font-size: 1.35em !important;
+  font-weight: 500 !important;
+  color: #111 !important;
 }
 
 .author__bio {
-  font-size: 0.9em;
+  font-size: 0.9em !important;
   font-style: italic;
-  color: #555;
+  color: #555 !important;
 }
 
 .author__urls a,
 .author__urls-wrapper a {
   font-size: 0.9em;
-  color: #333;
+  color: #333 !important;
 }
 
 .author__avatar img { border-radius: 30%; }
 
 /* === Navegação === */
+.greedy-nav { background: #1a1a2e !important; }
+
 .greedy-nav .site-title {
-  font-family: 'EB Garamond', Georgia, serif;
+  font-family: 'EB Garamond', Georgia, serif !important;
   font-size: 1.15em;
   font-weight: 500;
+  color: #fff !important;
 }
 
 .greedy-nav a:not(.site-title) {
@@ -80,10 +104,12 @@ body, .page__content, .initial-content {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 400;
+  color: #ddd !important;
 }
 
-a { color: #1a4a72; }
-a:hover { color: #0d2e49; text-decoration: underline; }
+/* === Links === */
+a { color: #1a4a72 !important; }
+a:hover { color: #0d2e49 !important; text-decoration: underline; }
 
 /* === Blog === */
 .archive__item-title {
@@ -92,10 +118,9 @@ a:hover { color: #0d2e49; text-decoration: underline; }
   font-weight: 500;
 }
 
-.archive__item-title a { color: #2c2c2c; }
-.archive__item-excerpt { font-size: 0.93em; color: #555; }
+.archive__item-title a { color: #2c2c2c !important; }
+.archive__item-excerpt { font-size: 0.93em; color: #555 !important; }
 
-/* === Blog === */
 .blog-post-item {
   padding: 1.6em 0;
   border-bottom: 1px solid #e0e0e0;
@@ -111,18 +136,18 @@ a:hover { color: #0d2e49; text-decoration: underline; }
 }
 
 .blog-post-title a {
-  color: #2c2c2c;
+  color: #2c2c2c !important;
   text-decoration: none;
 }
 
 .blog-post-title a:hover {
-  color: #1a4a72;
+  color: #1a4a72 !important;
   text-decoration: underline;
 }
 
 .blog-post-subtitle {
   font-size: 0.95em;
-  color: #444;
+  color: #444 !important;
   margin: 0 0 0.4em 0;
   font-style: italic;
   line-height: 1.4;
@@ -130,17 +155,22 @@ a:hover { color: #0d2e49; text-decoration: underline; }
 
 .blog-post-meta {
   font-size: 0.82em;
-  color: #888;
+  color: #888 !important;
   margin: 0;
 }
 
 .blog-post-meta a {
-  color: #888;
+  color: #888 !important;
   text-decoration: underline;
 }
 
 /* === Rodapé === */
-.page__footer { font-size: 0.8em; color: #999; }
+.page__footer,
+.page__footer a,
+.page__footer p {
+  color: #999 !important;
+  font-size: 0.8em;
+}
 
 /* === Botões === */
 .btn { font-size: 0.85em; letter-spacing: 0.04em; border-radius: 2px; }
