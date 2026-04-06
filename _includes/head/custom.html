@@ -1,58 +1,148 @@
-/* Correção para o modo escuro - Gabriela De Nigris */
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 
-/* Força o esquema de cores a aceitar tanto light quanto dark */
-html {
-  color-scheme: light dark !important;
-}
+<style>
+  /* --- Configurações Globais e Suporte a Temas --- */
+  html {
+    font-size: 15.5px;
+    /* Permite que o navegador use tanto o modo claro quanto o escuro */
+    color-scheme: light dark;
+  }
 
-/* Quando o sistema ou o navegador estiver em modo escuro */
-@media (prefers-color-scheme: dark) {
+  /* --- Estilos para o MODO CLARO (Padrão ) --- */
   body, .page__content, .initial-content {
-    background-color: #1a1a1a !important; /* Fundo escuro */
-    color: #e0e0e0 !important; /* Texto claro */
+    background-color: #fafaf8;
+    color: #111111;
   }
 
   .page__title, 
   .page__content h1, 
   .page__content h2, 
   .page__content h3, 
-  .page__content h4,
-  .page__content p,
-  .page__content li,
-  .author__name,
-  .author__bio,
-  .blog-post-title,
-  .blog-post-subtitle {
-    color: #ffffff !important; /* Garante que títulos e textos fiquem brancos no modo escuro */
+  .page__content h4 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-weight: 500;
+    color: #111;
+    letter-spacing: 0.01em;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
   }
 
-  .page__content a,
-  .author__urls a,
-  .blog-post-title a {
-    color: #4da6ff !important; /* Links mais visíveis no fundo escuro */
+  .page__content p, 
+  .page__content li {
+    font-size: 1em;
+    line-height: 1.75;
+    text-align: justify;
+    hyphens: auto;
+    color: #222;
   }
-  
-  .greedy-nav .site-title,
-  .greedy-nav a {
-    color: #ffffff !important;
-  }
-}
 
-/* Garante que no modo claro o texto continue visível se o fundo for claro */
-@media (prefers-color-scheme: light) {
-  body, .page__content, .initial-content {
-    background-color: #fafaf8 !important;
-    color: #111111 !important;
-  }
-  
-  .page__title, 
-  .page__content h1, 
-  .page__content h2, 
-  .page__content h3, 
-  .page__content h4,
-  .page__content p,
-  .page__content li,
   .author__name {
-    color: #111111 !important;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.35em;
+    font-weight: 500;
+    color: #111;
   }
-}
+
+  .author__bio {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #555;
+  }
+
+  /* --- Estilos para o MODO ESCURO (Automático) --- */
+  @media (prefers-color-scheme: dark) {
+    body, .page__content, .initial-content {
+      background-color: #1a1a1a !important;
+      color: #e0e0e0 !important;
+    }
+
+    .page__title, 
+    .page__content h1, 
+    .page__content h2, 
+    .page__content h3, 
+    .page__content h4, 
+    .author__name {
+      color: #ffffff !important;
+    }
+
+    .page__content p, 
+    .page__content li, 
+    .author__bio {
+      color: #cccccc !important;
+    }
+
+    /* Ajuste de links para melhor contraste no escuro */
+    a { 
+      color: #4da6ff !important; 
+    }
+    
+    .greedy-nav .site-title, 
+    .greedy-nav a {
+      color: #ffffff !important;
+    }
+    
+    .sidebar { 
+      border-right: 1px solid #333; 
+    }
+    
+    .page__footer {
+      border-top: 1px solid #333 !important;
+    }
+  }
+
+  /* --- Outros Ajustes de Layout --- */
+  .sidebar { 
+    font-size: 1.05em; 
+  }
+  
+  .author__urls a, 
+  .author__urls-wrapper a { 
+    font-size: 0.9em; 
+    color: inherit; 
+  }
+  
+  .author__avatar img { 
+    border-radius: 30%; 
+  }
+
+  .greedy-nav .site-title {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.15em;
+    font-weight: 500;
+  }
+
+  .greedy-nav a:not(.site-title) {
+    font-size: 0.85em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  a { 
+    color: #1a4a72; 
+    text-decoration: none; 
+  }
+  
+  a:hover { 
+    color: #0d2e49; 
+    text-decoration: underline; 
+  }
+
+  .page__footer { 
+    font-size: 0.8em; 
+    color: #999; 
+    margin-top: 2em; 
+    border-top: 1px solid #eee; 
+    padding-top: 1em; 
+  }
+  
+  /* Esconde botões de troca de tema antigos que possam conflitar */
+  .theme-toggle, 
+  .dark-mode-toggle, 
+  #theme-toggle, 
+  [data-theme-toggle] {
+    display: none !important;
+  }
+</style>
