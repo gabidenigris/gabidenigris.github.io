@@ -2,7 +2,7 @@
 #  CONFIGURAÇÃO PRINCIPAL — Gabriela De Nigris
 # =============================================================
 remote_theme             : "academicpages/academicpages.github.io"
-darkmode                 : false
+site_theme               : "default"
 locale                   : "pt-BR"
 title                    : "Gabriela De Nigris"
 title_separator          : "-"
@@ -17,10 +17,13 @@ words_per_minute         : 150
 future                   : true
 read_more                : "disabled"
 talkmap_link             : false
+
 comments:
   provider               : false
+
 atom_feed:
   path                   :
+
 # --- Perfil do autor ---
 author:
   name             : "Gabriela De Nigris"
@@ -38,9 +41,11 @@ author:
   linkedin         : "gabrieladenigris"
   twitter          :
   researchgate     :
+
 include:
   - .htaccess
   - _pages
+
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -65,14 +70,15 @@ exclude:
   - package.json
   - tmp
   - vendor
+
 plugins:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
   - jekyll-redirect-from
-# Desativa paginação — o blog usa layout simples sem paginator
-# paginate: 5
+
 timezone: America/Sao_Paulo
+
 collections:
   teaching:
     output: true
@@ -86,7 +92,8 @@ collections:
   talks:
     output: true
     permalink: /:collection/:path/
-# --- Layout padrão para TUDO: single + sidebar com foto ---
+
+# --- Layout padrão para TUDO ---
 defaults:
   - scope:
       path: ""
@@ -133,9 +140,11 @@ defaults:
     values:
       layout: single
       author_profile: true
+
 sass:
   sass_dir: _sass
   style: compressed
+
 analytics:
   provider: false
   google:
