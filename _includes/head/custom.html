@@ -1,192 +1,76 @@
-<!-- Força modo claro no navegador — impede override do sistema -->
-<meta name="color-scheme" content="light only">
+{% include base_path %}
+<!-- start custom head snippets -->
 
+<!-- Força modo claro — impede browser de aplicar dark mode -->
+<meta name="color-scheme" content="light">
+
+<!-- Support for Academicons -->
+<link rel="stylesheet" href="{{ base_path }}/assets/css/academicons.css"/>
+
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}/images/apple-touch-icon-180x180.png"/>
+<link rel="icon" type="image/svg+xml" href="{{ base_path }}/images/favicon.svg"/>
+<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-32x32.png" sizes="32x32"/>
+<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-192x192.png" sizes="192x192"/>
+<link rel="manifest" href="{{ base_path }}/images/manifest.json"/>
+<link rel="icon" href="/images/favicon.ico"/>
+<meta name="theme-color" content="#ffffff"/>
+
+<!-- Fontes acadêmicas customizadas -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-/* === FORÇA MODO CLARO — impede o navegador de aplicar dark mode === */
-html {
-  font-size: 15.5px;
-  color-scheme: light only;
-}
+html { font-size: 15.5px; color-scheme: light; }
 
-* {
-  forced-color-adjust: none;
-}
-
-body {
-  background-color: #fafaf8 !important;
-  color: #1c1c1c !important;
-}
-
-.page__content,
-.initial-content,
-.page,
-.page__inner-wrap {
-  background-color: #fafaf8 !important;
-  color: #1c1c1c !important;
-}
-
-/* === Parágrafos === */
-.page__content p {
-  font-size: 1em;
-  line-height: 1.75;
-  text-align: justify;
-  hyphens: auto;
-  color: #1c1c1c !important;
-}
-
-.page__content ul,
-.page__content ol {
-  font-size: 1em;
-  line-height: 1.7;
-  color: #1c1c1c !important;
-}
-
-/* === Títulos === */
+/* Fontes */
 .page__title,
 .page__content h1,
 .page__content h2,
 .page__content h3,
 .page__content h4 {
-  font-family: 'EB Garamond', Georgia, serif !important;
-  font-weight: 500 !important;
-  color: #111111 !important;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-weight: 500;
   letter-spacing: 0.01em;
 }
 
 .page__title { font-size: 1.75em; }
-
-.page__content h2 {
-  font-size: 1.3em;
-  border-bottom: 1px solid #dddddd !important;
-  padding-bottom: 0.25em;
-  margin-top: 1.6em;
-}
-
+.page__content h2 { font-size: 1.3em; padding-bottom: 0.25em; margin-top: 1.6em; }
 .page__content h3 { font-size: 1.12em; }
 
-/* === Sidebar === */
-.sidebar,
-.author__content,
-.author__urls-wrapper {
-  background-color: #fafaf8 !important;
-  color: #1c1c1c !important;
-  font-size: 1.05em;
-}
+.page__content p { font-size: 1em; line-height: 1.75; text-align: justify; hyphens: auto; }
+.page__content ul, .page__content ol { font-size: 1em; line-height: 1.7; }
 
-.author__name {
-  font-family: 'EB Garamond', Georgia, serif !important;
-  font-size: 1.35em !important;
-  font-weight: 500 !important;
-  color: #111111 !important;
-}
-
-.author__bio {
-  font-size: 0.9em !important;
-  font-style: italic;
-  color: #555555 !important;
-}
-
-.author__urls a,
-.author__urls-wrapper a {
-  font-size: 0.9em;
-  color: #333333 !important;
-}
-
+/* Sidebar */
+.sidebar { font-size: 1.05em; }
+.author__name { font-family: 'EB Garamond', Georgia, serif !important; font-size: 1.35em !important; font-weight: 500 !important; }
+.author__bio { font-size: 0.9em; font-style: italic; }
+.author__urls a, .author__urls-wrapper a { font-size: 0.9em; }
 .author__avatar img { border-radius: 30%; }
 
-/* === Navegação === */
-.greedy-nav .site-title {
-  font-family: 'EB Garamond', Georgia, serif !important;
-  font-size: 1.15em;
-  font-weight: 500;
-}
+/* Navegação */
+.greedy-nav .site-title { font-family: 'EB Garamond', Georgia, serif !important; font-size: 1.15em; font-weight: 500; }
+.greedy-nav a:not(.site-title) { font-size: 0.85em; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 400; }
 
-.greedy-nav a:not(.site-title) {
-  font-size: 0.85em;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-weight: 400;
-}
+/* Blog */
+.archive__item-title { font-family: 'EB Garamond', Georgia, serif; font-size: 1.15em; font-weight: 500; }
+.archive__item-excerpt { font-size: 0.93em; }
 
-/* === Links === */
-a { color: #1a4a72 !important; }
-a:hover { color: #0d2e49 !important; text-decoration: underline; }
-
-/* === Blog: lista === */
-.archive__item-title {
-  font-family: 'EB Garamond', Georgia, serif;
-  font-size: 1.15em;
-  font-weight: 500;
-}
-
-.archive__item-title a { color: #2c2c2c !important; }
-.archive__item-excerpt { font-size: 0.93em; color: #555555 !important; }
-
-/* === Blog: separação entre posts === */
-.blog-post-item {
-  padding: 1.6em 0;
-  border-bottom: 1px solid #e0e0e0;
-}
-
+.blog-post-item { padding: 1.6em 0; border-bottom: 1px solid #e0e0e0; }
 .blog-post-item:last-child { border-bottom: none; }
+.blog-post-title { font-family: 'EB Garamond', Georgia, serif; font-size: 1.2em; font-weight: 500; margin: 0 0 0.2em 0; }
+.blog-post-title a { text-decoration: none; }
+.blog-post-title a:hover { text-decoration: underline; }
+.blog-post-subtitle { font-size: 0.95em; margin: 0 0 0.4em 0; font-style: italic; line-height: 1.4; }
+.blog-post-meta { font-size: 0.82em; margin: 0; }
 
-.blog-post-title {
-  font-family: 'EB Garamond', Georgia, serif;
-  font-size: 1.2em;
-  font-weight: 500;
-  margin: 0 0 0.2em 0;
-}
-
-.blog-post-title a {
-  color: #2c2c2c !important;
-  text-decoration: none;
-}
-
-.blog-post-title a:hover {
-  color: #1a4a72 !important;
-  text-decoration: underline;
-}
-
-.blog-post-subtitle {
-  font-size: 0.95em;
-  color: #444444 !important;
-  margin: 0 0 0.4em 0;
-  font-style: italic;
-  line-height: 1.4;
-}
-
-.blog-post-meta {
-  font-size: 0.82em;
-  color: #888888 !important;
-  margin: 0;
-}
-
-.blog-post-meta a {
-  color: #888888 !important;
-  text-decoration: underline;
-}
-
-/* === Rodapé === */
-.page__footer,
-.page__footer a,
-.page__footer p,
-.page__footer footer {
-  background-color: #f0f0ee !important;
-  color: #999999 !important;
-  font-size: 0.8em;
-}
-
-/* === Botões === */
+/* Rodapé e botões */
+.page__footer { font-size: 0.8em; }
 .btn { font-size: 0.85em; letter-spacing: 0.04em; border-radius: 2px; }
 
-/* === Remove botão de modo escuro === */
-.theme-toggle,
-.dark-mode-toggle,
-#theme-toggle,
-[data-theme-toggle] {
-  display: none !important;
-}
+/* Remove botão de modo escuro */
+.theme-toggle, .dark-mode-toggle, #theme-toggle, [data-theme-toggle] { display: none !important; }
 </style>
+
+<!-- end custom head snippets -->
