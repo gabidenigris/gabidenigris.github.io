@@ -42,7 +42,7 @@ Paribus Analytics — *São Paulo, SP*
 
 - Econometria aplicada
 - Análise de políticas públicas e impacto regulatório
-- R, Python, Stata
+- R, Python, SQL
 - Elaboração de pareceres técnicos
 - Finanças públicas, tributação e análise contábil
 
