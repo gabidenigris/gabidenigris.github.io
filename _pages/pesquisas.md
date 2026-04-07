@@ -11,13 +11,13 @@ Minha pesquisa utiliza métodos econométricos para investigar questões aplicad
 
 ## Estudos Estratégicos   
 
-**Nota Técnica — Projetos do Governo**   
-Tema: *Impacto do Decreto 12.875/2026 - zera PIS/Cofins sobre Diesel.*   
-[Link](https://drive.google.com/file/d/1ieew_QTcYNJoXpteQfi6gCD_gDHWcgmK/view?usp=sharing)
+**Nota Técnica — Projetos do Governo**    
+Tema: [*Impacto do Decreto 12.875/2026 - zera PIS/Cofins sobre Diesel.*](https://docs.google.com/document/d/1MgmvTaEHwdZGgFtiz0bl7eYUwWXJvnah/edit?usp=sharing&ouid=117029548604590774237&rtpof=true&sd=true)    
 
-**Nota Técnica — Projetos do Governo**   
-Tema: *Parecer PL 1.659/2026 - Programa Brasil Empreende*   
-[Link](https://drive.google.com/file/d/1ieew_QTcYNJoXpteQfi6gCD_gDHWcgmK/view?usp=sharing)
+
+**Nota Técnica — Projetos do Governo**    
+Tema: [*Parecer PL 1.659/2026 - Programa Brasil Empreende*](https://docs.google.com/document/d/1MgmvTaEHwdZGgFtiz0bl7eYUwWXJvnah/edit?usp=sharing&ouid=117029548604590774237&rtpof=true&sd=true)   
+
 
 ---
 
