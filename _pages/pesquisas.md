@@ -16,15 +16,15 @@ Tema: [*Imposto de Exportação sobre Petróleo e Diesel – Análise de Impacto
 
 
 **Nota Técnica — Projeto de Lei**    
-Tema: [*PL 1.227/2026 – Institui o Sistema Nacional de Transparência e Monitoramento de Preços de Combustíveis*](https://drive.google.com/file/d/1bMnFQSjiaEjE6pPZf3e05JYtj43x8FNQ/view?usp=sharing)   
+Tema: [*PL 1.227/2026 – Institui o Sistema Nacional de Transparência e Monitoramento de Preços de Combustíveis*](https://drive.google.com/file/d/1u9fAqda3C4PK2-QY9-FkJud3LcBJ5sd1/view?usp=sharing)   
 
 
 **Nota Técnica — Projeto de Lei**    
-Tema: [*PL 5.082/2025 – Alteração das regras de incidência da Taxa de Controle e Fiscalização Ambiental (TCFA)*](https://drive.google.com/file/d/1QdrBJarSrgSPqKfe1ZDUYz5c4MzKbPAj/view?usp=sharing)   
+Tema: [*PL 5.082/2025 – Alteração das regras de incidência da Taxa de Controle e Fiscalização Ambiental (TCFA)*](https://drive.google.com/file/d/13XyUhFY0ashOWuInUTQPFIl2LHee1Vu-/view?usp=sharing)   
 
 
 **Nota Técnica — Projeto de Lei**    
-Tema: [*PL 1.559/2021 – Dispõe sobre o piso salarial do profissional Farmacêutico.*](https://drive.google.com/file/d/1CwmkXIXAMKcXU2vEigPFQCx86m6NwNuf/view?usp=sharing)   
+Tema: [*PL 1.559/2021 – Dispõe sobre o piso salarial do profissional Farmacêutico.*](https://drive.google.com/file/d/1DNCxWhoBKujlW1VE26x4YeEFQs7t6lra/view?usp=sharing)   
 
 
 ---
