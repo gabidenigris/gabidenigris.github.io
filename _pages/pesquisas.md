@@ -12,11 +12,19 @@ Minha pesquisa utiliza métodos econométricos para investigar questões aplicad
 ## Estudos Estratégicos   
 
 **Nota Técnica — Projetos do Governo**    
-Tema: [*Impacto do Decreto 12.875/2026 - zera PIS/Cofins sobre Diesel.*](https://docs.google.com/document/d/1MgmvTaEHwdZGgFtiz0bl7eYUwWXJvnah/edit?usp=sharing&ouid=117029548604590774237&rtpof=true&sd=true)    
+Tema: [*Imposto de Exportação sobre Petróleo e Diesel – Análise de Impacto Econômico das MPs 1.340 e 1.349/2026*](https://drive.google.com/file/d/1XKYG_x6Sb-AQIoWUSVYdoMVzcYpJCRtt/view?usp=sharing)    
 
 
-**Nota Técnica — Projetos do Governo**    
-Tema: [*Parecer PL 1.659/2026 - Programa Brasil Empreende*](https://docs.google.com/document/d/1MgmvTaEHwdZGgFtiz0bl7eYUwWXJvnah/edit?usp=sharing&ouid=117029548604590774237&rtpof=true&sd=true)   
+**Nota Técnica — Projeto de Lei**    
+Tema: [*PL 1.227/2026 – Institui o Sistema Nacional de Transparência e Monitoramento de Preços de Combustíveis*](https://drive.google.com/file/d/1bMnFQSjiaEjE6pPZf3e05JYtj43x8FNQ/view?usp=sharing)   
+
+
+**Nota Técnica — Projeto de Lei**    
+Tema: [*PL 5.082/2025 – Alteração das regras de incidência da Taxa de Controle e Fiscalização Ambiental (TCFA)*](https://drive.google.com/file/d/1QdrBJarSrgSPqKfe1ZDUYz5c4MzKbPAj/view?usp=sharing)   
+
+
+**Nota Técnica — Projeto de Lei**    
+Tema: [*PL 1.559/2021 – Dispõe sobre o piso salarial do profissional Farmacêutico.*](https://drive.google.com/file/d/1CwmkXIXAMKcXU2vEigPFQCx86m6NwNuf/view?usp=sharing)   
 
 
 ---
@@ -29,7 +37,7 @@ Orientador(a): *A decidir.*
 
 
 **Dissertação de Bacharelado — Ibmec Brasília**   
-Tema: *O Impacto do Programa Remessa Conforme no Varejo Nacional: Uma Análise de Diferenças em Diferenças*   
+Tema: *O Impacto do Programa Remessa Conforme no Varejo Nacional: Uma Análise de Diferenças em Diferenças* *(em andamento)*     
 Orientador: Prof. Raphael Rocha Gouvea, PhD   
 
 ---
