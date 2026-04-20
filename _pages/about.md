@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Sou economista e pesquisadora focada em compreender como decisões políticas impactam os diferentes setores da economia, utilizando metodologias econométricas para uma análise empírica robusta. Minha trajetória profissional transitou pela pesquisa, pela assessoria legislativa e pelo setor privado, sempre com o objetivo de transformar dados e evidências em decisões estratégicas para que stakeholders avaliem o impacto real nas instituições e na vida das pessoas.
+Sou economista focada em compreender como decisões políticas impactam os diferentes setores da economia, utilizando metodologias econométricas para uma análise empírica robusta. Minha trajetória profissional transitou pela pesquisa, pela assessoria legislativa e pelo setor privado, sempre com o objetivo de transformar dados e evidências em decisões estratégicas para que stakeholders avaliem o impacto real nas instituições que representam.
 
 Atualmente, exerço o cargo de **Economista na Confederação Nacional do Comércio (CNC)**, onde contribuo para a formulação de pareceres técnicos e estudos estratégicos relacionados à mensuração do impacto de políticas no setor terciário.
 
