@@ -12,7 +12,7 @@ Elaboro pareceres técnico-econômicos sobre proposições legislativas, com foc
 ## Estudos Estratégicos   
 
 **Nota Técnica — Projetos do Governo**    
-Tema: [*Imposto de Exportação sobre Petróleo e Diesel – Análise de Impacto Econômico das MPs 1.340 e 1.349/2026*](https://drive.google.com/file/d/1XKYG_x6Sb-AQIoWUSVYdoMVzcYpJCRtt/view?usp=sharing)    
+Tema: [*Imposto de Exportação sobre Petróleo e Diesel – Análise de Impacto Econômico das MPs 1.340 e 1.349/2026*](https://drive.google.com/file/d/1yYj4gKPNIOjNc5uJOglGysvhOL-_WGQC/view?usp=sharing)    
 
 
 **Nota Técnica — Projeto de Lei**    
