@@ -5,7 +5,7 @@ permalink: /pesquisas/
 author_profile: true
 ---
 
-Minha pesquisa utiliza métodos econométricos para investigar questões aplicadas de política econômica, com ênfase nos impactos sobre o setor de serviços, tributação e dinâmicas macroeconômicas.
+Elaboro pareceres técnico-econômicos sobre proposições legislativas, com foco em análise econômica aplicada de políticas públicas e instrumentos normativos, combinando teoria econômica, regulatória e evidências empíricas para avaliar os efeitos de propostas legislativas sobre o setor produtivo.
 
 ---
 
