@@ -20,4 +20,4 @@ Estou aberta a colaborações em pesquisa, consultorias e oportunidades de escri
 
 ---
 
-[Solicitar análise econômica](https://form.typeform.com/to/SDOKdO54){: .btn .btn--primary}
+[Parceria de Pesquisa](https://form.typeform.com/to/SDOKdO54){: .btn .btn--primary}
