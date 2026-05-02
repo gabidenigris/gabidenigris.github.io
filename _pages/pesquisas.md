@@ -31,10 +31,6 @@ Tema: [*PL 1.559/2021 – Dispõe sobre o piso salarial do profissional Farmacê
 
 ## Acadêmicos
 
-**Dissertação de Mestrado — FGV EPPGE** *(em andamento)*   
-Tema: *A decidir.*   
-Orientador(a): *A decidir.*   
-
 
 **Dissertação de Bacharelado — Ibmec Brasília**   
 Tema: *O Impacto do Programa Remessa Conforme no Varejo Nacional: Uma Análise de Diferenças em Diferenças* *(em andamento)*     
@@ -42,9 +38,9 @@ Orientador: Prof. Raphael Rocha Gouvea, PhD
 
 ---
 
-## Serviços de Análise Econômica
+## Parcerias de Pesquisa e Análise Econômica
 
-Ofereço consultoria especializada em análise econômica aplicada para empresas, associações setoriais, escritórios de advocacia e instituições que precisam de evidências robustas para embasar decisões estratégicas. Entre os serviços disponíveis:
+Estou aberta a parcerias de pesquisa e análise econômica aplicada para empresas, associações setoriais, escritórios de advocacia e instituições que precisam de evidências robustas para embasar decisões estratégicas.
 
 - Avaliação de impacto de políticas públicas e regulações
 - Modelagem econométrica e análise de microdados
@@ -52,4 +48,4 @@ Ofereço consultoria especializada em análise econômica aplicada para empresas
 - Projeção de cenários macroeconômicos e setoriais
 
 
-[Solicitar análise econômica](https://form.typeform.com/to/SDOKdO54){: .btn .btn--primary}
+[Parcerias em projetos](https://form.typeform.com/to/SDOKdO54){: .btn .btn--primary}
