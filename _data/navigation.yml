@@ -2,17 +2,20 @@ main:
   - title: "Sobre mim"
     url: /
 
-  - title: "Pesquisas"
-    url: /pesquisas/
-
   - title: "Blog"
     url: /blog/
 
-  - title: "Currículo"
-    url: /cv/
+  - title: "Gráficos"
+    url: /graficos/
 
   - title: "Internacional"
     url: /internacional/
+
+  - title: "Pesquisas"
+    url: /pesquisas/
+
+  - title: "Currículo"
+    url: /cv/
 
   - title: "Contato"
     url: /contato/
