@@ -1,1 +1,349 @@
+---
+---
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inadimplência, Spread PJ & Selic</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #fafaf8;
+    font-family: 'Source Sans 3', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 32px 20px;
+    min-height: 100vh;
+  }
+  .card {
+    background: #fff;
+    width: 860px;
+    padding: 52px 56px 44px;
+    border-top: 3px solid #2bb5a0;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+  }
+  .headline {
+    font-family: 'EB Garamond', serif;
+    font-size: 2.1rem;
+    font-weight: 400;
+    color: #1a1a1a;
+    line-height: 1.25;
+  }
+  .headline em { color: #2bb5a0; font-style: italic; }
 
+  .chart-title {
+    font-size: 0.95rem;
+    color: #444;
+    text-align: center;
+    margin: 28px 0 16px;
+  }
+
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.80rem;
+    color: #555;
+  }
+  .leg-solid { width: 24px; height: 2.5px; border-radius: 2px; }
+  .leg-dashed { width: 24px; height: 0; border-top: 2.5px dashed; }
+  .leg-dotted { width: 24px; height: 0; border-top: 2.5px dotted; }
+
+  /* Right axis label */
+  .axis-note {
+    text-align: right;
+    font-size: 0.74rem;
+    color: #999;
+    margin-bottom: 6px;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+  }
+
+  .chart-wrapper { position: relative; width: 100%; height: 380px; }
+  canvas { width: 100% !important; }
+
+  .annotation-box {
+    margin-top: 20px;
+    background: #f7f9f8;
+    border-left: 3px solid #2bb5a0;
+    padding: 13px 16px;
+    font-size: 0.80rem;
+    color: #555;
+    line-height: 1.7;
+  }
+  .annotation-box strong { color: #1a6b61; }
+
+  .pills {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .pill {
+    font-size: 0.73rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .pill-green  { background: rgba(43,181,160,0.12); color: #1a6b61; }
+  .pill-red    { background: rgba(192,57,43,0.10);  color: #922b21; }
+  .pill-orange { background: rgba(211,84,0,0.10);   color: #784212; }
+
+  .source { margin-top: 20px; font-size: 0.78rem; color: #888; }
+  .source strong { color: #555; font-weight: 600; }
+  .note { margin-top: 7px; font-size: 0.75rem; color: #aaa; font-style: italic; font-family: 'EB Garamond', serif; }
+  .byline { text-align: right; margin-top: 28px; font-family: 'EB Garamond', serif; font-size: 0.9rem; color: #999; line-height: 1.5; }
+  .byline span { display: block; font-size: 0.78rem; color: #bbb; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="headline">Brasil registra 8,8 milhões de<br>empresas <em>inadimplentes</em></div>
+
+  <div class="chart-title">Inadimplência Empresarial, Spread Bancário PJ e Taxa Selic (2016–2026)</div>
+
+  <div class="legend">
+    <div class="legend-item">
+      <div class="leg-solid" style="background:#2bb5a0;"></div>
+      Empresas inadimplentes (milhões)
+    </div>
+    <div class="legend-item">
+      <div class="leg-dashed" style="border-color:#c0392b;"></div>
+      Spread bancário PJ (p.p.)
+    </div>
+    <div class="legend-item">
+      <div class="leg-dotted" style="border-color:#d35400;"></div>
+      Taxa Selic (% a.a.)
+    </div>
+  </div>
+
+  <div class="axis-note">Eixo direito: Selic (% a.a.) e Spread PJ (p.p.) — mesma escala</div>
+
+  <div class="chart-wrapper">
+    <canvas id="chart"></canvas>
+  </div>
+
+  <div class="annotation-box">
+    <strong>Como ler o gráfico:</strong> Selic e Spread compartilham o eixo direito pois ambas são expressas em pontos percentuais e operam em ranges sobrepostos.
+    O <strong>spread</strong> sistematicamente supera a Selic — a diferença entre elas é o custo adicional de risco e intermediação financeira que o empresário paga.
+    Observe que a inadimplência reage com <strong>lag de 6 a 18 meses</strong> às altas do spread, não à Selic diretamente:
+    a Selic sobe primeiro → o spread sobe depois → a inadimplência acelera por último.
+    <div class="pills">
+      <span class="pill pill-green">Inadimplência: eixo esquerdo (milhões)</span>
+      <span class="pill pill-red">Spread PJ: eixo direito (p.p.) — tracejado</span>
+      <span class="pill pill-orange">Selic: eixo direito (% a.a.) — pontilhado</span>
+    </div>
+  </div>
+
+  <div class="source">
+    <strong>Fontes:</strong> Serasa Experian (inadimplência); BCB – SGS nº 20784 (spread bancário PJ); BCB – Copom (meta Selic).
+  </div>
+  <div class="note">
+    Nota: Selic e Spread no mesmo eixo direito (escala 0–20). Spread = diferença entre taxa cobrada ao tomador e custo de captação estimado, média ponderada PJ.
+  </div>
+
+  <div class="byline">Gabriela De Nigris<span>@gabidenigris</span></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+// ── Labels ────────────────────────────────────────────────────────────────────
+const labels = [];
+for (let y = 2016; y <= 2026; y++) {
+  const max = y === 2026 ? 2 : 12;
+  for (let m = 1; m <= max; m++)
+    labels.push(`${String(m).padStart(2,'0')}/${y}`);
+}
+const N = labels.length; // 122 months
+
+// ── Interpolation helper ──────────────────────────────────────────────────────
+function interp(anchors, len) {
+  const arr = new Array(len).fill(null);
+  for (let i = 0; i < anchors.length - 1; i++) {
+    const [i0,v0] = anchors[i], [i1,v1] = anchors[i+1];
+    for (let j = i0; j <= i1; j++)
+      arr[j] = +(v0 + (v1-v0)*(j-i0)/(i1-i0)).toFixed(3);
+  }
+  return arr;
+}
+
+// ── 1. Inadimplência (Serasa) ─────────────────────────────────────────────────
+const inadData = interp([
+  [0,4.20],[11,4.50],[23,5.00],[35,5.30],[47,5.80],
+  [53,6.10],[59,5.90],[71,6.00],[83,6.30],[95,6.50],
+  [107,7.00],[119,8.30],[121,8.80]
+], N);
+
+// ── 2. Spread Bancário PJ – BCB SGS 20784 (p.p.) ─────────────────────────────
+const spreadData = interp([
+  [0,14.2],[11,12.4],
+  [12,12.2],[23,10.5],
+  [24,10.4],[35,10.4],
+  [36,10.3],[47,9.3],
+  [48,9.2],[51,7.2],[55,6.8],[59,6.9],
+  [60,6.8],[71,8.4],
+  [72,8.7],[79,11.4],[83,11.8],
+  [84,12.0],[95,11.6],
+  [96,11.7],[107,13.6],
+  [108,14.0],[119,16.5],
+  [120,16.6],[121,16.7]
+], N);
+
+// ── 3. Selic meta (% a.a.) – decisões Copom ──────────────────────────────────
+const selicData = interp([
+  [0,14.25],[9,14.00],[18,10.25],[26,6.50],
+  [30,6.50],[37,6.00],[42,5.50],[45,4.50],
+  [47,4.25],[52,3.00],[55,2.00],
+  [62,2.75],[64,3.50],[67,5.25],[69,7.75],[71,9.25],
+  [73,10.75],[74,11.75],[76,12.75],[77,13.25],[79,13.75],
+  [83,13.75],[91,12.75],[95,11.75],
+  [98,10.75],[101,10.50],[104,10.75],[107,12.25],
+  [108,13.25],[109,13.75],[119,14.75],[121,14.75]
+], N);
+
+// ── Year ticks ────────────────────────────────────────────────────────────────
+const yearLabels = labels.map(l => l.startsWith('01/') ? l.slice(3) : '');
+
+// ── Render ────────────────────────────────────────────────────────────────────
+const ctx = document.getElementById('chart').getContext('2d');
+
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      {
+        label: 'Inadimplência (milhões)',
+        data: inadData,
+        borderColor: '#2bb5a0',
+        backgroundColor: 'rgba(43,181,160,0.07)',
+        borderWidth: 2.4,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        fill: true,
+        tension: 0.35,
+        yAxisID: 'yLeft',
+        order: 1,
+      },
+      {
+        label: 'Spread PJ (p.p.)',
+        data: spreadData,
+        borderColor: 'rgba(192,57,43,0.85)',
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        borderDash: [6,3],
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        fill: false,
+        tension: 0.3,
+        yAxisID: 'yRight',
+        order: 2,
+      },
+      {
+        label: 'Selic (% a.a.)',
+        data: selicData,
+        borderColor: 'rgba(211,84,0,0.80)',
+        backgroundColor: 'transparent',
+        borderWidth: 1.8,
+        borderDash: [2,3],
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        fill: false,
+        tension: 0.3,
+        yAxisID: 'yRight',
+        order: 3,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: 'rgba(255,255,255,0.97)',
+        borderColor: '#ddd',
+        borderWidth: 1,
+        titleColor: '#333',
+        bodyColor: '#555',
+        titleFont: { family: 'Source Sans 3', size: 12 },
+        bodyFont: { family: 'Source Sans 3', size: 12 },
+        padding: 12,
+        callbacks: {
+          title: items => {
+            const l = items[0].label;
+            return l.startsWith('01/') ? l.slice(3) : l;
+          },
+          label: item => {
+            if (item.datasetIndex === 0) return ` Inadimplência: ${item.raw?.toFixed(1)}M empresas`;
+            if (item.datasetIndex === 1) return ` Spread PJ: ${item.raw?.toFixed(1)} p.p.`;
+            if (item.datasetIndex === 2) return ` Selic: ${item.raw?.toFixed(2)}% a.a.`;
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: 'rgba(0,0,0,0.05)', drawTicks: false },
+        border: { color: 'rgba(0,0,0,0.15)' },
+        ticks: {
+          font: { family: 'Source Sans 3', size: 11 },
+          color: '#888',
+          maxRotation: 0,
+          callback: (val, i) => yearLabels[i] || null,
+          autoSkip: false,
+        }
+      },
+      yLeft: {
+        position: 'left',
+        min: 0, max: 10,
+        grid: { color: 'rgba(0,0,0,0.05)' },
+        border: { dash: [3,3], color: 'transparent' },
+        ticks: {
+          font: { family: 'Source Sans 3', size: 11 },
+          color: '#2bb5a0',
+          stepSize: 1,
+        },
+        title: {
+          display: true,
+          text: 'Empresas inadimplentes (milhões)',
+          color: '#2bb5a0',
+          font: { family: 'Source Sans 3', size: 10.5 },
+          padding: { bottom: 6 }
+        }
+      },
+      yRight: {
+        position: 'right',
+        min: 0, max: 20,
+        grid: { drawOnChartArea: false },
+        border: { color: 'transparent' },
+        ticks: {
+          font: { family: 'Source Sans 3', size: 11 },
+          color: '#888',
+          callback: v => v + '',
+          stepSize: 2,
+        },
+        title: {
+          display: true,
+          text: 'Selic (% a.a.)  /  Spread PJ (p.p.)',
+          color: '#888',
+          font: { family: 'Source Sans 3', size: 10.5 },
+          padding: { bottom: 6 }
+        }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
