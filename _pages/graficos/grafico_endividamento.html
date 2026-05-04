@@ -1,0 +1,362 @@
+---
+permalink: /graficos/endividamento-familias.html
+layout: none
+---
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Endividamento das Famílias – Gabriela De Nigris</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: #F7F3EE;
+    font-family: 'Montserrat', sans-serif;
+    color: #1A2332;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+  }
+
+  .card {
+    background: #FFFFFF;
+    max-width: 820px;
+    width: 100%;
+    padding: 56px 60px 52px;
+    border-top: 3px solid #3D9B88;
+  }
+
+  .headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 300;
+    line-height: 1.18;
+    color: #1A2332;
+    letter-spacing: -0.01em;
+  }
+
+  .headline em {
+    font-style: italic;
+    color: #3D9B88;
+  }
+
+  .chart-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: #718096;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 36px;
+    margin-bottom: 32px;
+  }
+
+  .chart-wrapper {
+    position: relative;
+    width: 100%;
+    height: 380px;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 40px;
+    margin-top: 26px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .legend-line {
+    width: 24px;
+    height: 2px;
+    margin-top: 8px;
+    flex-shrink: 0;
+    border-radius: 1px;
+  }
+
+  .legend-line.dashed {
+    background: repeating-linear-gradient(
+      to right,
+      #6BBFAA 0px, #6BBFAA 5px,
+      transparent 5px, transparent 9px
+    );
+  }
+
+  .legend-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.70rem;
+    font-weight: 400;
+    color: #4A5568;
+    line-height: 1.55;
+  }
+
+  .legend-label strong {
+    display: block;
+    font-weight: 600;
+    color: #1A2332;
+    font-size: 0.71rem;
+    margin-bottom: 1px;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #E8E3DC;
+    margin-top: 28px;
+  }
+
+  .source {
+    margin-top: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.66rem;
+    color: #718096;
+    line-height: 1.65;
+  }
+
+  .source strong {
+    font-weight: 600;
+    color: #4A5568;
+  }
+
+  .signature {
+    text-align: right;
+    margin-top: 28px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    color: #718096;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+
+  .signature span {
+    display: block;
+    font-size: 0.69rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color: #A8D8CC;
+    margin-top: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <h1 class="headline">Endividamento estrutural das famílias:<br><em>29,7% da renda mensal comprometida com dívidas</em></h1>
+
+  <p class="chart-title">Comprometimento de renda, endividamento e spread de crédito das famílias brasileiras &mdash; 2015–2026</p>
+
+  <div class="chart-wrapper">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-line" style="background:#3D9B88;"></div>
+      <div class="legend-label">
+        <strong>Comprometimento de renda (Série 29034)</strong>
+        % da renda mensal destinada ao serviço da dívida — eixo esquerdo
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-line" style="background:#1E4E7A;"></div>
+      <div class="legend-label">
+        <strong>Endividamento total (Série 29037)</strong>
+        % da renda anual comprometida com estoque de dívidas — eixo esquerdo
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-line dashed"></div>
+      <div class="legend-label">
+        <strong>Spread médio de crédito (Série 20783)</strong>
+        Diferença entre custo de captação e taxa cobrada ao tomador (p.p.) — eixo direito
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <p class="source">
+    <strong>Fonte:</strong> Banco Central do Brasil, BCData/SGS (séries 29034, 29037 e 20783). Elaboração própria.
+  </p>
+
+  <div class="signature">
+    Gabriela De Nigris
+    <span>@gabidenigris</span>
+  </div>
+
+</div>
+
+<script>
+// Todos os labels mensais — usados internamente para o tooltip
+const allLabels = ['01/2015','02/2015','03/2015','04/2015','05/2015','06/2015','07/2015','08/2015','09/2015','10/2015','11/2015','12/2015','01/2016','02/2016','03/2016','04/2016','05/2016','06/2016','07/2016','08/2016','09/2016','10/2016','11/2016','12/2016','01/2017','02/2017','03/2017','04/2017','05/2017','06/2017','07/2017','08/2017','09/2017','10/2017','11/2017','12/2017','01/2018','02/2018','03/2018','04/2018','05/2018','06/2018','07/2018','08/2018','09/2018','10/2018','11/2018','12/2018','01/2019','02/2019','03/2019','04/2019','05/2019','06/2019','07/2019','08/2019','09/2019','10/2019','11/2019','12/2019','01/2020','02/2020','03/2020','04/2020','05/2020','06/2020','07/2020','08/2020','09/2020','10/2020','11/2020','12/2020','01/2021','02/2021','03/2021','04/2021','05/2021','06/2021','07/2021','08/2021','09/2021','10/2021','11/2021','12/2021','01/2022','02/2022','03/2022','04/2022','05/2022','06/2022','07/2022','08/2022','09/2022','10/2022','11/2022','12/2022','01/2023','02/2023','03/2023','04/2023','05/2023','06/2023','07/2023','08/2023','09/2023','10/2023','11/2023','12/2023','01/2024','02/2024','03/2024','04/2024','05/2024','06/2024','07/2024','08/2024','09/2024','10/2024','11/2024','12/2024','01/2025','02/2025','03/2025','04/2025','05/2025','06/2025','07/2025','08/2025','09/2025','10/2025','11/2025','12/2025','01/2026','02/2026','03/2026'];
+
+const s29034 = [24.28,24.45,24.36,24.56,24.55,24.65,24.66,24.73,25.05,24.58,24.08,23.3,23.59,23.66,23.95,23.96,24.25,24.28,24.11,24.07,24.13,23.99,23.85,23.49,23.44,23.26,23.19,22.79,22.44,22.34,22.57,22.92,23.07,22.78,22.58,22.36,22.25,22.25,22.34,22.62,22.87,23.08,22.78,22.52,22.56,22.54,22.69,22.99,23.12,23.3,23.33,23.78,24.13,25.24,24.92,24.97,24.19,23.86,23.35,23.03,22.97,22.94,23.94,23.37,21.88,20.5,20.11,20.07,20.4,20.94,21.81,22.47,22.72,22.48,22.78,22.81,23.18,23.31,23.65,24.08,25.0,25.81,26.1,26.31,26.66,26.18,25.92,26.02,25.8,26.36,26.91,27.33,27.54,27.69,27.75,27.95,28.05,28.07,28.07,28.19,28.38,28.2,27.77,27.3,27.28,27.44,27.02,26.31,26.24,26.26,26.52,26.54,26.42,26.75,26.89,27.16,27.06,27.12,27.01,27.39,27.57,27.69,27.86,27.83,28.09,28.0,27.97,28.56,28.84,29.32,29.02,29.17,29.46,29.7,null];
+
+const s29037 = [39.64,39.64,39.74,40.03,40.05,40.13,40.42,40.61,40.84,40.87,40.6,40.09,40.06,39.7,39.55,39.28,39.22,39.07,38.88,38.78,38.53,38.28,38.31,38.2,38.05,37.92,37.83,37.5,37.42,37.37,37.37,37.41,37.28,37.34,37.42,37.27,37.31,37.29,37.32,37.55,37.84,37.94,37.91,38.09,38.11,38.38,38.85,39.06,39.29,39.55,39.6,39.82,40.12,40.56,40.73,41.13,41.22,41.35,41.58,41.47,41.51,41.46,41.55,40.86,40.03,39.37,39.23,39.2,39.59,40.2,41.03,41.75,42.06,42.25,42.43,42.88,43.83,44.52,45.18,46.43,47.47,48.16,48.92,49.44,49.6,49.47,49.52,49.6,49.49,49.62,49.88,49.59,49.48,49.66,49.41,49.0,48.95,48.66,48.58,48.51,48.83,48.4,47.98,48.17,48.06,48.13,48.13,47.69,47.84,47.78,47.76,47.71,47.58,47.67,47.85,48.06,48.03,48.08,48.3,48.44,48.63,48.61,48.97,48.88,48.88,48.81,48.64,48.93,49.08,49.32,49.67,49.71,49.76,49.9,null];
+
+const s20783 = [15.68,16.28,16.03,16.75,17.05,17.44,18.06,18.32,18.21,18.83,19.09,18.21,19.78,20.56,21.28,21.99,22.32,22.17,22.68,22.93,23.12,23.61,23.23,22.31,23.59,23.55,23.5,22.01,20.77,20.64,21.41,21.28,20.01,20.58,20.05,18.75,19.44,20.08,19.63,19.39,18.18,17.31,17.35,17.12,17.03,17.71,17.91,16.73,18.29,18.7,18.92,18.99,18.87,19.15,19.37,19.53,18.91,18.8,18.94,17.91,18.45,18.65,18.06,17.08,16.53,15.45,15.26,14.81,14.14,14.4,14.13,14.29,15.58,15.38,14.89,14.96,14.42,14.34,14.49,14.35,14.34,15.07,15.25,15.7,16.21,16.76,16.94,17.24,17.09,17.51,18.39,18.57,18.74,19.9,19.84,18.85,19.79,20.19,20.3,21.29,21.42,21.16,20.94,20.59,20.36,19.91,19.94,19.45,19.27,19.28,19.33,19.06,18.79,18.54,18.53,18.46,18.27,18.27,18.42,17.52,18.38,19.31,19.37,19.98,20.4,20.6,20.4,20.61,20.37,20.75,21.45,21.11,21.76,22.11,21.84];
+
+// Índices onde começa cada ano (mês 01) para o eixo X
+const yearTickIndices = [0,12,24,36,48,60,72,84,96,108,120,132];
+const yearLabels      = ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2026'];
+
+const ctx = document.getElementById('myChart').getContext('2d');
+
+const grad1 = ctx.createLinearGradient(0, 0, 0, 380);
+grad1.addColorStop(0, 'rgba(61,155,136,0.14)');
+grad1.addColorStop(1, 'rgba(61,155,136,0.01)');
+
+const grad2 = ctx.createLinearGradient(0, 0, 0, 380);
+grad2.addColorStop(0, 'rgba(30,78,122,0.10)');
+grad2.addColorStop(1, 'rgba(30,78,122,0.01)');
+
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: allLabels,
+    datasets: [
+      {
+        label: 'Comprometimento de renda',
+        data: s29034,
+        borderColor: '#3D9B88',
+        backgroundColor: grad1,
+        borderWidth: 2,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: '#3D9B88',
+        pointHoverBorderColor: '#fff',
+        pointHoverBorderWidth: 2,
+        tension: 0.35,
+        fill: true,
+        yAxisID: 'y',
+        spanGaps: false,
+      },
+      {
+        label: 'Endividamento total',
+        data: s29037,
+        borderColor: '#1E4E7A',
+        backgroundColor: grad2,
+        borderWidth: 2,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: '#1E4E7A',
+        pointHoverBorderColor: '#fff',
+        pointHoverBorderWidth: 2,
+        tension: 0.35,
+        fill: true,
+        yAxisID: 'y',
+        spanGaps: false,
+      },
+      {
+        label: 'Spread médio de crédito',
+        data: s20783,
+        borderColor: '#6BBFAA',
+        borderWidth: 1.8,
+        borderDash: [6, 4],
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: '#6BBFAA',
+        pointHoverBorderColor: '#fff',
+        pointHoverBorderWidth: 2,
+        tension: 0.35,
+        fill: false,
+        yAxisID: 'y2',
+        spanGaps: false,
+      },
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#1A2332',
+        titleColor: '#A8D8CC',
+        bodyColor: '#F7F3EE',
+        padding: 12,
+        cornerRadius: 2,
+        titleFont: { family: 'Montserrat', size: 11, weight: '600' },
+        bodyFont: { family: 'Montserrat', size: 11 },
+        callbacks: {
+          title: (items) => {
+            // Converte "01/2015" → "jan. 2015"
+            const months = ['jan.','fev.','mar.','abr.','mai.','jun.','jul.','ago.','set.','out.','nov.','dez.'];
+            const [m, y] = items[0].label.split('/');
+            return `${months[parseInt(m)-1]} ${y}`;
+          },
+          label: (item) => {
+            if (item.parsed.y === null) return null;
+            const names = ['Comprometimento de renda', 'Endividamento total', 'Spread médio'];
+            const units = ['%', '%', ' p.p.'];
+            return `  ${names[item.datasetIndex]}: ${item.parsed.y.toFixed(1)}${units[item.datasetIndex]}`;
+          }
+        }
+      },
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        border: { display: false },
+        ticks: {
+          font: { family: 'Montserrat', size: 9.5 },
+          color: '#718096',
+          maxRotation: 0,
+          padding: 10,
+          callback: function(val, index) {
+            const i = yearTickIndices.indexOf(index);
+            return i !== -1 ? yearLabels[i] : '';
+          },
+          autoSkip: false,
+        }
+      },
+      y: {
+        position: 'left',
+        grid: {
+          color: 'rgba(74,85,104,0.08)',
+          drawTicks: false,
+          drawOnChartArea: true,
+        },
+        border: { display: false, dash: [] },
+        min: 15,
+        max: 55,
+        ticks: {
+          font: { family: 'Montserrat', size: 9.5 },
+          color: '#3D9B88',
+          padding: 10,
+          stepSize: 5,
+          callback: (v) => v + '%',
+        }
+      },
+      y2: {
+        position: 'right',
+        grid: { display: false },
+        border: { display: false },
+        min: 10,
+        max: 28,
+        ticks: {
+          font: { family: 'Montserrat', size: 9.5 },
+          color: '#1A2332',
+          padding: 10,
+          stepSize: 4,
+          callback: (v) => v + ' p.p.',
+        }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
