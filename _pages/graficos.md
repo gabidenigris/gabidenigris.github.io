@@ -16,8 +16,6 @@ Visualizações interativas sobre economia brasileira. Clique em cada gráfico p
   <p class="blog-post-meta">Fonte: Banco Central do Brasil · BCData/SGS · 2026</p>
 </div>  
 
----
-
 <div class="blog-post-item">
   <h3 class="blog-post-title">
     <a href="/graficos/inadimplencia-spread-selic/">Brasil registra 8,8 milhões de empresas inadimplentes</a>
