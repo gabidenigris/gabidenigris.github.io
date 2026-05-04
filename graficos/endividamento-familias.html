@@ -279,6 +279,10 @@ new Chart(ctx, {
   options: {
     responsive: true,
     maintainAspectRatio: false,
+    animation: {
+      duration: 4000,
+      easing: 'easeInOutQuart',
+    },
     interaction: { mode: 'index', intersect: false },
     plugins: {
       legend: { display: false },
