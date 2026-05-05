@@ -5,7 +5,7 @@ permalink: /internacional/
 author_profile: true
 ---
 
-Ao longo da minha trajetória acadêmica e profissional, tive a oportunidade de participar de programas internacionais de formação em economia, política pública e liderança em instituições de referência global.
+Ao longo da minha trajetória acadêmica e profissional, participei de programas de formação em economia, políticas públicas e liderança promovidos por instituições internacionais de excelência.
 
 ---
 
