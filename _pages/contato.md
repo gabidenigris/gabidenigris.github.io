@@ -18,6 +18,3 @@ Estou aberta a colaborações em pesquisa, consultorias e oportunidades de escri
 💻 **GitHub**
 [github.com/gabidenigris](https://github.com/gabidenigris)
 
----
-
-[Parceria de Pesquisa](https://form.typeform.com/to/SDOKdO54){: .btn .btn--primary}
