@@ -4,6 +4,7 @@ title: "Resume"
 permalink: /cv/
 author_profile: true
 ---
+
 [Download Full Resume (EN)](/files/CV_Gabriela_De_Nigris.pdf){: .btn .btn--primary}
 
 ## Formação Acadêmica
