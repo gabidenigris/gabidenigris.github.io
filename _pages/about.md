@@ -8,24 +8,22 @@ redirect_from:
   - /about.html
 ---
 
-Sou graduanda em Economia, dedicada a compreender o impacto de decisões políticas em diversos setores produtivos por meio de metodologias econométricas, garantindo análises empíricas robustas. Minha trajetória profissional abrange a pesquisa acadêmica, a assessoria legislativa e o setor privado, sempre visando transformar dados e evidências em insumos estratégicos para a tomada de decisão institucional.
+Undergraduate student in **Economics at Ibmec** (2022-2026), with a focus on macroeconomics, finance and applied econometrics. Currently, I am part of the economic research team at the **National Confederation of Commerce (CNC)**, where I am dedicated to transforming data into strategic advocacy for the commerce and services sector.
 
-Atualmente, integro a equipe econômica da **Confederação Nacional do Comércio (CNC)**, onde desenvolvo pareceres técnicos e estudos estratégicos com foco na mensuração do impacto de políticas no setor terciário.
+My core competencies include quantitative modeling (R and Python), and technical writing. I apply these tools to develop methodologies based on microdata processing, aiming to support impact reports for the private sector.
 
-Anteriormente, fui Assessora Legislativa Parlamentar na Câmara dos Deputados, onde elaborei pareceres econômicos e atuei na formulação e defesa de reformas macroeconômicas, com ênfase nas áreas tributária e fiscal.
-
-Concluo o bacharelado em Economia pelo **Ibmec Brasília** (2022-2026) e ingressarei como mestranda em Economia e Finanças pela **Fundação Getulio Vargas** (FGV EPPGE) no período de 2027 a 2029.
+Previously, I served as a Legislative Advisor at the **Chamber of Deputies**, where I conducted merit evaluations for legislative proposals and engaged in institutional dialogue with stakeholders. Additionally, I was a member of the research core at IbMacro, Ibmec's academic league for macroeconomics.
 
 ---
 
-## Parcerias de Pesquisa e Análise Econômica
+## Project proposal 
 
-Atuo no desenvolvimento de pesquisas e análises econômicas aplicadas, oferecendo suporte técnico a empresas, associações setoriais, escritórios de advocacia e instituições que demandam evidências empíricas robustas para o embasamento de decisões estratégicas.
+I specialize in the development of applied economic analysis, providing technical support to companies, industry associations, law firms, and institutions that require robust empirical evidence to inform strategic decisions.
 
-- Avaliação de impacto de políticas públicas e regulações
-- Modelagem econométrica e análise de microdados
-- Elaboração de pareceres técnicos e notas econômicas
-- Projeção de cenários macroeconômicos e setoriais
+- Econometric modeling and microdata analysis
+- Market research and forecasting of macroeconomic and sector-specific scenarios
+- Technical reports assessing the impact of regulations and public policies
+- Pricing and financial modeling
 
-[Propor Projeto](https://form.typeform.com/to/SDOKdO54){: .btn .btn--primary}
+[Contact me](https://form.typeform.com/to/SDOKdO54){: .btn .btn--primary}
 
