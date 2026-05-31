@@ -1,52 +1,47 @@
 ---
 layout: single
-title: "Currículo"
+title: "Resume"
 permalink: /cv/
 author_profile: true
 ---
+[Download Full Resume EN](/files/CV_Gabriela_De_Nigris.pdf){: .btn .btn--primary}
 
 ## Formação Acadêmica
 
-[Baixar CV EN em PDF](/files/CV_Gabriela_De_Nigris.pdf){: .btn .btn--primary}
-
-**Mestrado em Economia e Finanças** *(2027–2029)*  
-Fundação Getúlio Vargas — FGV EPPGE
-
 **Bacharelado em Economia** *(2022–2026)*  
 Instituto Brasileiro de Mercado de Capitais — Ibmec Brasília
-
 
 
 ## Experiência Profissional
 
 **Economista**  
 Confederação Nacional do Comércio (CNC) — *Brasília, DF*
-- Formulação de pareceres técnicos sobre o impacto de políticas no setor terciário
-- Análise econométrica para suporte à tomada de decisão
-- Elaboração de relatórios e estudos econômicos
+- Formulação de pareceres técnicos sobre o impacto de políticas no setor terciário.
+- Análise econométrica para suporte à tomada de decisão.
+- Elaboração de relatórios e estudos econômicos.
 
-**Assessora Econômica Parlamentar**  
+**Assessora Legislativa Parlamentar**  
 Câmara dos Deputados — *Brasília, DF*
-- Elaboração e defesa de iniciativas legislativas nas áreas de economia
-- Análise de reformas macroeconômicas relacionadas à tributação e regime fiscal
-- Produção de notas técnicas e pareceres econômicos
+- Elaboração e defesa de iniciativas legislativas nas áreas de economia.
+- Análise de reformas macroeconômicas relacionadas à tributação e regime fiscal.
+- Produção de notas técnicas e pareceres econômicos.
 
 **Consultora Econômica**  
 Paribus Analytics — *São Paulo, SP*
-- Modelagem econométrica e avaliação de impacto de políticas públicas, legislações e regulações de mercado
-- Extração, tratamento e análise de microdados econômicos e sociais (R) para embasar decisões estratégicas e institucionais
-- Projeção de cenários macroeconômicos e modelagem preditiva aplicada a indicadores fiscais, financeiros e setoriais
-- Desenvolvimento de dashboards e automatização de rotinas de coleta e análise de dados conjunturais
+- Modelagem econométrica e avaliação de impacto de legislações e regulações de mercado.
+- Extração, tratamento e análise de microdados econômicos e sociais (R, python e SQL) para embasar decisões institucionais.
+- Projeção de cenários macroeconômicos e modelagem preditiva aplicada a indicadores fiscais, financeiros e setoriais.
+- Desenvolvimento de dashboards e automatização de rotinas de coleta e análise de dados conjunturais.
 
 
 
 ## Habilidades
 
 - Econometria aplicada
-- Análise de políticas públicas e impacto regulatório
-- R e Python
-- Elaboração de pareceres técnicos
-- Finanças públicas, tributação e análise contábil
+- Análise de impacto regulatório
+- R, Python e SQL
+- Pricing, finanças corporativas e modelagem financeira
+- Finanças públicas e tributação
 
 
 
