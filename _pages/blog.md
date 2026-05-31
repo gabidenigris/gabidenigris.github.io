@@ -1,11 +1,11 @@
 ---
 layout: archive
-title: "Blog"
+title: "Articles"
 permalink: /blog/
 author_profile: true
 ---
 
-Aqui compartilho análises, reflexões e artigos sobre economia, políticas públicas e temas que acompanho de perto.
+Here I share analyses, reflections, and articles on economics, and topics I follow closely.
 
 ---
 
