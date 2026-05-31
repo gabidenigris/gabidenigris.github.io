@@ -1,49 +1,49 @@
 ---
 layout: single
-title: "Você paga o mesmo, leva menos: o custo oculto da reduflação"
-subtitle: "De biscoitos a shampoos, embalagens estão encolhendo enquanto os preços seguem firmes. Entenda o que é reduflação e como virou peça‑chave da inflação brasileira."
+title: "You pay the same, get less: the hidden cost of shrinkflation"
+subtitle: "From cookies to shampoos, packaging is shrinking while prices remain firm. Understand what shrinkflation is and how it became a key piece of Brazilian inflation."
 date: 2025-04-22
 permalink: /blog/2025/04/reduflacao-custo-oculto/
 author_profile: true
 source_name: "Ceteris Paribus (Substack)"
 source_url: "https://gabidenigris.substack.com/p/voce-paga-o-mesmo-leva-menos-o-custo"
 tags:
-  - inflação
-  - reduflação
-  - consumidor
-  - política regulatória
+  - inflation
+  - shrinkflation
+  - consumer
+  - regulatory policy
 ---
 
-*Este artigo foi originalmente publicado no [Ceteris Paribus](https://gabidenigris.substack.com/p/voce-paga-o-mesmo-leva-menos-o-custo), em 22 de abril de 2025.*
+*This article was originally published in [Ceteris Paribus](https://gabidenigris.substack.com/p/voce-paga-o-mesmo-leva-menos-o-custo), in Portuguese, on April 22, 2025.*
 
 ---
 
-Você já percebeu embalagens menores pelo mesmo preço? O Índice Nacional de Preços ao Consumidor Amplo (IPCA) fechou 2024 em 4,83%, rompendo novamente o teto da meta. As expectativas para o IPCA permaneceram em 5,57% para 2025, acima do teto da meta de 4,50%. Dentro desse contexto, surge a **reduflação** — termo que mistura "redução" e "inflação". Embora silenciosa, essa prática reduz seu poder de compra diariamente.
+Have you noticed smaller packaging for the same price? The Broad National Consumer Price Index (IPCA) closed 2024 at 4.83%, breaching the ceiling of the target once again. Expectations for the IPCA remained at 5.57% for 2025, above the 4.50% target ceiling. Within this context, shrinkflation emerges — a term that mixes "shrink" and "inflation". Although silent, this practice reduces your purchasing power daily.
 
-## O que é reduflação?
+## What is shrinkflation?
 
-Reduflação é a prática empresarial de diminuir discretamente o peso ou o volume dos produtos sem reduzir proporcionalmente o preço, o que equivale a um aumento inflacionário oculto. Um produto que anteriormente pesava 200g pode ser reduzido para 180g mantendo ou até elevando seu preço original. Essa estratégia, comum após a pandemia, passou a ser uma maneira eficaz das empresas repassarem custos crescentes para consumidores menos atentos. Quando custos de insumos e logística disparam, empresas encaram três saídas: repassar preço, cortar margem ou reduzir tamanho. A terceira parece a "menos dolorosa", porque o rótulo se aproveita do olhar distraído.
+Shrinkflation is the business practice of discreetly decreasing the weight or volume of products without proportionally reducing the price, which amounts to a hidden inflationary increase. A product that previously weighed 200g might be reduced to 180g while maintaining or even raising its original price. This strategy, common after the pandemic, became an effective way for companies to pass on rising costs to less attentive consumers. When input and logistics costs soar, companies face three options: pass on the price, cut margins, or reduce the size. The third seems the "least painful", because the label takes advantage of the distracted eye.
 
-Um estudo de Janssen e Kasinger (2025) examinou dez anos de notas fiscais de supermercados nos EUA e descobriu que, apesar de apenas 2% dos produtos terem diminuído de tamanho, isso acontece cinco vezes mais do que aumentos de embalagem. Na média, a porção por embalagem encolheu 8%, mas o preço pago por grama ou mililitro subiu 12%. Como a maioria dos clientes não percebe a mudança, as vendas não caem. É um aumento que passa pelo olho distraído.
+A study by Janssen and Kasinger (2025) examined ten years of supermarket receipts in the US and found that, although only 2% of products decreased in size, this happens five times more often than packaging increases. On average, the portion per package shrank by 8%, but the price paid per gram or milliliter rose by 12%. Because most customers do not notice the change, sales do not drop. It is an increase that slips past the distracted eye.
 
-## Como outros países lidam com isso?
+## How do other countries deal with this?
 
-A experiência internacional mostra que **transparência de preços**, e não punições draconianas, é o caminho preferido.
+International experience shows that price transparency, rather than draconian punishments, is the preferred path.
 
-**França** — Desde julho de 2024, todo produto que encolher deve trazer, por seis meses, um aviso amarelo com a expressão *shrinkflation* e exibir o preço anterior por unidade de medida.
+**France** — Since July 2024, every product that shrinks must carry, for six months, a yellow warning with the expression shrinkflation and display the previous price per unit of measurement.
 
-**União Europeia** — O bloco adota, desde a Diretiva 98/6/EC, a obrigatoriedade de mostrar simultaneamente o preço total e o preço por quilo ou litro, para facilitar a comparação entre marcas.
+**European Union** — Since Directive 98/6/EC, the bloc has made it mandatory to simultaneously show the total price and the price per kilogram or liter, to facilitate comparison between brands.
 
-**Austrália** — O *Unit Pricing Code*, sob a lei de concorrência, força supermercados a exibir o valor por 100g ou 100mL em gôndolas e e‑commerce.
+**Australia** — The Unit Pricing Code, under competition law, forces supermarkets to display the value per 100g or 100mL on shelves and e-commerce.
 
-**Reino Unido** — Com alta de preços em 2023, a Competition and Markets Authority concluiu que *unit pricing* claro e legível ajuda mais do que tabelar embalagens.
+**United Kingdom** — With rising prices in 2023, the Competition and Markets Authority concluded that clear and legible unit pricing helps more than standardizing package sizes.
 
-Em todas as experiências de sucesso, o fio condutor é a **transparência**: quando a etiqueta traz o preço por quilo/litro e um aviso visível de mudança de gramatura, o consumidor compara em segundos e pune o fabricante no caixa, migrando para a marca vizinha.
+In all successful experiences, the common thread is transparency: when the label shows the price per kilo/liter and a visible warning of a weight change, the consumer compares in seconds and punishes the manufacturer at the checkout, migrating to the neighboring brand.
 
-## Os riscos de uma lei com sanções pesadas
+## The risks of a law with heavy sanctions
 
-O PL 1017/2025 prevê multa de até 10% do faturamento bruto e até cassação de alvará. À primeira vista, soa protetivo; na prática, pode gerar efeitos adversos. Negócios que operam com margens menores teriam de arcar com redesign de embalagens e novos sistemas de rastreio — para muitos, a saída seria simplesmente aumentar preços ou fechar as portas.
+Bill (PL) 1017/2025 foresees a fine of up to 10% of gross revenue and even the revocation of business licenses. At first glance, it sounds protective; in practice, it can generate adverse effects. Businesses that operate with lower margins would have to bear the cost of packaging redesign and new tracking systems — for many, the way out would simply be to increase prices or close their doors.
 
-Além disso, requisitos rígidos encarecem a operação e **favorecem grandes redes**, que diluem custos em escala. O resultado pode ser **menos concorrência** — exatamente o ambiente onde a reduflação prospera.
+Furthermore, rigid requirements make the operation more expensive and favor large chains, which dilute costs at scale. The result can be less competition — exactly the environment where shrinkflation thrives.
 
-A **reduflação** é um teste de transparência para mercados e políticas públicas. Embalagens menores pelo mesmo preço diluem o poder de compra e turvam as estatísticas. Bani‑la à força, contudo, arrisca transformar um problema de centímetros em um aumento de reais. O Brasil deveria seguir a lógica que funcionou lá fora: **iluminar a gôndola, não empunhar o tacape das multas bilionárias**.
+Shrinkflation is a transparency test for markets and public policies. Smaller packages for the same price dilute purchasing power and blur statistics. Banning it by force, however, risks turning a problem of centimeters into an increase in Reais. Brazil should follow the logic that worked abroad: illuminate the shelf, not wield the club of billionaire fines.
