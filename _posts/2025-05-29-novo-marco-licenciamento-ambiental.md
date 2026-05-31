@@ -12,6 +12,9 @@ tags:
   - agribusiness
 ---
 
+This article was originally published in [Exame Magazine](https://exame.com/colunistas/instituto-millenium/entenda-o-novo-marco-do-licenciamento-ambiental/), in Portuguese, on May 29, 2026.
+
+---
 After 20 years of back and forth, the Senate approved Bill (PL) 2159/2021, which creates the country's General Environmental Licensing Law. The measure promises to unlock infrastructure investments and increase the competitiveness of agribusiness, emerging at a time when the sector already accounts for 23.2% of the national GDP and half of Brazilian exports.
 
 ## What changes in the rules of the game?
