@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Undergraduate student in **Economics at Ibmec** (2022-2026), with a focus on macroeconomics, finance and applied econometrics. Currently, I am part of the economic research team at the **National Confederation of Commerce (CNC)**, where I am dedicated to transforming data into strategic advocacy for the commerce and services sector.
+Undergraduate student in **Economics** at **Ibmec** (2022-2026), with a focus on macroeconomics, finance and applied econometrics. Currently, I am part of the economic research team at the **National Confederation of Commerce (CNC)**, where I am dedicated to transforming data into strategic advocacy for the commerce and services sector.
 
 My core competencies include quantitative modeling (R and Python), and technical writing. I apply these tools to develop methodologies based on microdata processing, aiming to support impact reports for the private sector.
 
