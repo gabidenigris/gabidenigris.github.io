@@ -15,7 +15,7 @@ Here I share analyses, reflections, and articles on economics, and topics I foll
   {% if post.subtitle %}<p class="blog-post-subtitle">{{ post.subtitle }}</p>{% endif %}
   <p class="blog-post-meta">
     {% if post.source_url and post.source_name %}
-      Publicado em <a href="{{ post.source_url }}" target="_blank">{{ post.source_name }}</a> &middot;
+      Published on <a href="{{ post.source_url }}" target="_blank">{{ post.source_name }}</a> &middot;
     {% endif %}
     {{ post.date | date: "%d/%m/%Y" }}
   </p>
