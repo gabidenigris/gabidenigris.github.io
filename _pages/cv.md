@@ -4,7 +4,7 @@ title: "Resume"
 permalink: /cv/
 author_profile: true
 ---
-[Download Full Resume EN](/files/CV_Gabriela_De_Nigris.pdf){: .btn .btn--primary}
+[Download Full Resume (EN)](/files/CV_Gabriela_De_Nigris.pdf){: .btn .btn--primary}
 
 ## Formação Acadêmica
 
@@ -48,6 +48,6 @@ Paribus Analytics — *São Paulo, SP*
 ## Idiomas
 
 - Português — Nativo
-- Inglês — Avançado (C2)
+- Inglês — Avançado (C1)
 
 ---
