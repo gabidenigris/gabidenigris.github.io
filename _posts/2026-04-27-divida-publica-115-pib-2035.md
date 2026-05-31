@@ -1,43 +1,43 @@
 ---
 layout: single
-title: "Dívida pública pode chegar a 115% do PIB em 2035"
-subtitle: "Juros em 14,75% e crédito impossível não são má sorte. São o preço que famílias e empresas pagam por um Estado que gasta além do que pode."
+title: "Public debt could reach 115% of GDP in 2035"
+subtitle: "Interest rates at 14.75% and impossible credit are not bad luck. They are the price families and businesses pay for a State that spends beyond its means."
 date: 2026-04-27
 permalink: /blog/2026/04/divida-publica-115-pib-2035/
 author_profile: true
-source_name: "Ceteris Paribus (Substack)"
-source_url: "https://gabidenigris.substack.com/p/divida-publica-pode-chegar-a-115"
+source_name: "Exame"
+source_url: "https://exame.com/colunistas/instituto-millenium/divida-publica-pode-chegar-a-115-do-pib-em-2035/"
 tags:
-  - dívida pública
-  - política fiscal
+  - public debt
+  - fiscal policy
   - crowding out
-  - macroeconomia
+  - macroeconomics
 ---
 
-*Este artigo foi originalmente publicado no [Ceteris Paribus](https://gabidenigris.substack.com/p/divida-publica-pode-chegar-a-115), em 27 de abril de 2026.*
+*This article was originally published in [Exame Magazine](https://exame.com/colunistas/instituto-millenium/divida-publica-pode-chegar-a-115-do-pib-em-2035/), in Portuguese, on April 27, 2026.*
 
 ---
 
-Dois números resumem o dilema fiscal brasileiro. No cenário em que o governo cumpre suas metas, o Tesouro Nacional projeta dívida bruta de 88% do PIB em 2035. Mas se as expectativas do mercado para juros e crescimento se confirmarem, esse número sobe para 115,4% do PIB. O número é grande, mas o que ele revela não é novidade. O Brasil tem uma relação antiga e familiar com a dívida. Endividar para crescer virou, ao longo das décadas, algo próximo de uma política de Estado — não declarada, mas praticada com consistência.
+Two numbers summarize the Brazilian fiscal dilemma. In the scenario where the government meets its targets, the National Treasury projects a gross debt of 88% of GDP in 2035. But if market expectations for interest rates and growth are confirmed, this number rises to 115.4% of GDP. The number is large, but what it reveals is not new. Brazil has an old and familiar relationship with debt. Taking on debt to grow has become, over the decades, something akin to a State policy — undeclared, but consistently practiced.
 
-Nos anos 1970, foi a dívida externa que financiou o II PND: crédito estatal farto, investimento pesado em infraestrutura e insumos básicos, com a aposta de que o crescimento pagaria a conta. Quando os juros externos explodiram com o "choque Volcker" no início dos anos 1980 e a conta chegou, o governo converteu dívida externa em dívida interna: comprou dólares das exportadoras emitindo títulos públicos para pagar os credores externos. Preso num ciclo de refinanciamento contínuo, pagava juros cada vez mais altos para rolar essa dívida interna.
+In the 1970s, it was foreign debt that financed the II PND (Second National Development Plan): abundant state credit, heavy investment in infrastructure and basic inputs, with the bet that growth would foot the bill. When external interest rates exploded with the "Volcker shock" in the early 1980s and the bill arrived, the government converted external debt into internal debt: it bought dollars from exporters by issuing public bonds to pay external creditors. Trapped in a cycle of continuous refinancing, it paid increasingly higher interest rates to roll over this internal debt.
 
-O preço veio em inflação crescente e recessão, e a população o pagou por duas décadas. Em 1994, o Plano Real interrompeu esse ciclo com uma lógica clara: ajuste fiscal como condição para moeda forte.
+The price came in the form of rising inflation and recession, and the population paid for it for two decades. In 1994, the Real Plan interrupted this cycle with a clear logic: fiscal adjustment as a condition for a strong currency.
 
-Desde então, o problema mudou de forma, mas não de essência. A inflação dos anos 1980 destruía renda de forma visível e imediata, insuportável o suficiente para ser enfrentada. O problema fiscal de hoje é mais paciente. Não aparece nos preços. Aparece no crédito que encarece, no investimento que recua, no crescimento que decepciona. É um imposto invisível sobre o setor produtivo. O mecanismo tem nome técnico: *crowding out*.
+Since then, the problem has changed in form, but not in essence. The inflation of the 1980s destroyed income visibly and immediately, unbearable enough to be confronted. Today's fiscal problem is more patient. It does not appear in prices. It appears in credit that becomes more expensive, in investment that retreats, in growth that disappoints. It is an invisible tax on the productive sector. The mechanism has a technical name: *crowding out*.
 
-Para entender como funciona, pense numa analogia: a economia é um aquário. A água dentro do tanque é a poupança doméstica — todo o dinheiro disponível no país para ser investido em empresas, máquinas e empregos. Os peixes são as empresas, que precisam dessa água para nadar, crescer e contratar. Agora coloque uma esponja gigante dentro do aquário. Essa esponja é o Estado quando se endivida além do razoável: ela absorve a água da sociedade para financiar a si própria, e os peixes ficam sem espaço.
+To understand how it works, think of an analogy: the economy is an aquarium. The water inside the tank is domestic savings — all the money available in the country to be invested in companies, machinery, and jobs. The fish are the companies, which need this water to swim, grow, and hire. Now place a giant sponge inside the aquarium. This sponge is the State when it incurs debt beyond what is reasonable: it absorbs society's water to finance itself, and the fish are left without space.
 
-Com que estranha naturalidade convivemos com taxas de juros que seriam mortais em outros países? Se o governo, devedor mais seguro do país, cobra 14,75%, nenhuma instituição financeira vai emprestar ao setor privado por menos do que isso. O custo do crédito sobe para 20%, 30%, 40%. A expansão não acontece, projetos são cancelados, os empregos não são gerados, e a poupança nacional, em vez de financiar tecnologia e inovação, é absorvida para rolar a dívida do Estado.
+With what strange naturalness do we live with interest rates that would be lethal in other countries? If the government, the safest debtor in the country, borrows at 14.75%, no financial institution will lend to the private sector for less than that. The cost of credit rises to 20%, 30%, 40%. Expansion does not happen, projects are canceled, jobs are not generated, and national savings, instead of financing technology and innovation, are absorbed to roll over the State's debt.
 
-O resultado aparece nas estatísticas: ao final de 2025, as empresas brasileiras encerraram o ano com R$ 213 bilhões em dívidas e a inadimplência corporativa no maior patamar já registrado, segundo a Serasa Experian.
+The result appears in the statistics: at the end of 2025, Brazilian companies closed the year with R$ 213 billion in debt and corporate defaults at the highest level on record, according to Serasa Experian.
 
-O custo desse ambiente fiscal não para nas empresas. Segundo a Pesquisa de Endividamento e Inadimplência do Consumidor (PEIC) da CNC, em março de 2026, 80,4% das famílias brasileiras estavam endividadas — o maior nível da série histórica. Quase 30% tinham dívidas em atraso, e 12,3% declararam não ter condições de pagá-las. E o crédito que financia esse endividamento é significativamente mais caro para quem tem menos poder de negociação: enquanto empresas tomam crédito livre a cerca de 24% ao ano, famílias pagam em média 57%.
+The cost of this fiscal environment does not stop at companies. According to the Consumer Indebtedness and Default Survey (PEIC) by the CNC, in March 2026, 80.4% of Brazilian families were in debt — the highest level in the historical series. Almost 30% had overdue debts, and 12.3% declared they were unable to pay them. And the credit that finances this indebtedness is significantly more expensive for those with less bargaining power: while companies take out free credit at around 24% per year, families pay an average of 57%.
 
-Mas então qual seria a saída? Aqui mora um paradoxo que alimenta décadas de hesitação. Cortar gastos de forma abrupta provoca recessão, comprime a demanda, derruba a arrecadação e pode piorar a própria trajetória da dívida. A resposta, porém, não está na escolha entre ajustar ou não ajustar — está na credibilidade do compromisso. Um governo que sinaliza de forma consistente que vai respeitar seus limites fiscais reduz o prêmio de risco, derruba os juros e abre espaço para o crescimento sem precisar de choque.
+But then what would be the way out? Here lies a paradox that fuels decades of hesitation. Cutting spending abruptly causes recession, compresses demand, drops tax collection, and can worsen the debt trajectory itself. The answer, however, is not in the choice between adjusting or not adjusting — it is in the credibility of the commitment. A government that consistently signals it will respect its fiscal limits reduces the risk premium, brings down interest rates, and makes room for growth without needing a shock.
 
-O arcabouço fiscal existe. O teto de gastos existiu. Regras não faltam — o que falta é o compromisso de respeitá-las quando o custo político aparece. Cada vez que o governo encontra uma brecha, uma exceção, uma despesa fora do limite, ele sinaliza ao mercado que a regra é negociável. E mercado que recebe esse sinal cobra o prêmio de risco correspondente, nos juros, no câmbio, no crédito.
+The fiscal framework exists. The spending cap existed. There is no shortage of rules — what is missing is the commitment to respect them when the political cost appears. Every time the government finds a loophole, an exception, an off-limit expense, it signals to the market that the rule is negotiable. And the market that receives this signal charges the corresponding risk premium, in interest rates, exchange rates, and credit.
 
-Enquanto o Estado ocupar o espaço que deveria ser do investimento privado, os juros serão altos, o crédito será caro, as famílias se endividarão para consumir o básico e as empresas cancelarão os projetos que gerariam os empregos de amanhã.
+As long as the State occupies the space that should belong to private investment, interest rates will be high, credit will be expensive, families will go into debt to consume the basics, and companies will cancel the projects that would generate the jobs of tomorrow.
 
-A pergunta não é se o Brasil pode pagar a conta. É quanto tempo ainda vamos adiá-la, e quem vai pagá-la no lugar.
+The question is not whether Brazil can pay the bill. It is how much longer we will postpone it, and who will pay it instead.
