@@ -28,7 +28,9 @@ I prepare technical-economic reports on legislative proposals, focusing on the a
 ## Academic
 
 
-**Bachelor's Dissertation — Ibmec Brasília** Topic: *The Impact of the Remessa Conforme Program on National Retail: A Difference-in-Differences Analysis* *(in progress)* Advisor: Prof. Raphael Rocha Gouvea, PhD   
+**Bachelor's Dissertation — Ibmec Brasília**    
+Topic: *The Impact of the Remessa Conforme Program on National Retail: A Difference-in-Differences Analysis* *(in progress)*    
+Advisor: Prof. Raphael Rocha Gouvea, PhD   
 
 ---
 
