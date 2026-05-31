@@ -12,30 +12,32 @@ tags:
   - política fiscal
 ---
 
-A reforma tributária do consumo marca um ponto de inflexão na estrutura fiscal brasileira, mas seus primeiros dias revelaram o tamanho da "herança maldita" que teremos que superar. Iniciada em 1º de janeiro de 2026, a transição estabelecerá um novo paradigma de tributação baseado em um IVA dual (CBS + IBS) que substituirá nosso histórico "manicômio tributário" — o maior redesenho tributário desde a redemocratização. Contudo, o que vimos na primeira semana de janeiro foi a colisão entre a modernidade da lei e a realidade arcaica da infraestrutura municipal.
-
-Nesta fase de teste, os contribuintes emitem documentos fiscais com destaque de CBS (0,9%) e IBS (0,1%), mas com alíquotas puramente simbólicas. O Ato Conjunto nº 01/2025 estabeleceu que a apuração em 2026 é meramente informativa, sem efeitos tributários. Não há cobrança efetiva nem multas por até quatro meses.
-
-Parecia tranquilo até surgirem problemas de lentidão no sistema nacional de emissão de notas fiscais de serviços, erros críticos em plataformas municipais e centenas de empresas paralisadas no faturamento. A Receita Federal e o recém-criado Comitê Gestor do IBS (CGIBS) esclareceram que o problema não foi tecnológico, mas de "configurações inadequadas de municípios".
-
-## O Preço da Fragmentação Federativa
-
-Para compreender o caos, é essencial entender que a reforma não é apenas uma mudança de alíquotas. É a criação de uma nova arquitetura institucional federativa. Até ontem, o Brasil operava sob a lógica de feudos tributários: cada um dos 5.570 municípios legislava e operava seu próprio ISS. O resultado era um mosaico disfuncional que drenava a produtividade nacional.
-
-O novo Comitê Gestor (CGIBS), aprovado com amplo apoio no Congresso, nasce justamente para centralizar essa torre de Babel. Com independência orçamentária e um Conselho Superior paritário (27 estados e 27 municípios), ele é a tentativa de impor ordem ao caos.
-
-Quando quase 2.000 municípios tentaram ativar simultaneamente seus convênios para o novo padrão nacional de NFS-e na semana de 5 de janeiro, o sistema expôs nossas fraturas. Muitos entes locais sequer completaram configurações básicas. A suspensão das multas até abril de 2026 pela Receita foi um gesto de sensatez, sinalizando que o foco agora é educativo, não arrecadatório. Mensagem clara: "2026 é teste. Erros custam educação, não dinheiro."
-
-## A Travessia do Deserto: 2027–2033
-
-Isso nos dá pistas valiosas sobre o futuro. Se a fase de "ensaio" já gerou atrito, a transição efetiva entre 2027 e 2033 exigirá uma gestão de guerra. Nesse período, o velho e o novo conviverão.
-
-As empresas terão que manter duas contabilidades paralelas — o "manicômio" antigo e o novo IVA. Isso exigirá ajustes profundos em ERPs, requalificação de equipes e uma governança tributária impecável. O custo de conformidade subirá temporariamente para que, no futuro, possa cair estruturalmente.
-
-A reforma tributária não é apenas um teste para o sistema fiscal — é um teste de maturidade para o setor produtivo e público. O tic-tac de 2026 marca o início do fim do atraso. Os erros de agora são pedagógicos; eles mostram que a modernização não aceita improviso.
-
-A pergunta que resta não é se a reforma funciona, mas quem terá fôlego e organização para atravessar a ponte até 2033. O ano de 2026 não é apenas um teste. É um aviso.
+*This article was originally published in [Exame Magazine](https://exame.com/colunistas/instituto-millenium/2026-o-ensaio-geral-da-reforma-tributaria/), in Portuguese, on September 1, 2026.*
 
 ---
 
-*Gabriela De Nigris é membro da equipe econômica da Confederação Nacional do Comércio (CNC) e Alumna do American Enterprise Institute (AEI).*
+The consumption tax reform marks a turning point in the Brazilian fiscal structure, but its early days revealed the size of the "cursed legacy" we will have to overcome. Initiated on January 1, 2026, the transition will establish a new paradigm of taxation based on a dual VAT (CBS + IBS) that will replace our historical "tax madhouse" — the largest tax redesign since redemocratization. However, what we saw in the first week of January was the collision between the modernity of the law and the archaic reality of municipal infrastructure.
+
+In this testing phase, taxpayers issue tax documents highlighting CBS (0.9%) and IBS (0.1%), but with purely symbolic rates. Joint Act No. 01/2025 established that the assessment in 2026 is merely informative, with no tax effects. There is no effective collection or fines for up to four months.
+
+It seemed calm until slowness problems arose in the national service invoice issuance system (NFS-e), along with critical errors in municipal platforms and hundreds of companies paralyzed in their billing. The Federal Revenue Service and the newly created IBS Management Committee (CGIBS) clarified that the problem was not technological, but due to "inadequate configurations by municipalities".
+
+## The Price of Federative Fragmentation
+
+To comprehend the chaos, it is essential to understand that the reform is not just a change in tax rates. It is the creation of a new federative institutional architecture. Until yesterday, Brazil operated under the logic of tax fiefdoms: each of the 5,570 municipalities legislated and operated its own ISS. The result was a dysfunctional mosaic that drained national productivity.
+
+The new Management Committee (CGIBS), approved with broad support in Congress, was born precisely to centralize this Tower of Babel. With budgetary independence and a parity-based Superior Council (27 states and 27 municipalities), it is an attempt to bring order to the chaos.
+
+When almost 2,000 municipalities tried to simultaneously activate their agreements for the new national NFS-e standard in the week of January 5th, the system exposed our fractures. Many local entities did not even complete basic configurations. The suspension of fines until April 2026 by the Revenue Service was a sensible gesture, signaling that the focus now is educational, not revenue-generating. A clear message: "2026 is a test. Mistakes cost education, not money."
+
+## The Desert Crossing: 2027–2033
+
+This gives us valuable clues about the future. If the "rehearsal" phase has already generated friction, the effective transition between 2027 and 2033 will require war-room management. During this period, the old and the new will coexist.
+
+Companies will have to maintain two parallel accounting systems — the old "madhouse" and the new VAT. This will require profound adjustments in ERPs, team retraining, and impeccable tax governance. The cost of compliance will rise temporarily so that, in the future, it can fall structurally.
+
+The tax reform is not just a test for the tax system — it is a maturity test for the productive and public sectors. The ticking clock of 2026 marks the beginning of the end of backwardness. The current mistakes are pedagogical; they show that modernization does not accept improvisation.
+
+The remaining question is not whether the reform works, but who will have the stamina and organization to cross the bridge until 2033. The year 2026 is not just a test. It is a warning.
+
+---
