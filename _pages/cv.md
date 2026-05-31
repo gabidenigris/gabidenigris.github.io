@@ -7,6 +7,8 @@ author_profile: true
 
 ## Formação Acadêmica
 
+[Baixar CV EN em PDF](/files/CV_Gabriela_De_Nigris.pdf){: .btn .btn--primary}
+
 **Mestrado em Economia e Finanças** *(2027–2029)*  
 Fundação Getúlio Vargas — FGV EPPGE
 
@@ -54,5 +56,3 @@ Paribus Analytics — *São Paulo, SP*
 - Inglês — Avançado (C2)
 
 ---
-
-[Baixar CV completo em PDF](/files/CV_Gabriela_DeNigris.pdf){: .btn .btn--primary}
