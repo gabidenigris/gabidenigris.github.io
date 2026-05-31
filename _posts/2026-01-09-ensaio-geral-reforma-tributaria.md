@@ -1,15 +1,15 @@
 ---
 layout: single
-title: "2026: O Ensaio Geral da Reforma Tributária"
-subtitle: "O caos das notas fiscais revela o tamanho do desafio do Comitê Gestor e o preço da nossa complexidade federativa."
+title: "2026: The Dress Rehearsal for the Tax Reform"
+subtitle: "The invoice chaos reveals the size of the Management Committee's challenge and the price of our federative complexity."
 date: 2026-01-09
 permalink: /blog/2026/01/ensaio-geral-reforma-tributaria/
 author_profile: true
 source_name: "Exame"
 source_url: "https://exame.com/colunistas/instituto-millenium/2026-o-ensaio-geral-da-reforma-tributaria/"
 tags:
-  - reforma tributária
-  - política fiscal
+  - tax reform
+  - fiscal policy
 ---
 
 *This article was originally published in [Exame Magazine](https://exame.com/colunistas/instituto-millenium/2026-o-ensaio-geral-da-reforma-tributaria/), in Portuguese, on September 1, 2026.*
