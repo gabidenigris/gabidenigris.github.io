@@ -5,14 +5,14 @@ main:
   - title: "Articles"
     url: /blog/
 
-  - title: "Charts"
-    url: /graficos/
-
-  - title: "Internacional"
-    url: /internacional/
-
   - title: "Research"
     url: /pesquisas/
 
   - title: "CV"
     url: /cv/
+
+  - title: "Internacional"
+    url: /internacional/
+
+  - title: "Charts"
+    url: /graficos/
