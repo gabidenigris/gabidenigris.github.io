@@ -20,10 +20,5 @@ Previously, I served as a Legislative Advisor at the **Chamber of Deputies**, wh
 
 I specialize in the development of applied economic analysis, providing technical support to companies, industry associations, law firms, and institutions that require robust empirical evidence to inform strategic decisions.
 
-- Econometric modeling and microdata analysis.
-- Market research and forecasting of macroeconomic and sector-specific scenarios.
-- Technical reports assessing the impact of regulations and public policies.
-- Pricing and financial modeling.
-
-[Contact me](https://form.typeform.com/to/SDOKdO54){: .btn .btn--primary}
+[Contact me](mailto:denigriscontato@gmail.com){: .btn .btn--primary}
 
