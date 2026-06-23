@@ -1,0 +1,440 @@
+<!-- =====================================================================
+     Knowledge Web  ::  interactive expertise map for gabidenigris.github.io
+     Self contained. Drop into  _includes/knowledge-web.html  and add
+        {% include knowledge-web.html %}
+     between the About me and Project proposal blocks. Works standalone too.
+     ===================================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+<div id="gdn-knowledge-web" aria-label="Interactive map of economics expertise areas">
+  <div class="gdn-head">
+    <p class="gdn-eyebrow">Areas of expertise</p>
+    <h2 class="gdn-title">A knowledge web</h2>
+    <p class="gdn-hint">Drag any node. Hover to trace a method back to its root.</p>
+  </div>
+
+  <div class="gdn-stage">
+    <div class="gdn-controls" role="group" aria-label="Visualization controls">
+      <button type="button" class="gdn-btn" data-act="pause" aria-pressed="false">Pause</button>
+      <button type="button" class="gdn-btn" data-act="reset">Reset view</button>
+    </div>
+
+    <svg class="gdn-svg" role="img" aria-label="Force directed graph of economics disciplines and methods">
+      <g class="gdn-viewport">
+        <g class="gdn-links"></g>
+        <g class="gdn-nodes"></g>
+      </g>
+    </svg>
+
+    <div class="gdn-tip" role="status" aria-live="polite" hidden>
+      <span class="gdn-tip-label"></span>
+      <span class="gdn-tip-desc"></span>
+    </div>
+
+    <ul class="gdn-legend" aria-hidden="true">
+      <li><span class="gdn-dot gdn-dot-hub"></span>Core</li>
+      <li><span class="gdn-dot gdn-dot-area"></span>Discipline</li>
+      <li><span class="gdn-dot gdn-dot-leaf"></span>Method or tool</li>
+    </ul>
+  </div>
+
+  <p class="gdn-sr">
+    Applied economics, structured across eight disciplines: macroeconomics, finance,
+    econometrics, causal inference, trade policy, spatial economics, policy and regulation,
+    and quantitative tooling, each linked to its core methods and tools.
+  </p>
+</div>
+
+<style>
+  #gdn-knowledge-web{
+    --ink:#0F2E36; --hub:#27406A; --t700:#14746F; --t500:#2A9D8F; --t300:#7FC9C0;
+    --mist:#EAF4F2; --line:rgba(20,116,111,.55); --paper:#ffffff;
+    --serif:"EB Garamond",Georgia,serif; --sans:"Source Sans 3",system-ui,sans-serif;
+    max-width:980px; margin:2.6rem auto; color:var(--ink); font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+  }
+  #gdn-knowledge-web *{box-sizing:border-box;}
+  #gdn-knowledge-web .gdn-head{margin:0 0 1rem;}
+  #gdn-knowledge-web .gdn-eyebrow{
+    font-family:var(--sans); font-size:.72rem; font-weight:600; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--t700); margin:0 0 .3rem;
+  }
+  #gdn-knowledge-web .gdn-title{
+    font-family:var(--serif); font-weight:500; font-size:clamp(1.7rem,4vw,2.5rem);
+    line-height:1.05; margin:0; color:var(--ink); letter-spacing:.005em;
+  }
+  #gdn-knowledge-web .gdn-hint{
+    font-size:.86rem; color:#5d7b7a; margin:.45rem 0 0; font-style:italic;
+  }
+  #gdn-knowledge-web .gdn-stage{
+    position:relative; margin-top:1.1rem; width:100%;
+    height:clamp(440px,72vh,660px);
+    border:1px solid rgba(20,116,111,.18); border-radius:4px;
+    background-color:var(--paper);
+    background-image:radial-gradient(rgba(20,116,111,.10) 1px, transparent 1.2px);
+    background-size:26px 26px; background-position:-13px -13px;
+    overflow:hidden; touch-action:none;
+  }
+  #gdn-knowledge-web .gdn-svg{display:block; width:100%; height:100%; cursor:grab;}
+  #gdn-knowledge-web .gdn-svg.gdn-grabbing{cursor:grabbing;}
+  #gdn-knowledge-web .gdn-link{
+    fill:none; stroke:var(--line); stroke-width:1; opacity:.45;
+    transition:opacity .22s ease, stroke-width .22s ease, stroke .22s ease;
+  }
+  #gdn-knowledge-web .gdn-link.is-lit{opacity:.95; stroke-width:1.7;}
+  #gdn-knowledge-web .gdn-link.is-dim{opacity:.08;}
+  #gdn-knowledge-web .gdn-node{cursor:pointer;}
+  #gdn-knowledge-web .gdn-node circle{
+    transition:opacity .22s ease, r .18s ease, stroke-width .18s ease;
+    stroke:var(--paper); stroke-width:1.5;
+  }
+  #gdn-knowledge-web .gdn-node text{
+    font-family:var(--sans); fill:var(--ink); paint-order:stroke;
+    stroke:var(--paper); stroke-width:3px; stroke-linejoin:round;
+    transition:opacity .22s ease, font-weight .1s ease; pointer-events:none;
+    user-select:none;
+  }
+  #gdn-knowledge-web .gdn-node.t-hub text{font-family:var(--serif); font-size:16px; font-weight:600;}
+  #gdn-knowledge-web .gdn-node.t-area text{font-family:var(--serif); font-size:12.5px; font-weight:600;}
+  #gdn-knowledge-web .gdn-node.t-leaf text{font-size:10.5px; font-weight:500; opacity:.7;}
+  #gdn-knowledge-web .gdn-node.is-dim circle{opacity:.18;}
+  #gdn-knowledge-web .gdn-node.is-dim text{opacity:.12;}
+  #gdn-knowledge-web .gdn-node.is-lit text{opacity:1; font-weight:600;}
+  #gdn-knowledge-web .gdn-controls{
+    position:absolute; top:10px; right:10px; z-index:3; display:flex; gap:6px;
+  }
+  #gdn-knowledge-web .gdn-btn{
+    font-family:var(--sans); font-size:.72rem; font-weight:600; letter-spacing:.02em;
+    color:var(--t700); background:rgba(255,255,255,.82); border:1px solid rgba(20,116,111,.3);
+    border-radius:3px; padding:.32rem .6rem; cursor:pointer; backdrop-filter:blur(2px);
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  #gdn-knowledge-web .gdn-btn:hover{background:var(--t700); color:#fff; border-color:var(--t700);}
+  #gdn-knowledge-web .gdn-btn:focus-visible{outline:2px solid var(--hub); outline-offset:2px;}
+  #gdn-knowledge-web .gdn-tip{
+    position:absolute; z-index:4; pointer-events:none; max-width:220px;
+    transform:translate(-50%,-130%); background:var(--ink); color:#eaf4f2;
+    padding:.4rem .55rem; border-radius:4px; font-size:.74rem; line-height:1.3;
+    box-shadow:0 6px 20px rgba(15,46,54,.28); opacity:0; transition:opacity .14s ease;
+  }
+  #gdn-knowledge-web .gdn-tip.is-on{opacity:1;}
+  #gdn-knowledge-web .gdn-tip-label{display:block; font-weight:600; font-family:var(--serif); font-size:.86rem; margin-bottom:.08rem;}
+  #gdn-knowledge-web .gdn-tip-desc{display:block; color:#9fc7c0;}
+  #gdn-knowledge-web .gdn-legend{
+    position:absolute; left:12px; bottom:10px; z-index:3; margin:0; padding:0; list-style:none;
+    display:flex; gap:14px; font-size:.7rem; color:#5d7b7a;
+  }
+  #gdn-knowledge-web .gdn-legend li{display:flex; align-items:center; gap:5px;}
+  #gdn-knowledge-web .gdn-dot{width:9px; height:9px; border-radius:50%; display:inline-block;}
+  #gdn-knowledge-web .gdn-dot-hub{background:var(--hub);}
+  #gdn-knowledge-web .gdn-dot-area{background:var(--t500);}
+  #gdn-knowledge-web .gdn-dot-leaf{background:var(--t300);}
+  #gdn-knowledge-web .gdn-sr{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+    clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+  @media (max-width:560px){
+    #gdn-knowledge-web .gdn-legend{display:none;}
+    #gdn-knowledge-web .gdn-node.t-leaf text{font-size:9.5px;}
+  }
+</style>
+
+<script>
+(function(){
+  var root = document.getElementById('gdn-knowledge-web');
+  if(!root || root.dataset.ready) return;
+  root.dataset.ready = '1';
+
+  var svg      = root.querySelector('.gdn-svg');
+  var viewport = root.querySelector('.gdn-viewport');
+  var gLinks   = root.querySelector('.gdn-links');
+  var gNodes   = root.querySelector('.gdn-nodes');
+  var stage    = root.querySelector('.gdn-stage');
+  var tip      = root.querySelector('.gdn-tip');
+  var tipLabel = root.querySelector('.gdn-tip-label');
+  var tipDesc  = root.querySelector('.gdn-tip-desc');
+  var SVGNS    = 'http://www.w3.org/2000/svg';
+  var reduce   = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ----- content -------------------------------------------------------
+  var HUB = '#27406A';
+  var config = {
+    hub:{ id:'hub', label:'Applied Economics', desc:'Turning microdata into strategic evidence.' },
+    areas:[
+      { id:'macro',   label:'Macroeconomics',      color:'#1D6E8C', desc:'Monetary and fiscal dynamics.',
+        leaves:[['Fixed Income','Yield curves and sovereign debt.'],['Monetary Policy','Rates, inflation and the Bacen.'],['Fiscal Analysis','Spending, revenue and balances.'],['Forecasting','Sector and macro scenarios.']] },
+      { id:'fin',     label:'Finance',             color:'#0E7C7B', desc:'Risk, pricing and portfolios.',
+        leaves:[['Portfolio','Markowitz allocation.'],['Value at Risk','Tail risk under stress.'],['Derivatives','Options and hedging.'],['Pricing','Valuation and margins.']] },
+      { id:'econ',    label:'Econometrics',        color:'#2A9D8F', desc:'Estimation from real data.',
+        leaves:[['Panel Data','Fixed and random effects.'],['Time Series','Trends and stationarity.'],['Microdata','Individual level records.']] },
+      { id:'causal',  label:'Causal Inference',    color:'#1F8A82', desc:'Identifying effects, not correlations.',
+        leaves:[['Diff-in-Diff','Treatment versus control.'],["Callaway & Sant'Anna",'Staggered adoption.'],['Event Study','Dynamics around a shock.']] },
+      { id:'trade',   label:'Trade Policy',        color:'#2C6E8F', desc:'Tariffs, flows and the external sector.',
+        leaves:[['Comex Stat','Official trade flows.'],['Import Tariffs','Border pricing of goods.'],['Export Taxes','Levies on outbound trade.']] },
+      { id:'spatial', label:'Spatial Economics',   color:'#3CA6A0', desc:'Where activity concentrates.',
+        leaves:[['RAIS Microdata','Formal labor records.'],['Industrial Clusters','Local productive systems.'],['Regional Analysis','Maps of economic weight.']] },
+      { id:'policy',  label:'Policy & Regulation', color:'#27568F', desc:'Reading rules and their impact.',
+        leaves:[['Legislative Analysis','Merit of draft bills.'],['Impact Reports','Evidence for decisions.'],['Tax Policy','The MEI and DAS regime.']] },
+      { id:'tools',   label:'Quantitative Tooling',color:'#198C7E', desc:'The code behind the analysis.',
+        leaves:[['R','Models and pipelines.'],['Python','Data and automation.'],['ggplot2','Charts with a house style.'],['Data Visualization','Numbers read at a glance.']] }
+    ]
+  };
+
+  function lighten(hex, amt){
+    var n = parseInt(hex.slice(1),16), r=(n>>16)&255, g=(n>>8)&255, b=n&255;
+    r=Math.round(r+(255-r)*amt); g=Math.round(g+(255-g)*amt); b=Math.round(b+(255-b)*amt);
+    return 'rgb('+r+','+g+','+b+')';
+  }
+
+  // ----- build node / link model --------------------------------------
+  var nodes=[], links=[], byId={};
+  function add(n){ nodes.push(n); byId[n.id]=n; return n; }
+
+  add({ id:config.hub.id, label:config.hub.label, desc:config.hub.desc, type:'hub',
+        parent:null, color:HUB, r:24, x:0, y:0, vx:0, vy:0 });
+
+  config.areas.forEach(function(a){
+    add({ id:a.id, label:a.label, desc:a.desc, type:'area', parent:'hub',
+          color:a.color, r:11, x:0, y:0, vx:0, vy:0 });
+    links.push({ s:'hub', t:a.id, len:0 });
+    a.leaves.forEach(function(lf,i){
+      var id = a.id+'-'+i;
+      add({ id:id, label:lf[0], desc:lf[1], type:'leaf', parent:a.id,
+            color:lighten(a.color,.42), r:6, x:0, y:0, vx:0, vy:0 });
+      links.push({ s:a.id, t:id, len:0 });
+    });
+  });
+
+  // neighbour lookup for highlighting (lineage to root)
+  function lineage(id){
+    var set={}, n=byId[id]; set[id]=1;
+    if(n.type==='leaf'){ set[n.parent]=1; set['hub']=1; }
+    else if(n.type==='area'){ set['hub']=1; nodes.forEach(function(m){ if(m.parent===id) set[m.id]=1; }); }
+    else { nodes.forEach(function(m){ if(m.type==='area') set[m.id]=1; }); }
+    return set;
+  }
+
+  // ----- view transform (pan / zoom) ----------------------------------
+  var scale=1, tx=0, ty=0;
+  function applyView(){ viewport.setAttribute('transform','translate('+tx+','+ty+') scale('+scale+')'); }
+
+  // ----- SVG element creation -----------------------------------------
+  var linkEls=[], nodeEls={};
+  links.forEach(function(l){
+    var p=document.createElementNS(SVGNS,'path');
+    p.setAttribute('class','gdn-link');
+    gLinks.appendChild(p); l.el=p; linkEls.push(l);
+  });
+  nodes.forEach(function(n){
+    var g=document.createElementNS(SVGNS,'g');
+    g.setAttribute('class','gdn-node t-'+n.type);
+    var c=document.createElementNS(SVGNS,'circle');
+    c.setAttribute('r',n.r); c.setAttribute('fill',n.color);
+    if(n.type==='hub'){ c.setAttribute('stroke',lighten(HUB,.5)); c.setAttribute('stroke-width','2.5'); }
+    var t=document.createElementNS(SVGNS,'text');
+    t.setAttribute('text-anchor','middle');
+    t.setAttribute('dy', n.type==='leaf' ? (n.r+11) : (n.type==='area'? -(n.r+6) : 0.32*16));
+    if(n.type==='hub') t.setAttribute('fill','#fff');
+    t.textContent=n.label;
+    g.appendChild(c); g.appendChild(t);
+    gNodes.appendChild(g);
+    n.el=g; n.circle=c; nodeEls[n.id]=n;
+    attachNodeEvents(n);
+  });
+
+  // ----- layout init ---------------------------------------------------
+  var W=600, H=520, cx=300, cy=260;
+  function measure(){
+    var r=stage.getBoundingClientRect();
+    W=Math.max(320,r.width); H=Math.max(360,r.height); cx=W/2; cy=H/2;
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  }
+  function seed(){
+    var ah=byId['hub']; ah.x=cx; ah.y=cy; ah.fx=cx; ah.fy=cy;
+    var R=Math.min(W,H)*0.30, k=0;
+    config.areas.forEach(function(a,i){
+      var ang=(i/config.areas.length)*Math.PI*2 - Math.PI/2;
+      var an=byId[a.id]; an.x=cx+Math.cos(ang)*R; an.y=cy+Math.sin(ang)*R;
+      a.leaves.forEach(function(lf,j){
+        var la=ang+(j-(a.leaves.length-1)/2)*0.32;
+        var ln=byId[a.id+'-'+j]; ln.x=cx+Math.cos(la)*(R+80); ln.y=cy+Math.sin(la)*(R+80);
+        k++;
+      });
+    });
+    // spring rest lengths scale with canvas
+    links.forEach(function(l){
+      l.len = (l.s==='hub') ? Math.min(W,H)*0.27 : 82;
+    });
+  }
+
+  // ----- force simulation ---------------------------------------------
+  var KREP=2600, KSPRING=0.025, KCENTER=0.0016, DAMP=0.86, alpha=1;
+  function step(){
+    var i,j,a,b,dx,dy,d,f;
+    // repulsion (all pairs)
+    for(i=0;i<nodes.length;i++){
+      a=nodes[i];
+      for(j=i+1;j<nodes.length;j++){
+        b=nodes[j];
+        dx=a.x-b.x; dy=a.y-b.y; d=Math.sqrt(dx*dx+dy*dy)||0.01;
+        var minD=a.r+b.r+14;
+        f=KREP/(d*d);
+        if(d<minD) f+= (minD-d)*0.06; // soft collision
+        var ux=dx/d, uy=dy/d;
+        a.vx+=ux*f; a.vy+=uy*f; b.vx-=ux*f; b.vy-=uy*f;
+      }
+    }
+    // springs
+    for(i=0;i<links.length;i++){
+      var l=links[i]; a=byId[l.s]; b=byId[l.t];
+      dx=b.x-a.x; dy=b.y-a.y; d=Math.sqrt(dx*dx+dy*dy)||0.01;
+      f=KSPRING*(d-l.len); var ux=dx/d, uy=dy/d;
+      a.vx+=ux*f; a.vy+=uy*f; b.vx-=ux*f; b.vy-=uy*f;
+    }
+    // centering + integrate
+    for(i=0;i<nodes.length;i++){
+      a=nodes[i];
+      a.vx+=(cx-a.x)*KCENTER; a.vy+=(cy-a.y)*KCENTER;
+      if(!reduce){ a.vx+=(Math.random()-0.5)*0.18; a.vy+=(Math.random()-0.5)*0.18; }
+      if(a.fx!=null){ a.x=a.fx; a.y=a.fy; a.vx=0; a.vy=0; continue; }
+      a.vx*=DAMP; a.vy*=DAMP;
+      var sp=Math.sqrt(a.vx*a.vx+a.vy*a.vy); if(sp>9){ a.vx*=9/sp; a.vy*=9/sp; }
+      a.x+=a.vx; a.y+=a.vy;
+    }
+  }
+
+  function render(){
+    for(var i=0;i<links.length;i++){
+      var l=links[i], a=byId[l.s], b=byId[l.t];
+      var mx=(a.x+b.x)/2, my=(a.y+b.y)/2;
+      // gentle curve: offset midpoint perpendicular
+      var dx=b.x-a.x, dy=b.y-a.y, off=0.12;
+      var qx=mx-dy*off, qy=my+dx*off;
+      l.el.setAttribute('d','M'+a.x+' '+a.y+' Q'+qx+' '+qy+' '+b.x+' '+b.y);
+    }
+    for(var k=0;k<nodes.length;k++){
+      var n=nodes[k]; n.el.setAttribute('transform','translate('+n.x+','+n.y+')');
+    }
+    if(activeTipNode) positionTip(activeTipNode);
+  }
+
+  var paused=false, raf=null;
+  function loop(){ if(!paused){ step(); } render(); raf=requestAnimationFrame(loop); }
+
+  // ----- interaction: hover highlight ---------------------------------
+  function setHighlight(id){
+    var lit = id ? lineage(id) : null;
+    nodes.forEach(function(n){
+      n.el.classList.remove('is-dim','is-lit');
+      if(lit){ if(lit[n.id]) n.el.classList.add('is-lit'); else n.el.classList.add('is-dim'); }
+    });
+    links.forEach(function(l){
+      l.el.classList.remove('is-dim','is-lit');
+      if(lit){
+        if(lit[l.s] && lit[l.t]) l.el.classList.add('is-lit');
+        else l.el.classList.add('is-dim');
+      }
+    });
+  }
+
+  var activeTipNode=null;
+  function positionTip(n){
+    tip.style.left=(n.x*scale+tx)+'px';
+    tip.style.top =(n.y*scale+ty)+'px';
+  }
+  function showTip(n){
+    activeTipNode=n; tip.hidden=false;
+    tipLabel.textContent=n.label; tipDesc.textContent=n.desc;
+    positionTip(n); requestAnimationFrame(function(){ tip.classList.add('is-on'); });
+  }
+  function hideTip(){ activeTipNode=null; tip.classList.remove('is-on'); }
+
+  // ----- interaction: drag nodes --------------------------------------
+  function clientToWorld(ev){
+    var r=stage.getBoundingClientRect();
+    return { x:((ev.clientX-r.left)-tx)/scale, y:((ev.clientY-r.top)-ty)/scale };
+  }
+  var dragNode=null;
+  function attachNodeEvents(n){
+    n.el.addEventListener('pointerenter',function(){ if(dragNode||panning) return; setHighlight(n.id); showTip(n); });
+    n.el.addEventListener('pointerleave',function(){ if(dragNode) return; setHighlight(null); hideTip(); });
+    n.el.addEventListener('pointerdown',function(ev){
+      ev.stopPropagation();
+      dragNode=n; n.el.setPointerCapture(ev.pointerId);
+      var w=clientToWorld(ev); n.fx=w.x; n.fy=w.y; setHighlight(n.id); showTip(n);
+    });
+    n.el.addEventListener('pointermove',function(ev){
+      if(dragNode!==n) return;
+      var w=clientToWorld(ev); n.fx=w.x; n.fy=w.y; positionTip(n);
+    });
+    function release(ev){
+      if(dragNode!==n) return;
+      try{ n.el.releasePointerCapture(ev.pointerId); }catch(e){}
+      if(n.type!=='hub'){ n.fx=null; n.fy=null; }
+      dragNode=null; setHighlight(null); hideTip();
+    }
+    n.el.addEventListener('pointerup',release);
+    n.el.addEventListener('pointercancel',release);
+  }
+
+  // ----- interaction: pan / zoom on background ------------------------
+  var panning=false, panStart=null;
+  svg.addEventListener('pointerdown',function(ev){
+    if(dragNode) return;
+    panning=true; svg.classList.add('gdn-grabbing');
+    panStart={x:ev.clientX, y:ev.clientY, tx:tx, ty:ty};
+    svg.setPointerCapture(ev.pointerId);
+    setHighlight(null); hideTip();
+  });
+  svg.addEventListener('pointermove',function(ev){
+    if(!panning) return;
+    tx=panStart.tx+(ev.clientX-panStart.x); ty=panStart.ty+(ev.clientY-panStart.y); applyView();
+  });
+  function endPan(ev){ panning=false; svg.classList.remove('gdn-grabbing'); try{ svg.releasePointerCapture(ev.pointerId);}catch(e){} }
+  svg.addEventListener('pointerup',endPan);
+  svg.addEventListener('pointercancel',endPan);
+
+  svg.addEventListener('wheel',function(ev){
+    ev.preventDefault();
+    var r=stage.getBoundingClientRect();
+    var sx=ev.clientX-r.left, sy=ev.clientY-r.top;
+    var wx=(sx-tx)/scale, wy=(sy-ty)/scale;
+    var factor=ev.deltaY<0?1.12:1/1.12;
+    scale=Math.max(0.5,Math.min(2.6,scale*factor));
+    tx=sx-wx*scale; ty=sy-wy*scale; applyView();
+  },{passive:false});
+
+  // ----- controls ------------------------------------------------------
+  root.querySelector('[data-act="pause"]').addEventListener('click',function(){
+    paused=!paused; this.textContent=paused?'Play':'Pause'; this.setAttribute('aria-pressed',String(paused));
+  });
+  root.querySelector('[data-act="reset"]').addEventListener('click',function(){
+    scale=1; tx=0; ty=0; applyView(); seed(); alpha=1;
+  });
+
+  // ----- boot ----------------------------------------------------------
+  function boot(){
+    measure(); seed(); applyView();
+    // settle a few ticks before first paint so it opens composed
+    for(var i=0;i<(reduce?120:40);i++) step();
+    render();
+    loop();
+  }
+
+  if('ResizeObserver' in window){
+    var ro=new ResizeObserver(function(){
+      var prevCx=cx, prevCy=cy; measure();
+      // recentre hub and rest lengths on resize
+      byId['hub'].fx=cx; byId['hub'].fy=cy;
+      links.forEach(function(l){ l.len=(l.s==='hub')?Math.min(W,H)*0.27:82; });
+    });
+    ro.observe(stage);
+  } else {
+    window.addEventListener('resize',function(){ measure(); byId['hub'].fx=cx; byId['hub'].fy=cy; });
+  }
+
+  boot();
+})();
+</script>
