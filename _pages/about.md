@@ -14,7 +14,7 @@ My core competencies include quantitative modeling (R and Python), and technical
 
 Previously, I served as a Legislative Advisor at the **Chamber of Deputies**, where I conducted merit evaluations for legislative proposals and engaged in institutional dialogue with stakeholders. Additionally, I was a member of the research core at IbMacro, Ibmec's academic league for macroeconomics.
 
-{% include knowledge-web.html %}
+<iframe src="{{ '/teia.html' | relative_url }}" title="Knowledge web" loading="lazy" style="width:100%; height:740px; border:0; display:block; margin:1.5rem 0;"></iframe>
 
 ## Project proposal 
 
