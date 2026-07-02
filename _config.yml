@@ -8,7 +8,7 @@ site_theme               : "default"
 title                    : "Gabriela De Nigris"
 title_separator          : "-"
 name                     : &name "Gabriela De Nigris"
-description              : &description "Economist and consultant"
+description              : &description "Economist"
 url                      : https://gabidenigris.github.io
 baseurl                  : ""
 repository               : "gabidenigris/gabidenigris.github.io"
@@ -32,8 +32,8 @@ atom_feed:
 author:
   avatar           : "profile.jpg"
   name             : "Gabriela De Nigris"
-  bio              : "Economist and consultant"
-  location         : "São Paulo, Brasil"
+  bio              : "Economist"
+  location         : "Brasília, Brasil"
   employer         : "Conf. Nacional do Comércio"
   email            : "denigriscontato@gmail.com"
   uri              :
