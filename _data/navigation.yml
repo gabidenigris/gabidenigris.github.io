@@ -14,5 +14,8 @@ main:
   - title: "Internacional"
     url: /internacional/
 
- - title: "BCB Game"
-    url: /jogo-cosif.html
+  - title: "Games"
+    url: "#"
+    children:
+      - title: "Partida Dobrada — Cosif"
+        url: /jogo-cosif.html
