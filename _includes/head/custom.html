@@ -86,4 +86,27 @@ html { font-size: 15.5px; color-scheme: light; }
 
 </style>
 
+<style>
+.masthead__menu-item--submenu { position: relative; }
+.masthead__menu-item--submenu > .submenu {
+  display: none; position: absolute; top: 100%; left: 0; z-index: 30;
+  min-width: 13em; margin: 0; padding: .35em 0; list-style: none;
+  background: var(--global-bg-color, #fff);
+  border: 1px solid rgba(128,128,128,.28);
+  border-radius: 4px; box-shadow: 0 6px 18px rgba(0,0,0,.14);
+}
+.masthead__menu-item--submenu:hover > .submenu,
+.masthead__menu-item--submenu:focus-within > .submenu { display: block; }
+.masthead__menu-item--submenu > .submenu li { margin: 0; }
+.masthead__menu-item--submenu > .submenu a {
+  display: block; padding: .45em 1.1em; white-space: nowrap;
+  font-size: .8em; text-decoration: none;
+}
+.masthead__menu-item--submenu > .submenu a:hover { background: rgba(128,128,128,.14); }
+.greedy-nav .hidden-links .masthead__menu-item--submenu > .submenu {
+  display: block; position: static; border: 0; box-shadow: none;
+  background: transparent; padding: 0 0 .4em 1em;
+}
+</style>
+
 <!-- end custom head snippets -->
