@@ -17,5 +17,9 @@ main:
   - title: "Games"
     url: "#"
     children:
-      - title: "Partida Dobrada — Cosif"
+      - title: "Cosif"
         url: /jogo-cosif.html
+      - title: "Finanças"
+        url: /jogo-financas.html
+      - title: "Macroeconomia"
+        url: /jogo-macro.html
