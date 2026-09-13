@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fluxo Circular: o jogo de Macroeconomia</title>
+<meta name="description" content="Jogo de estudo de Macroeconomia para o concurso do Banco Central do Brasil: contas nacionais, moeda e agregados monetários, e balanço de pagamentos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --mesa:#223041;
+  --mesa-2:#1a2634;
+  --papel:#FCFBF7;
+  --barra:#F0E8D8;
+  --linha:#D9CCB4;
+  --tinta:#16233A;
+  --tinta-2:#53637B;
+  --selo:#7A5A16;
+  --carimbo:#B3341F;
+  --latao:#A8791A;
+  --foco:#0E6E5C;
+  --disp:"Fraunces","Georgia",serif;
+  --ui:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--mesa);
+  background-image:radial-gradient(ellipse at 50% -10%, #2c3d51 0%, var(--mesa) 55%, var(--mesa-2) 100%);
+  background-attachment:fixed;
+  font-family:var(--ui);
+  color:var(--tinta);
+  line-height:1.5;
+  padding:22px 12px 60px;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ---------- a folha de formulário contínuo ---------- */
+.folha{
+  position:relative;
+  max-width:800px;
+  margin:0 auto;
+  background:var(--papel);
+  border-radius:2px;
+  box-shadow:0 18px 40px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.06);
+  padding:26px 24px 30px 24px;
+}
+.folha::before,.folha::after{
+  content:"";position:absolute;top:0;bottom:0;width:20px;
+  background-image:radial-gradient(circle at 10px 12px, var(--mesa) 3.4px, rgba(0,0,0,.06) 4.2px, transparent 4.8px);
+  background-size:20px 24px;
+  border-right:1px dashed var(--linha);
+}
+.folha::before{left:0}
+.folha::after{right:0;border-right:0;border-left:1px dashed var(--linha)}
+.folha > *{position:relative;z-index:1}
+@media(min-width:640px){ .folha{padding:30px 44px 34px 44px} }
+@media(max-width:520px){
+  .folha::before,.folha::after{display:none}
+  .folha{padding:20px 15px 24px}
+}
+
+/* ---------- cabeçalho ---------- */
+.cabecalho{
+  display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between;
+  border-bottom:2px solid var(--tinta);padding-bottom:8px;margin-bottom:18px;
+}
+.marca{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--tinta-2)}
+.placar{font-family:var(--mono);font-size:13px;display:flex;gap:14px;align-items:center}
+.placar b{color:var(--latao);font-weight:600}
+.vidas span{letter-spacing:2px}
+.vidas .gasta{opacity:.22}
+
+/* ---------- tipografia ---------- */
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(34px,8vw,60px);line-height:.95;margin:0 0 6px;letter-spacing:-.02em}
+h2{font-family:var(--disp);font-weight:600;font-size:clamp(22px,4.6vw,31px);line-height:1.1;margin:0 0 8px;letter-spacing:-.01em}
+h3{font-family:var(--ui);font-weight:600;font-size:15px;margin:20px 0 6px}
+p{margin:0 0 12px;max-width:64ch}
+.sub{color:var(--tinta-2);font-size:16px;max-width:52ch}
+.mono{font-family:var(--mono)}
+.oculto{display:none !important}
+
+/* ---------- capa ---------- */
+.capa-selo{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--carimbo);
+  border:1.5px solid var(--carimbo);border-radius:2px;display:inline-block;
+  padding:4px 9px;transform:rotate(-1.6deg);margin-bottom:18px;
+}
+.capa h1{margin-top:4px}
+.capa .lead{font-size:18px;max-width:46ch;margin-top:14px}
+.regras{
+  margin:22px 0 6px;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);
+  padding:14px 0;display:grid;gap:10px;
+}
+@media(min-width:620px){.regras{grid-template-columns:1fr 1fr 1fr;gap:22px}}
+.regra{font-size:14px;color:var(--tinta-2)}
+.regra b{display:block;color:var(--tinta);font-size:14px;font-weight:600;margin-bottom:2px}
+
+/* ---------- botões ---------- */
+.btn{
+  font-family:var(--ui);font-size:15px;font-weight:500;
+  background:var(--tinta);color:var(--papel);border:1.5px solid var(--tinta);
+  padding:11px 20px;border-radius:2px;cursor:pointer;
+  transition:background .13s ease,color .13s ease;
+}
+.btn:hover{background:#28374f}
+.btn.fantasma{background:transparent;color:var(--tinta)}
+.btn.fantasma:hover{background:rgba(22,35,58,.07)}
+.btn.selo{background:var(--selo);border-color:var(--selo)}
+.btn.selo:hover{background:#654a10}
+.btn:disabled{opacity:.4;cursor:default}
+.acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+:focus-visible{outline:2.5px solid var(--foco);outline-offset:2px}
+
+/* ---------- mapa de fases ---------- */
+.mapa{margin-top:14px;border-top:1px solid var(--linha)}
+.fase-linha{
+  display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;
+  width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--linha);
+  padding:12px 8px;cursor:pointer;font-family:var(--ui);color:var(--tinta);
+}
+.fase-linha:nth-child(odd){background:var(--barra)}
+.fase-linha:hover:not(:disabled){background:#e8ddc8}
+.fase-linha:disabled{cursor:default;color:#98a3b2}
+.fase-num{font-family:var(--mono);font-size:17px;color:var(--tinta-2)}
+.fase-nome{font-weight:600;font-size:15.5px;display:block}
+.fase-tag{font-size:13px;color:var(--tinta-2);display:block}
+.fase-linha:disabled .fase-tag{color:#a8b2be}
+.fase-status{font-family:var(--mono);font-size:12px;white-space:nowrap}
+.fase-status.ok{color:var(--selo)}
+.medalha{font-size:15px}
+
+/* ---------- colinha ---------- */
+.colinha{font-size:15px}
+.colinha p{margin-bottom:10px}
+.colinha ul{margin:0 0 14px;padding-left:20px}
+.colinha li{margin-bottom:6px;max-width:62ch}
+.colinha code{font-family:var(--mono);font-size:.92em;background:var(--barra);padding:1px 5px;border-radius:2px}
+.colinha .aviso{
+  border-left:3px solid var(--carimbo);background:#fbf1ef;
+  padding:10px 14px;margin:14px 0;font-size:14.5px;
+}
+.colinha .aviso b{color:var(--carimbo)}
+.tabela{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 16px}
+.tabela th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--tinta-2);border-bottom:1.5px solid var(--tinta);padding:5px 8px 5px 0}
+.tabela td{padding:5px 8px 5px 0;border-bottom:1px solid var(--linha)}
+.tabela tr:nth-child(even) td{background:var(--barra)}
+.tabela td.cod{font-family:var(--mono)}
+
+/* oficina do dígito de controle */
+.oficina{border:1px solid var(--linha);background:var(--barra);padding:14px;margin:6px 0 16px}
+.oficina label{font-size:13px;display:block;margin-bottom:6px;color:var(--tinta-2)}
+.oficina input{font-family:var(--mono);font-size:16px;padding:8px 10px;border:1.5px solid var(--tinta);background:var(--papel);width:190px;border-radius:2px}
+.oficina .saida{font-family:var(--mono);font-size:13px;margin-top:10px;white-space:pre;overflow-x:auto}
+.oficina .dv{font-size:17px;color:var(--selo);font-weight:600}
+
+/* ---------- jogo ---------- */
+.trilho{height:5px;background:var(--barra);margin:0 0 18px;position:relative;overflow:hidden}
+.trilho i{position:absolute;left:0;top:0;bottom:0;background:var(--selo);width:0;transition:width .3s ease}
+.enunciado{font-family:var(--disp);font-weight:600;font-size:clamp(19px,3.6vw,25px);line-height:1.25;margin:4px 0 4px;letter-spacing:-.01em}
+.contexto{font-family:var(--mono);font-size:12px;letter-spacing:.09em;color:var(--tinta-2);margin-bottom:10px}
+.lancamento{border:1px solid var(--linha);margin:14px 0 18px;font-family:var(--mono);font-size:13.5px}
+.lancamento .lin{display:grid;grid-template-columns:22px 1fr auto;gap:10px;padding:7px 12px;border-bottom:1px solid var(--linha)}
+.lancamento .lin:last-child{border-bottom:0}
+.lancamento .lin:nth-child(odd){background:var(--barra)}
+@media(max-width:520px){
+  .lancamento .lin{grid-template-columns:20px 1fr;row-gap:2px}
+  .lancamento .lin span:last-child{grid-column:2;color:var(--tinta-2)}
+}
+.lancamento .dc{font-weight:600}
+.lancamento .d{color:var(--tinta)}
+.lancamento .c{color:var(--selo)}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.opcoes.grade{grid-template-columns:1fr}
+@media(min-width:560px){.opcoes.grade{grid-template-columns:1fr 1fr}}
+.op{
+  display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;
+  background:var(--papel);border:1.5px solid var(--linha);border-radius:2px;
+  padding:11px 14px;font-family:var(--ui);font-size:15px;color:var(--tinta);cursor:pointer;
+  transition:border-color .12s ease,background .12s ease;
+}
+.op:hover:not(:disabled){border-color:var(--tinta);background:var(--barra)}
+.op .tecla{font-family:var(--mono);font-size:12px;color:var(--tinta-2);border:1px solid var(--linha);border-radius:2px;padding:0 5px;line-height:19px;flex:0 0 auto;margin-top:1px}
+.op:disabled{cursor:default}
+.op.certa{border-color:var(--selo);background:#f4ecdb}
+.op.certa .tecla{border-color:var(--selo);color:var(--selo)}
+.op.errada{border-color:var(--carimbo);background:#fbf0ee}
+.op.errada .tecla{border-color:var(--carimbo);color:var(--carimbo)}
+.op.apagada{opacity:.45}
+.campo-num{display:flex;gap:10px;align-items:center;margin-top:10px}
+.campo-num input{font-family:var(--mono);font-size:22px;width:92px;text-align:center;padding:9px;border:1.5px solid var(--tinta);border-radius:2px;background:var(--papel)}
+
+/* ---------- resposta ---------- */
+.resposta{position:relative;margin-top:20px;border-top:2px solid var(--tinta);padding-top:16px}
+.carimbo{
+  position:absolute;right:12px;top:-16px;
+  font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.12em;
+  border:2.5px solid currentColor;border-radius:3px;padding:5px 10px;
+  transform:rotate(-8deg);opacity:0;background:var(--papel);
+}
+.carimbo.ok{color:var(--selo)}
+.carimbo.nao{color:var(--carimbo)}
+.carimbo.bate{animation:bate .42s cubic-bezier(.2,.85,.3,1) forwards}
+@keyframes bate{
+  0%{transform:rotate(-19deg) scale(2.5);opacity:0}
+  55%{transform:rotate(-7deg) scale(.94);opacity:1}
+  100%{transform:rotate(-8deg) scale(1);opacity:1}
+}
+.explica{font-size:15px;max-width:62ch;padding-right:96px}
+.explica b{color:var(--tinta)}
+@media(max-width:520px){
+  .explica{padding-right:0;margin-top:26px}
+  .carimbo{top:-14px;right:6px;font-size:12px}
+}
+
+/* ---------- fim de fase / diploma ---------- */
+.nota{font-family:var(--disp);font-size:clamp(48px,13vw,86px);line-height:.9;font-weight:700;letter-spacing:-.03em}
+.nota small{font-family:var(--ui);font-size:15px;font-weight:400;letter-spacing:0;color:var(--tinta-2);display:block;margin-top:4px}
+.revisar{border-top:1px solid var(--linha);margin-top:18px;padding-top:12px}
+.revisar li{font-size:14px;margin-bottom:8px;max-width:62ch}
+.diploma{border:3px double var(--tinta);padding:26px 22px;text-align:center;margin:10px 0}
+.diploma .selo-final{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--carimbo);border:1.5px solid var(--carimbo);display:inline-block;padding:5px 10px;transform:rotate(-2deg);margin-top:14px}
+
+.rodape{max-width:800px;margin:16px auto 0;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.42);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:0 6px}
+.rodape button{background:none;border:0;color:inherit;font:inherit;cursor:pointer;text-decoration:underline;padding:0}
+.rodape button:hover{color:rgba(255,255,255,.75)}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important}
+  .carimbo.bate{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<main class="folha" id="folha">
+  <div class="cabecalho">
+    <span class="marca" id="marca">FLUXO CIRCULAR · MACROECONOMIA</span>
+    <span class="placar oculto" id="placar">
+      <span class="vidas" id="vidas"></span>
+      <span>XP <b id="xp">0</b></span>
+      <span id="combo"></span>
+    </span>
+  </div>
+  <div id="tela"></div>
+</main>
+
+<div class="rodape">
+  <span>Macroeconomia · aulas 1 a 3 · 12 fases · 142 perguntas comentadas</span>
+  <span><button id="btn-som" type="button">som: ligado</button> · <button id="btn-zerar" type="button">apagar progresso</button></span>
+</div>
+
+<script>
+/* ============================================================
+   FLUXO CIRCULAR: o jogo de Macroeconomia
+   Conteúdo: Aulas 1 a 3 de Fundamentos de Macroeconomia (BACEN)
+   ============================================================ */
+
+const MODULOS = [
+
+/* ============================================================ MÓDULO 1 */
+{
+nome: "Contas Nacionais",
+subtitulo: "Aula 1 · Contabilidade social, conceitos básicos, identidades e mensurações do produto",
+fases: [
+
+/* ---- 1.1 */
+{
+  nome: "O território da Macro",
+  tag: "Objetivos, agentes e os quatro instrumentos da contabilidade social",
+  colinha: `
+    <table class="tabela">
+      <tr><th>Microeconomia</th><th>Macroeconomia</th></tr>
+      <tr><td>Analisa o comportamento individual de firmas e consumidores em mercados específicos</td><td>Analisa a economia como um todo, em nível <b>agregado</b></td></tr>
+      <tr><td>Avalia a formação de preços e a quantidade de transações</td><td>Avalia agregados como inflação, câmbio, juros, produção e renda</td></tr>
+      <tr><td>Estuda "a árvore"</td><td>Estuda "a floresta"</td></tr>
+    </table>
+    <p>A Macro não investiga o preço de um bem específico, e sim o <b>nível agregado de preços</b>; não a produção de uma empresa, e sim o <b>produto agregado</b>. A agregação normalmente significa um país, mas pode ser um município, um estado ou um bloco econômico.</p>
+    <p>Ela ganhou corpo como disciplina <b>após a Grande Depressão de 1929</b>, quando ficou claro que as teorias da época não conseguiam explicar o que estava acontecendo.</p>
+    <h3>Os quatro objetivos</h3>
+    <p>Mais precisamente, são os objetivos da <b>política macroeconômica</b>:</p>
+    <ol>
+      <li><b>Estabilidade de preços</b>: controlar a inflação, definida como o aumento generalizado dos preços. A inflação dificulta o financiamento de longo prazo e corrói o poder de compra.</li>
+      <li><b>Alto nível de emprego</b>: aqui "emprego" significa a <b>utilização dos fatores de produção</b> (trabalhadores, máquinas, equipamentos, terra), não apenas mão de obra.</li>
+      <li><b>Crescimento e desenvolvimento econômico</b>.</li>
+      <li><b>Distribuição de renda</b>.</li>
+    </ol>
+    <div class="aviso">Esses quatro objetivos se relacionam por <b>tradeoffs</b>. É muito difícil atingir todos: nível de emprego muito alto desestabiliza os preços, e crescimento muito acelerado pode concentrar a renda.</div>
+    <h3>Os agentes econômicos</h3>
+    <p>São quatro: <b>famílias</b>, <b>empresas (firmas)</b>, <b>governo</b> e <b>resto do mundo</b>. São entidades abstratas com objetivos e comportamentos próprios, uma simplificação do mundo real.</p>
+    <h3>Contabilidade social</h3>
+    <p>Um país não usa a contabilidade de uma empresa. Usa a <b>contabilidade social</b>, assim chamada porque existe para auxiliar a sociedade e seus representantes na tomada de decisões econômicas. São <b>quatro instrumentos</b>, cada um com seu órgão e seu manual internacional:</p>
+    <table class="tabela">
+      <tr><th>Instrumento</th><th>O que mede</th><th>Quem apura</th><th>Manual</th></tr>
+      <tr><td><b>Contas Nacionais</b></td><td>Produção, renda e despesa agregados</td><td><b>IBGE</b></td><td><b>SNA</b> (ONU)</td></tr>
+      <tr><td><b>Balanço de Pagamentos</b></td><td>Transações do país com os demais países</td><td><b>BCB</b></td><td><b>BPM</b> (FMI)</td></tr>
+      <tr><td><b>Contas do Sistema Monetário</b></td><td>Moeda em circulação</td><td><b>BCB</b></td><td><b>MFSM</b> (FMI)</td></tr>
+      <tr><td><b>Contabilidade Fiscal</b></td><td>Contas do governo e dívida pública</td><td><b>BCB e Tesouro</b></td><td><b>GFSM</b> (FMI)</td></tr>
+    </table>
+    <div class="aviso"><b>Guarde o par que mais cai:</b> Contas Nacionais é do <b>IBGE</b>, com manual da <b>ONU</b>. Todos os outros três são do FMI, e os três últimos envolvem o <b>Banco Central</b>.</div>
+    <h3>Fluxo e estoque</h3>
+    <table class="tabela">
+      <tr><th>Variável</th><th>Mensuração</th><th>Pergunta que cabe</th><th>Exemplo</th></tr>
+      <tr><td><b>Fluxo</b></td><td>Em relação a um <b>período</b> de tempo</td><td>"Quanto foi o valor disso em determinado período?"</td><td>Salário</td></tr>
+      <tr><td><b>Estoque</b></td><td>Em um <b>instante</b> de tempo</td><td>"Quanto é o valor disso agora?"</td><td>Saldo bancário</td></tr>
+    </table>
+    <p>Os fluxos <b>determinam</b> os estoques: o saldo bancário é resultado dos vários fluxos na conta. E todas as variáveis da contabilidade nacional são do tipo <b>fluxo</b>.</p>
+  `,
+  qs: [
+    {t:"pool", pool:["Microeconomia","Macroeconomia"], p:"Analisa a formação de preços e quantidades em mercados específicos, estudando \"a árvore\".", r:0,
+     e:"<b>Microeconomia.</b> A Macro estuda \"a floresta\": a economia como um todo, em nível agregado, por meio dos grandes agregados econômicos."},
+    {t:"mc", p:"A Macroeconomia ganhou corpo como disciplina após:",
+     o:["A Primeira Guerra Mundial","A Grande Depressão de 1929","O choque do petróleo de 1973","A crise de 2008"], r:1,
+     e:"<b>1929.</b> Com a bolsa de Nova Iorque caindo quase 90%, ficou claro que as teorias da época não conseguiam compreender nem explicar o que estava acontecendo, e que a ignorância custava muito caro."},
+    {t:"mc", p:"São objetivos da política macroeconômica, EXCETO:",
+     o:["Estabilidade de preços","Alto nível de emprego","Equilíbrio das contas públicas","Distribuição de renda"], r:2,
+     e:"Os quatro objetivos são: <b>estabilidade de preços, alto nível de emprego, crescimento e desenvolvimento econômico e distribuição de renda</b>. Equilíbrio fiscal é instrumento ou consequência, não figura na lista clássica."},
+    {t:"mc", p:"No contexto dos objetivos macroeconômicos, o termo emprego indica:",
+     o:["Apenas os postos de trabalho formais","A utilização dos fatores de produção na economia, incluindo trabalhadores, máquinas, equipamentos e terra","O número de carteiras assinadas","A taxa de desocupação medida pelo IBGE"], r:1,
+     e:"É um uso mais amplo do que o do dia a dia. Por isso alto nível de emprego implica maior bem-estar: uma economia que <b>utiliza seus recursos</b> produz mais, consome mais e se desenvolve mais."},
+    {t:"mc", p:"A relação entre os quatro objetivos macroeconômicos é de:",
+     o:["Complementaridade perfeita: atingir um facilita atingir os demais","Tradeoffs: é muito difícil atingir todos, pois emprego muito alto desestabiliza preços e crescimento acelerado pode concentrar renda","Independência total","Hierarquia, com a estabilidade de preços sempre em primeiro lugar"], r:1,
+     e:"São fortemente relacionados em uma economia capitalista, na forma de <b>tradeoffs</b>. Um país com preços instáveis, desigualdade, alto desemprego e baixo crescimento é um pesadelo, mas atingir os quatro simultaneamente é muito difícil."},
+    {t:"pool", pool:["Contas Nacionais","Balanço de Pagamentos","Contas do Sistema Monetário","Contabilidade Fiscal"], p:"Apurado pelo IBGE, segundo o System of National Accounts da ONU.", r:0,
+     e:"<b>Contas Nacionais.</b> É o único dos quatro instrumentos que não é apurado pelo Banco Central nem segue manual do FMI. Mensura produção, renda e despesa agregados."},
+    {t:"pool", pool:["Contas Nacionais","Balanço de Pagamentos","Contas do Sistema Monetário","Contabilidade Fiscal"], p:"Apurado pelo Banco Central, registra as transações de um país com os demais países, seguindo manual do FMI.", r:1,
+     e:"<b>Balanço de Pagamentos</b>, conforme o <b>BPM</b> (Balance of Payments Manual) do FMI, hoje na sexta edição."},
+    {t:"pool", pool:["Contas Nacionais","Balanço de Pagamentos","Contas do Sistema Monetário","Contabilidade Fiscal"], p:"Apurada pelo Banco Central e pelo Tesouro Nacional, evidencia as contas do governo e a dívida pública.", r:3,
+     e:"<b>Contabilidade Fiscal</b>, com referência no <b>GFSM</b> (Government Finance Statistics Manual) do FMI. É o único dos quatro com dois órgãos responsáveis."},
+    {t:"pool", pool:["Contas Nacionais","Balanço de Pagamentos","Contas do Sistema Monetário","Contabilidade Fiscal"], p:"Serve principalmente para controlar a moeda em circulação, seguindo o MFSM do FMI.", r:2,
+     e:"<b>Contas do Sistema Monetário</b>, também a cargo do Banco Central. É o instrumento que dá base à Aula 2 deste curso."},
+    {t:"pool", pool:["Variável de fluxo","Variável de estoque"], p:"O salário que uma pessoa recebe ao longo de um mês.", r:0,
+     e:"<b>Fluxo.</b> A pergunta que cabe é \"quanto foi o valor disso em determinado período?\". Todas as variáveis da contabilidade nacional são do tipo fluxo."},
+    {t:"pool", pool:["Variável de fluxo","Variável de estoque"], p:"O saldo da conta bancária no momento em que a pessoa olha o extrato.", r:1,
+     e:"<b>Estoque.</b> É uma fotografia de determinado instante. E note a relação: o saldo é <b>resultado</b> dos diversos fluxos na conta corrente, ou seja, os fluxos determinam os estoques."},
+    {t:"mc", p:"Os agentes econômicos considerados na Macroeconomia são:",
+     o:["Famílias e empresas","Famílias, empresas e governo","Famílias, empresas, governo e resto do mundo","Consumidores, produtores, bancos e governo"], r:2,
+     e:"<b>Quatro</b>: famílias, empresas (firmas), governo e resto do mundo. São entidades abstratas que desempenham papéis definidos, uma simplificação do mundo real."}
+  ]
+},
+
+/* ---- 1.2 */
+{
+  nome: "Os sete conceitos",
+  tag: "Produto, renda, consumo, poupança, investimento, absorção e despesa",
+  colinha: `
+    <p>Segundo Simonsen e Cysne, toda a contabilidade nacional é desenvolvida a partir de <b>sete conceitos básicos</b>: produto, renda, consumo, poupança, investimento, absorção e despesa. Todos são variáveis do tipo <b>fluxo</b>.</p>
+    <h3>1. Produto</h3>
+    <p>Total da produção, de bens e serviços, em determinado período. Três traços essenciais:</p>
+    <ul>
+      <li>Medido em <b>valores monetários</b>, não em unidades produzidas, porque só o preço permite somar soja, serviços de limpeza e aviões;</li>
+      <li>Considera apenas os <b>bens e serviços finais</b>, desconsiderando os intermediários;</li>
+      <li>Duas formas de aferição: soma do valor dos bens e serviços finais, ou <b>valor adicionado</b>.</li>
+    </ul>
+    <div class="aviso"><b>Final ou intermediário não é natureza do bem.</b> Depende de o bem <b>ter ou não sido utilizado na produção de outro</b>. O pneu comprado no supermercado é bem final; o pneu agregado ao automóvel zero quilômetro é bem intermediário.</div>
+    <p><b>Valor adicionado</b> é o valor bruto de uma etapa produtiva menos o valor dos consumos intermediários. Notebook vendido a R$ 3.000 com R$ 2.000 de componentes gera valor adicionado de <b>R$ 1.000</b>. Somando o valor adicionado de todas as unidades produtivas, chega-se ao produto total.</p>
+    <h3>2. Renda</h3>
+    <p>Total recebido a título de <b>remuneração pelos fatores de produção</b>. Os fatores são <b>trabalho e capital</b>, este subdividido em capital de empréstimo, capital de risco e capital físico.</p>
+    <table class="tabela">
+      <tr><th>Fator</th><th>Remuneração</th></tr>
+      <tr><td>Trabalho</td><td>Salários (s)</td></tr>
+      <tr><td>Capital de empréstimo</td><td>Juros (j)</td></tr>
+      <tr><td>Capital de risco</td><td>Lucros (l)</td></tr>
+      <tr><td>Capital físico</td><td>Aluguéis (a)</td></tr>
+    </table>
+    <p><code>Y = s + j + l + a</code>. Os donos dos fatores são as <b>famílias</b>. Como as empresas pagam rendas às famílias e as famílias compram os produtos das empresas, chega-se à primeira identidade: <b>Produto = Renda</b>, ou <code>P = Y</code>.</p>
+    <p>É preciso evitar recontagem: elimina-se a remuneração que as empresas pagam umas às outras, pois o aluguel que A paga a B já será contabilizado como lucro em B.</p>
+    <h3>3. Consumo</h3>
+    <p>Valor dos bens e serviços adquiridos para satisfação de desejos ou necessidades. Divide-se em <b>C</b>, consumo pessoal das famílias, e <b>G</b>, gastos do governo com bens de uso coletivo (segurança, educação, saúde).</p>
+    <p><code>C total = C + G</code>. Atenção: quando o <b>C aparece sozinho</b>, refere-se apenas ao gasto das <b>famílias</b>.</p>
+    <h3>4. Poupança</h3>
+    <p>É a parte da renda <b>não destinada ao consumo</b>. Muito mais ampla do que o depósito bancário homônimo.</p>
+    <p><code>S = Y − C</code></p>
+    <h3>5. Investimento</h3>
+    <p>Em Contas Nacionais, investimento <b>não é aplicação financeira</b>. É o acréscimo de estoque físico de capital:</p>
+    <p><code>I = FBKF + ΔE</code></p>
+    <ul>
+      <li><b>FBKF</b> (formação bruta de capital fixo): investimento das empresas em aumento da capacidade produtiva;</li>
+      <li><b>ΔE</b> (variação de estoques): variação líquida nos estoques de bens acabados ou em elaboração e de matérias-primas.</li>
+    </ul>
+    <p><code>IL = I − Depreciação</code>. Regra de leitura de prova: quando a questão disser apenas "produto" ou "investimento", entenda <b>BRUTO</b>. É a <b>depreciação</b> que torna líquido o que era bruto.</p>
+    <h3>6. Absorção interna</h3>
+    <p>O que a sociedade absorve em bens e serviços para consumo ou aumento do estoque de capital. Soma dos gastos dos <b>três agentes internos</b>:</p>
+    <p><code>Ab = C + G + I</code> &nbsp;ou&nbsp; <code>Ab = C + G + FBKF + ΔE</code> &nbsp;ou&nbsp; <code>Ab = C total + I</code></p>
+    <h3>7. Despesa (demanda ou dispêndio)</h3>
+    <p>Soma do gasto dos <b>quatro</b> agentes:</p>
+    <p><code>D = C + I + G + X − M</code></p>
+    <p>As importações entram com <b>sinal negativo</b> porque são produção do resto do mundo, não nacional. As exportações entram somando porque são despesas do resto do mundo com a nossa produção.</p>
+    <div class="aviso">Em economia <b>fechada</b>, a absorção interna <b>coincide</b> com a despesa. Em economia aberta, a diferença entre as duas é exatamente as <b>exportações líquidas</b> (X − M).</div>
+  `,
+  qs: [
+    {t:"mc", p:"O produto é medido em:",
+     o:["Unidades produzidas","Valores monetários","Horas de trabalho","Toneladas equivalentes"], r:1,
+     e:"<b>Valores monetários.</b> Só o preço estabelece uma unidade de medida comum que permita somar soja, serviços de limpeza, computadores e aviões numa única cifra."},
+    {t:"pool", pool:["Bem final","Bem intermediário"], p:"O pneu adquirido por um consumidor no supermercado.", r:0,
+     e:"<b>Final.</b> A classificação não depende da <b>natureza</b> do produto, e sim de ele ter ou não sido utilizado na produção de outro bem. Esse mesmo pneu, montado num carro zero quilômetro, seria intermediário."},
+    {t:"pool", pool:["Bem final","Bem intermediário"], p:"Os vidros e espelhos agregados a um automóvel zero quilômetro.", r:1,
+     e:"<b>Intermediário.</b> Se contabilizássemos o valor do automóvel e também o dos vidros, haveria <b>dupla contagem</b>: eles já estão embutidos no preço do carro."},
+    {t:"mc", p:"Uma empresa monta e vende notebooks por R$ 3.000, utilizando R$ 2.000 em componentes. O valor adicionado nessa unidade produtiva é:",
+     o:["R$ 3.000","R$ 2.000","R$ 1.000","R$ 5.000"], r:2,
+     e:"<b>R$ 1.000.</b> Valor adicionado é o valor bruto da etapa menos o valor dos consumos intermediários. Somando o valor adicionado de todas as unidades produtivas, obtém-se o produto total da economia."},
+    {t:"mc", p:"Em Contas Nacionais, investimento significa:",
+     o:["Aplicação em ações, títulos públicos e derivativos","Acréscimo de estoque físico de capital: formação bruta de capital fixo mais variação de estoques","Qualquer gasto de longo prazo","Poupança aplicada em bancos"], r:1,
+     e:"<code>I = FBKF + ΔE</code>. A <b>FBKF</b> é o investimento das empresas em aumento da capacidade produtiva; a <b>ΔE</b> é a variação líquida nos estoques de bens acabados, em elaboração e de matérias-primas. Aplicação financeira não é investimento aqui."},
+    {t:"mc", p:"Quando a questão menciona apenas produto ou apenas investimento, sem especificar, deve-se entender:",
+     o:["Líquido","Bruto","Nominal","A custo de fatores"], r:1,
+     e:"<b>Bruto.</b> E lembre-se do que faz a diferença: é a <b>depreciação</b> que torna líquido o produto ou o investimento que era bruto."},
+    {t:"mc", p:"A poupança, em Contas Nacionais, é definida como:",
+     o:["O depósito em caderneta de poupança","A parte da renda que não é destinada ao consumo","A renda menos os impostos","O investimento das empresas"], r:1,
+     e:"<code>S = Y − C</code>. O conceito é muito mais amplo do que o depósito bancário homônimo: abrange toda parcela da renda não consumida."},
+    {t:"mc", p:"Absorção interna é dada por:",
+     o:["C + I + G + X − M","C + G + I","C + S + T","s + j + l + a"], r:1,
+     e:"<code>Ab = C + G + I</code>, ou seja, os gastos dos <b>três agentes internos</b>: famílias, governo e empresas. A primeira alternativa é a <b>despesa</b>, que inclui o resto do mundo."},
+    {t:"mc", p:"Em uma economia fechada, a relação entre absorção interna e despesa é:",
+     o:["A absorção é sempre maior","A despesa é sempre maior","Coincidem","Não há relação definida"], r:2,
+     e:"<b>Coincidem.</b> Em economia aberta, a diferença entre as duas é exatamente as <b>exportações líquidas</b> (X − M), justamente o componente do resto do mundo que a absorção interna não contém."},
+    {t:"mc", p:"Na expressão D = C + I + G + X − M, as importações entram com sinal negativo porque:",
+     o:["Prejudicam a balança comercial","São produção do resto do mundo, e não produção nacional","Geram saída de divisas","São tributadas na entrada"], r:1,
+     e:"O ponto é <b>conceitual</b>, não cambial: as importações não fazem parte da demanda agregada pela <b>nossa</b> produção. Pelo mesmo motivo somam-se as exportações, que são despesas do resto do mundo com o que produzimos."},
+    {t:"pool", pool:["Salários","Juros","Lucros","Aluguéis"], p:"Remuneração do capital de risco, aquele que a empresa obtém de seus sócios.", r:2,
+     e:"<b>Lucros.</b> Na classificação completa: trabalho remunerado por <b>salários</b>, capital de empréstimo por <b>juros</b>, capital de risco por <b>lucros</b> e capital físico por <b>aluguéis</b>. Numa simplificação comum, todo capital é remunerado por lucro."},
+    {t:"mc", p:"Quando o C aparece sozinho em uma expressão de Contas Nacionais, ele se refere:",
+     o:["Ao consumo total, de famílias e governo","Apenas ao gasto das famílias","Apenas ao gasto do governo","Ao consumo intermediário"], r:1,
+     e:"Apenas às <b>famílias</b>. O consumo total é <code>C total = C + G</code>, em que G são os gastos do governo com bens e serviços de uso coletivo colocados à disposição da sociedade."}
+  ]
+},
+
+/* ---- 1.3 */
+{
+  nome: "Identidades e as três óticas",
+  tag: "P = Y = D, fluxo circular, poupança e investimento",
+  colinha: `
+    <div class="aviso">A identidade macroeconômica fundamental é <b>P ≡ Y ≡ D</b> (Produto ≡ Renda ≡ Despesa). O símbolo ≡ significa "é idêntico a": os termos são equivalentes <b>por suas próprias definições</b>, o que se chama <b>tautologia</b>. Na prática usa-se o sinal de igual.</div>
+    <p>A intuição: assim como <b>uma compra é uma venda</b>, não há produção que não seja também despesa e simultaneamente geração de renda. Compra e venda são dois nomes para o mesmo fenômeno, observado sob óticas diferentes.</p>
+    <p>O picolé gourmet que vale R$ 10: produção de R$ 10; renda de R$ 10 (R$ 7 de salário do amigo e R$ 3 de lucro); despesa de R$ 10 de quem comprou. E se ninguém comprar? Equivale a você mesmo ter comprado um <b>estoque</b> do produto.</p>
+    <h3>Fluxo circular da riqueza</h3>
+    <p>Famílias e empresas interagem em <b>dois mercados</b>: o de <b>bens e serviços</b> e o de <b>fatores de produção</b>. As empresas recorrem ao mercado de fatores para comprá-los das famílias; as famílias vão ao mercado de bens e serviços para comprá-los das empresas.</p>
+    <table class="tabela">
+      <tr><th>Circuito</th><th>Famílias</th><th>Empresas</th></tr>
+      <tr><td><b>Fluxo real</b></td><td>Demandam bens e serviços; oferecem fatores de produção</td><td>Entregam bens e serviços; adquirem fatores de produção</td></tr>
+      <tr><td><b>Fluxo monetário</b></td><td><b>Pagam</b> pelos bens e serviços; <b>recebem</b> pelos fatores</td><td><b>Recebem</b> pelos bens e serviços; <b>pagam</b> pelos fatores</td></tr>
+    </table>
+    <h3>As três óticas</h3>
+    <table class="tabela">
+      <tr><th>Ótica</th><th>Como se mede</th><th>O que se obtém</th></tr>
+      <tr><td><b>Produção</b></td><td>Valor adicionado em cada etapa produtiva; ou valor total produzido menos consumo intermediário</td><td>PIB a <b>custo de fatores</b></td></tr>
+      <tr><td><b>Despesa</b></td><td>C + I + G + X − M; ou soma do valor dos bens e serviços finais</td><td>PIB a <b>preços de mercado</b></td></tr>
+      <tr><td><b>Renda</b></td><td>s + j + l + a</td><td><b>Renda Nacional</b> (PNLCF)</td></tr>
+    </table>
+    <div class="aviso"><b>Pegadinha fina.</b> Rigorosamente, a soma do valor dos <b>bens e serviços finais</b> é ótica da <b>despesa</b>, e não da produção. Se a questão disser que "o PIB é apurado pela ótica da produção somando-se o valor de bens e serviços finais", marque <b>errado</b>. Se disser apenas que "o PIB pode ser mensurado como o valor total de bens e serviços finais produzidos", marque <b>certo</b>.</div>
+    <p>Pela ótica da renda, dois agrupamentos merecem nome próprio:</p>
+    <ul>
+      <li><b>Excedente Operacional Bruto (EOB)</b> = lucros + juros + aluguéis. É a produção que <b>excede os salários</b>, o que sobra depois de pagá-los;</li>
+      <li><b>Rendimento Misto Bruto</b> = remuneração dos <b>autônomos</b>. Menos frequente em provas.</li>
+    </ul>
+    <h3>Poupança e investimento: economia fechada e sem governo</h3>
+    <p>A renda vai para consumo ou poupança: <code>Y = C + S</code>. A despesa se divide em gastos das famílias e investimento das empresas: <code>D = C + I</code>. Como <code>Y = D</code>:</p>
+    <p><code>C + S = C + I → <b>S = I</b></code></p>
+    <p>Os gastos das empresas são financiados pela poupança das famílias, com o sistema financeiro atuando como intermediador.</p>
+    <h3>Economia aberta e com governo</h3>
+    <p>A despesa vira <code>D = C + I + G + X − M</code>. A renda passa a se destinar a consumo, poupança, impostos e ao exterior, e o país ainda pode receber <b>transferências unilaterais (TUR)</b>:</p>
+    <p><code>R = C + S + T + RLEE − TUR</code></p>
+    <p>Igualando despesa e renda e isolando o investimento:</p>
+    <p><code>I = S + (T − G) + (M − X + RLEE − TUR)</code>, ou seja, <b>I = S<sub>P</sub> + S<sub>G</sub> + S<sub>EXT</sub></b></p>
+    <table class="tabela">
+      <tr><th>Parcela</th><th>Significado</th></tr>
+      <tr><td><b>S</b> (S<sub>P</sub>)</td><td>Poupança privada, das famílias</td></tr>
+      <tr><td><b>T − G</b> (S<sub>G</sub>)</td><td>Poupança do governo: impostos recebidos menos gastos</td></tr>
+      <tr><td><b>M − X + RLEE − TUR</b> (S<sub>EXT</sub>)</td><td>Poupança externa, do resto do mundo</td></tr>
+    </table>
+    <div class="aviso"><b>Poupança externa não é reservas internacionais.</b> Ela é a poupança <b>do resto do mundo</b>. Poupança externa <b>positiva</b> não é algo bom: indica que o país está sendo <b>financiado</b> pelo resto do mundo, porque gasta e envia mais rendas do que recebe. É devedor líquido, deficitário. Poupança externa <b>negativa</b> indica que o país está financiando o resto do mundo: é credor, superavitário.</div>
+  `,
+  qs: [
+    {t:"mc", p:"O símbolo ≡ na identidade P ≡ Y ≡ D indica que:",
+     o:["Os valores são aproximadamente iguais","Os termos são equivalentes por causa de suas próprias definições, o que se chama tautologia","Há uma relação de causalidade","Os valores se igualam apenas no longo prazo"], r:1,
+     e:"<b>Identidade</b>, não igualdade. É como compra e venda: dois nomes dados ao mesmo fenômeno, observado sob óticas diferentes. Na prática, usa-se o sinal de = mesmo."},
+    {t:"pool", pool:["Fluxo real","Fluxo monetário"], p:"As famílias pagam pelos bens e serviços e recebem pelos fatores de produção.", r:1,
+     e:"<b>Fluxo monetário.</b> Foi item de prova do Cespe. No <b>fluxo real</b>, as famílias demandam bens e serviços e fornecem fatores de produção."},
+    {t:"pool", pool:["Fluxo real","Fluxo monetário"], p:"As famílias consomem bens e serviços das empresas e fornecem fatores de produção.", r:0,
+     e:"<b>Fluxo real.</b> O que circula aqui são bens, serviços e fatores, não dinheiro. Famílias e empresas interagem em <b>dois mercados</b>: o de bens e serviços e o de fatores de produção."},
+    {t:"pool", pool:["Ótica da produção","Ótica da despesa","Ótica da renda"], p:"Soma do valor adicionado em cada etapa produtiva.", r:0,
+     e:"<b>Produção.</b> Junto com \"valor total produzido menos consumo intermediário\", é a forma que fornece o PIB a <b>custo de fatores</b>."},
+    {t:"pool", pool:["Ótica da produção","Ótica da despesa","Ótica da renda"], p:"Soma do valor dos bens e serviços finais produzidos no período.", r:1,
+     e:"<b>Despesa</b>, e essa é a pegadinha mais fina da aula. Se a questão atribuir isso à ótica da <b>produção</b>, marque errado. Se disser apenas que o PIB pode ser mensurado assim, marque certo."},
+    {t:"pool", pool:["Ótica da produção","Ótica da despesa","Ótica da renda"], p:"Soma de salários, juros, lucros e aluguéis.", r:2,
+     e:"<b>Renda.</b> O que se obtém por essa via é a <b>Renda Nacional</b>, equivalente ao PNLCF."},
+    {t:"mc", p:"O Excedente Operacional Bruto (EOB) corresponde a:",
+     o:["Salários mais lucros","Lucros mais juros mais aluguéis","A remuneração dos autônomos","O PIB menos a depreciação"], r:1,
+     e:"<b>EOB = lucros + juros + aluguéis</b>, ou seja, a soma das remunerações do capital. Recebe esse nome porque é a produção que <b>excede os salários</b>. A remuneração dos autônomos é o <b>Rendimento Misto Bruto</b>."},
+    {t:"mc", p:"Numa economia fechada e sem governo, a partir de Y = C + S e D = C + I, conclui-se que:",
+     o:["S > I","S = I","S < I","Não há relação determinada"], r:1,
+     e:"Como <code>Y = D</code>, então <code>C + S = C + I</code>, logo <b>S = I</b>. Os gastos das empresas são financiados pela poupança das famílias, com o sistema financeiro fazendo a intermediação."},
+    {t:"pool", pool:["Poupança privada","Poupança do governo","Poupança externa"], p:"A expressão T − G, impostos arrecadados menos gastos do governo.", r:1,
+     e:"<b>Poupança do governo.</b> Se o governo gasta mais do que arrecada, ela é <b>negativa</b>, e o resultado é menos investimento (a poupança financia o governo em vez das empresas) ou mais poupança externa (o governo passa a ser financiado pelo resto do mundo, aumentando a dívida externa)."},
+    {t:"pool", pool:["Poupança privada","Poupança do governo","Poupança externa"], p:"A expressão M − X + RLEE − TUR.", r:2,
+     e:"<b>Poupança externa</b>, a poupança do resto do mundo. Importações menos exportações, mais a renda líquida enviada ao exterior, menos as transferências unilaterais recebidas."},
+    {t:"pool", pool:["Certo","Errado"], p:"Poupança externa positiva é um bom sinal, pois indica que o país acumulou reservas internacionais.", r:1,
+     e:"<b>Errado</b>, em dois pontos. Primeiro, poupança externa <b>não é</b> reservas internacionais: é a poupança <b>do resto do mundo</b>. Segundo, positiva significa que o país está sendo <b>financiado</b> porque gasta e envia mais rendas do que recebe, ou seja, é devedor líquido e deficitário no período."},
+    {t:"mc", p:"Quando a poupança interna é negativa, os investimentos estão sendo financiados por poupança externa positiva, o que implica:",
+     o:["Exportações superiores às importações e superávit em transações correntes","Importações superiores às exportações e déficit em transações correntes","Aumento das reservas internacionais","Redução da dívida externa"], r:1,
+     e:"O resto do mundo só pode financiar o país se estiver \"guardando dinheiro\" em relação a ele, o que acontece quando o país <b>importa mais do que exporta</b>. Essa é a situação de <b>déficit em transações correntes</b>, conceito que reaparece na Aula 3."}
+  ]
+},
+
+/* ---- 1.4 */
+{
+  nome: "As mensurações do produto",
+  tag: "Interno e nacional, bruto e líquido, mercado e fatores, real e nominal",
+  colinha: `
+    <p>O PIB é uma medida dos <b>bens e serviços finais</b> gerados <b>dentro das fronteiras do país</b>, em <b>determinado período</b>, avaliados a <b>preço de mercado</b>. Cada um desses quatro elementos gera uma distinção.</p>
+    <h3>Bens de capital e estoques entram; intermediários não</h3>
+    <p>Bens intermediários não entram, para evitar dupla contagem. Mas <b>bens de capital</b> (máquinas e instalações) adquiridos no período <b>somam</b> ao PIB, assim como os <b>estoques</b> não vendidos. Note que o PIB tem recontagem inerente: no preço do guarda-roupas está embutida parte do desgaste da serra, que também foi contada. Esse problema é eliminado no <b>PIL</b>.</p>
+    <p>O que <b>não</b> entra no PIB: bens e serviços não comercializados no mercado, como os serviços domésticos no próprio lar, e atividades ilegais, como jogo do bicho e tráfico.</p>
+    <h3>Interno e nacional</h3>
+    <table class="tabela">
+      <tr><th>Critério</th><th>PIB</th><th>PNB</th></tr>
+      <tr><td>Base</td><td><b>Territorial</b>: onde se produz</td><td><b>Nacionalidade dos fatores</b>: de quem é o fator</td></tr>
+      <tr><td>Empresa brasileira no Brasil</td><td>Entra</td><td>Entra</td></tr>
+      <tr><td>Empresa brasileira em Portugal</td><td>Não entra</td><td>Entra</td></tr>
+      <tr><td>Empresa alemã no Brasil</td><td>Entra</td><td>Não entra</td></tr>
+    </table>
+    <p><code>RLEE = REE − RRE</code> &nbsp;e&nbsp; <code>PNB = PIB − RLEE</code></p>
+    <p>No Brasil, com muitas empresas estrangeiras no território e poucas nacionais fora, a RLEE é <b>positiva</b> e o <b>PIB é maior que o PNB</b>.</p>
+    <p>Exemplo numérico: brasileira no Brasil 500, brasileira em Portugal 350, alemã no Brasil 800. PIB = 1.300; PNB = 850; RLEE = 800 − 350 = 450. Confere: 850 = 1.300 − 450.</p>
+    <h3>Bruto e líquido</h3>
+    <p><code>PIL = PIB − Depreciação</code> &nbsp;e&nbsp; <code>IB = IL + Depreciação</code></p>
+    <div class="aviso">Cuidado: nem sempre <b>líquido</b> significa "livre de depreciação". Na <b>RLEE</b>, líquido é a renda enviada livre da renda recebida. Nos <b>impostos líquidos</b>, é imposto indireto livre de subsídios.</div>
+    <h3>Preços de mercado e custo de fatores</h3>
+    <p><code>PIB<sub>CF</sub> = s + j + l + a</code></p>
+    <p><code>PIB<sub>PM</sub> = PIB<sub>CF</sub> + impostos indiretos − subsídios = PIB<sub>CF</sub> + impostos líquidos</code></p>
+    <p>Quanto maiores os impostos líquidos, maior a diferença entre as duas medidas. <b>Impostos diretos</b> incidem sobre a renda ou o patrimônio das pessoas; <b>indiretos</b>, sobre os produtos e serviços, ou seja, sobre transações. Em Contas Nacionais interessam os <b>indiretos</b>, porque são eles que impactam os preços.</p>
+    <p>Para descer do PIB<sub>PM</sub> até qualquer outra medida, basta ir <b>subtraindo</b> o fator considerado: RLEE, depreciação e impostos indiretos, <b>somando</b> os subsídios. O ponto mais depurado é o <b>PNL<sub>CF</sub></b>, equivalente à <b>Renda Nacional</b>.</p>
+    <h3>Real e nominal</h3>
+    <p>O <b>PIB nominal</b> soma os preços correntes e pode crescer por dois motivos: aumento da produção ou aumento dos preços. O <b>PIB real</b> fixa os preços em um <b>ano-base</b>, sendo medido a <b>preços constantes</b>.</p>
+    <p><code>Deflator implícito = PIB nominal ÷ PIB real</code></p>
+    <p>Na nanoeconomia de livros: 2018 teve PIB nominal de 2.046 e real de 1.860, logo o deflator foi 2.046 ÷ 1.860 = <b>1,1</b>, ou 110%. E a <b>ilusão monetária</b> é a tendência de considerar a moeda em termos nominais em vez de reais, confundindo o valor nominal com o poder de compra.</p>
+    <h3>Potencial, efetivo e hiato</h3>
+    <table class="tabela">
+      <tr><th>Situação</th><th>Hiato</th><th>Efeito</th></tr>
+      <tr><td>PIB efetivo <b>&gt;</b> PIB potencial</td><td>Positivo: hiato <b>inflacionário</b></td><td>Produzindo acima da capacidade; pressão de alta nos preços</td></tr>
+      <tr><td>PIB efetivo <b>&lt;</b> PIB potencial</td><td>Negativo: hiato <b>deflacionário</b></td><td>Produzindo abaixo da capacidade; pressão de queda nos preços</td></tr>
+    </table>
+    <p>PIB potencial é o nível mais alto de produção possível <b>sem causar inflação</b>. Ele tende a crescer ao longo do tempo por avanços tecnológicos, enquanto o efetivo flutua com mais frequência.</p>
+    <h3>Os conceitos de renda</h3>
+    <ul>
+      <li><b>Renda Nacional</b> = PNL<sub>CF</sub>. Atenção: <b>RNB ≠ Renda Nacional</b>;</li>
+      <li><b>Renda Pessoal</b> = Renda Nacional − lucros retidos − impostos sobre lucros − contribuições previdenciárias + transferências recebidas;</li>
+      <li><b>Renda Pessoal Disponível</b> = Renda Pessoal − impostos diretos;</li>
+      <li><b>Renda Disponível Bruta (RDB)</b> = RNB + transferências unilaterais correntes;</li>
+      <li><b>Renda Líquida do Governo (RLG)</b> = impostos diretos + impostos indiretos − transferências do governo − subsídios;</li>
+      <li><b>Renda Privada Disponível (RPD)</b> = RDB − RLG = C + S.</li>
+    </ul>
+  `,
+  qs: [
+    {t:"mc", p:"O que NÃO é contabilizado no PIB a preços de mercado?",
+     o:["Bens de capital adquiridos pelas empresas no período","Estoques não vendidos","Serviços domésticos prestados no próprio lar e atividades ilegais","Serviços de saúde privados"], r:2,
+     e:"O PIB soma bens e serviços pelos seus <b>preços de mercado</b>. O que não é comercializado no mercado, como os serviços da dona de casa no próprio lar, e as atividades ilegais, como jogo do bicho e tráfico, ficam de fora. Bens de capital e estoques, ao contrário, <b>somam</b> ao PIB."},
+    {t:"mc", p:"Uma empresa brasileira produz em Portugal. Essa produção:",
+     o:["Entra no PIB e no PNB brasileiros","Entra no PIB, mas não no PNB brasileiro","Entra no PNB, mas não no PIB brasileiro","Não entra em nenhum dos dois"], r:2,
+     e:"O <b>PIB</b> usa critério <b>territorial</b>; o <b>PNB</b>, a <b>nacionalidade dos fatores</b>. Produção fora das fronteiras não entra no PIB, mas entra no PNB por ser fator brasileiro. Já a empresa alemã no Brasil faz o inverso: entra no PIB e não no PNB."},
+    {t:"num", p:"PIB de 1.300, renda enviada ao exterior de 800 e renda recebida do exterior de 350. Qual o PNB?",
+     r:850, e:"<code>RLEE = REE − RRE = 800 − 350 = 450</code> e <code>PNB = PIB − RLEE = 1.300 − 450 = <b>850</b></code>. Com duas das três variáveis, sempre se descobre a terceira."},
+    {t:"mc", p:"No caso brasileiro, é comum que:",
+     o:["O PNB seja maior que o PIB, pois a RLEE é negativa","O PIB seja maior que o PNB, pois a RLEE é positiva","PIB e PNB sejam iguais","A relação varie a cada ano sem padrão"], r:1,
+     e:"Há grande presença de empresas estrangeiras no território e poucas empresas nacionais no exterior. Logo a renda <b>enviada</b> supera a <b>recebida</b>, a RLEE é positiva e o <b>PIB supera o PNB</b>."},
+    {t:"mc", p:"A relação entre PIB e PIL é:",
+     o:["PIL = PIB − impostos indiretos","PIL = PIB − RLEE","PIL = PIB − depreciação","PIL = PIB − subsídios"], r:2,
+     e:"<b>Depreciação</b>, e só ela, separa bruto de líquido no produto. Mesma lógica do investimento: <code>IB = IL + depreciação</code>. Mas cuidado: em <b>RLEE</b> e em <b>impostos líquidos</b>, a palavra \"líquido\" significa outra coisa."},
+    {t:"mc", p:"PIB a custo de fatores de 900, impostos indiretos de 150 e subsídios de 30. O PIB a preços de mercado é:",
+     o:["720","870","1.020","1.080"], r:2,
+     e:"<code>PIB_PM = PIB_CF + impostos indiretos − subsídios = 900 + 150 − 30 = <b>1.020</b></code>. Os impostos líquidos (150 − 30 = 120) são exatamente a diferença entre as duas medidas."},
+    {t:"pool", pool:["Imposto direto","Imposto indireto"], p:"Incide sobre os produtos e serviços adquiridos pelo consumidor, ou seja, sobre transações.", r:1,
+     e:"<b>Indireto.</b> O consumidor paga ao vendedor, que repassa ao governo. É esse tipo que interessa em Contas Nacionais, porque é ele que <b>impacta os preços</b> e separa o PIB a preços de mercado do PIB a custo de fatores."},
+    {t:"pool", pool:["Imposto direto","Imposto indireto"], p:"Incide sobre a renda ou sobre o patrimônio das pessoas.", r:0,
+     e:"<b>Direto.</b> A pessoa paga diretamente ao governo, por guia ou por declaração de ajuste. Também entra na fórmula da <b>Renda Pessoal Disponível</b>, que é a Renda Pessoal menos os impostos diretos."},
+    {t:"mc", p:"Uma economia produziu 93 livros a R$ 22 em 2018, tendo como ano-base 2017, quando o preço era R$ 20. O deflator implícito de 2018 é:",
+     o:["0,91","1,00","1,10","2,20"], r:2,
+     e:"PIB nominal = 93 × 22 = 2.046; PIB real = 93 × 20 = 1.860. <code>Deflator = 2.046 ÷ 1.860 = <b>1,1</b></code>, ou 110%. Repare que o PIB nominal subiu, mas o real caiu: quem cresceu foram os preços."},
+    {t:"mc", p:"Ilusão monetária é:",
+     o:["A diferença entre PIB nominal e PIB real","A tendência das pessoas a considerar a moeda em termos nominais em vez de reais, confundindo valor nominal com poder de compra","O efeito da emissão de moeda sobre os preços","A variação cambial não percebida pelos agentes"], r:1,
+     e:"É por causa dela que se usa o <b>PIB real</b>, medido a preços constantes de um ano-base: para medir só o crescimento da produção, sem ser iludido pelo valor nominal."},
+    {t:"pool", pool:["Hiato inflacionário","Hiato deflacionário"], p:"O PIB efetivo supera o PIB potencial.", r:0,
+     e:"<b>Hiato positivo, ou inflacionário.</b> O país produz acima da capacidade e há pressão de alta nos preços. O PIB potencial é o nível mais alto de produção possível <b>sem causar inflação</b>."},
+    {t:"mc", p:"Quando a questão menciona apenas Renda Nacional, deve-se entender:",
+     o:["Renda Nacional Bruta (RNB)","Produto Nacional Líquido a Custo de Fatores (PNL_CF)","Renda Pessoal Disponível","Renda Disponível Bruta"], r:1,
+     e:"<b>RNB ≠ Renda Nacional.</b> Renda Nacional é o <b>PNL_CF</b>, o grau mais depurado de mensuração, obtido descendo do PIB a preços de mercado e subtraindo RLEE, depreciação e impostos indiretos, somando os subsídios."}
+  ]
+}
+
+]},
+/* ============================================================ MÓDULO 2 */
+{
+nome: "Moeda e sistema monetário",
+subtitulo: "Aula 2 · Funções da moeda, agregados monetários, multiplicador e balancetes",
+fases: [
+
+/* ---- 2.1 */
+{
+  nome: "O que é moeda",
+  tag: "Definição, três funções, atributos e tipos",
+  colinha: `
+    <div class="aviso"><b>Moeda é todo ativo que pode ser utilizado de forma imediata para realizar transações.</b> A definição econômica é mais ampla do que a do dia a dia: ela não se limita a cédulas e moedas metálicas.</div>
+    <h3>As três funções</h3>
+    <p>São as mais cobradas em prova. É para decorar mesmo.</p>
+    <table class="tabela">
+      <tr><th>Função</th><th>Significado</th></tr>
+      <tr><td><b>Reserva de valor</b></td><td>A moeda pode ser guardada para comprar depois: reter moeda transfere o poder de compra do presente para o futuro. Não é reserva perfeita, porque a <b>inflação</b> corrói o valor. Por isso, em inflação alta, as pessoas trocam moeda por títulos que paguem juros ou por moedas estrangeiras mais estáveis.</td></tr>
+      <tr><td><b>Unidade de conta</b></td><td>Permite dizer que uma camisa custa R$ 300 em vez de dizer que custa 100 refrigerantes. A moeda é o <b>padrão oficial de preços</b>. Algumas bancas chamam essa função de <b>Padrão de Valor</b>.</td></tr>
+      <tr><td><b>Meio de troca</b></td><td>Serve para comprar qualquer bem ou serviço. Elimina o <b>escambo</b>, a troca direta de uma mercadoria por outra.</td></tr>
+    </table>
+    <h3>As características (atributos)</h3>
+    <p>São qualidades <b>desejáveis</b> para que um ativo possa ser moeda: baixo custo de estocagem, baixo custo de transação, difícil de falsificar, alta durabilidade, divisibilidade, transportável, manuseável e homogeneidade. A lista não é rígida, e cai bem menos que as funções.</p>
+    <h3>Os tipos de moeda</h3>
+    <table class="tabela">
+      <tr><th>Tipo</th><th>Conteúdo</th></tr>
+      <tr><td><b>Moeda-mercadoria</b></td><td>Mercadoria com <b>valor intrínseco</b>, ou seja, com valor de uso além da transação. Sal (de onde vem a palavra salário) e ouro na antiguidade; cigarros em presídios ainda hoje. Pelo lado dos atributos, carece de <b>homogeneidade</b>: duas ovelhas ou duas conchas nunca serão idênticas.</td></tr>
+      <tr><td><b>Padrão-ouro</b></td><td>Moeda que pode ser trocada por determinado valor em ouro, como um certificado vinculado a uma quantidade guardada em cofre. Diz-se que possui <b>lastro</b>.</td></tr>
+      <tr><td><b>Fiduciária</b></td><td>Só tem valor porque o governo disse que tem e todos acreditaram. Não tem valor de uso. <b>Predomina no mundo contemporâneo</b>.</td></tr>
+      <tr><td><b>Escritural</b></td><td>Representada pelos <b>depósitos à vista</b> nos bancos comerciais. Tem tanta liquidez e aceitação quanto a fiduciária e, portanto, também é moeda.</td></tr>
+    </table>
+    <p>A ordem cronológica de surgimento é moeda-mercadoria, padrão-ouro e fiduciária. E a conclusão que fecha o tópico: a moeda torna possível <b>separar uma troca em duas partes</b>, uma compra e uma venda, tornando o mercado muito mais eficiente.</p>
+  `,
+  qs: [
+    {t:"mc", p:"A definição econômica de moeda é:",
+     o:["O papel-moeda emitido pelo Banco Central","Todo ativo que pode ser utilizado de forma imediata para realizar transações","Qualquer ativo com liquidez","O meio de pagamento com curso legal no país"], r:1,
+     e:"A definição é <b>funcional</b> e mais ampla que a do senso comum: qualquer ativo que sirva de imediato para transacionar é moeda, o que abre espaço para incluir os <b>depósitos à vista</b> (moeda escritural)."},
+    {t:"pool", pool:["Reserva de valor","Unidade de conta","Meio de troca"], p:"Permite transferir o poder de compra do presente para o futuro, ainda que de forma imperfeita por causa da inflação.", r:0,
+     e:"<b>Reserva de valor.</b> É a imperfeição dessa função que explica por que, em períodos de inflação alta, as pessoas trocam moeda por títulos que paguem juros ou por moedas estrangeiras mais estáveis."},
+    {t:"pool", pool:["Reserva de valor","Unidade de conta","Meio de troca"], p:"É o padrão oficial de preços, e por isso algumas bancas a chamam de Padrão de Valor.", r:1,
+     e:"<b>Unidade de conta.</b> Graças a ela dizemos que a camisa custa R$ 300, em vez de dizer que custa 100 refrigerantes."},
+    {t:"pool", pool:["Reserva de valor","Unidade de conta","Meio de troca"], p:"Sua existência eliminou o escambo da sociedade.", r:2,
+     e:"<b>Meio de troca.</b> Sem ela, quem tivesse uma ovelha e precisasse de um casaco teria de encontrar alguém com um casaco que precisasse de uma ovelha. A moeda separa a troca em <b>duas partes</b>: uma compra e uma venda."},
+    {t:"pool", pool:["Moeda-mercadoria","Padrão-ouro","Fiduciária","Escritural"], p:"Possui valor intrínseco, ou seja, valor de uso além da transação comercial.", r:0,
+     e:"<b>Moeda-mercadoria.</b> Sal, ouro na antiguidade, cigarros em presídios. Do ponto de vista dos atributos, carece de <b>homogeneidade</b>: duas ovelhas ou duas conchas nunca são idênticas."},
+    {t:"pool", pool:["Moeda-mercadoria","Padrão-ouro","Fiduciária","Escritural"], p:"É lastreada: pode ser trocada por determinado valor em ouro guardado em cofre.", r:1,
+     e:"<b>Padrão-ouro.</b> A moeda funciona como um certificado vinculado a uma quantidade determinada de ouro. É a origem histórica da prática de registrar o papel-moeda emitido no <b>passivo</b> do Banco Central."},
+    {t:"pool", pool:["Moeda-mercadoria","Padrão-ouro","Fiduciária","Escritural"], p:"Só tem valor porque o governo disse que tem e todos acreditaram. Predomina no mundo contemporâneo.", r:2,
+     e:"<b>Fiduciária.</b> Os pedaços de papel não têm valor de uso: não se tempera comida nem se faz joia com uma nota de cem reais."},
+    {t:"pool", pool:["Moeda-mercadoria","Padrão-ouro","Fiduciária","Escritural"], p:"É representada pelos depósitos à vista mantidos nos bancos comerciais.", r:3,
+     e:"<b>Escritural.</b> Os números eletrônicos na conta têm tanta liquidez e aceitação quanto a moeda fiduciária, e por isso também são considerados moeda. É ela que entra no <b>M1</b> junto com o papel-moeda em poder do público."},
+    {t:"mc", p:"A ordem cronológica de surgimento dos tipos de moeda é:",
+     o:["Padrão-ouro, moeda-mercadoria, fiduciária","Moeda-mercadoria, padrão-ouro, fiduciária","Fiduciária, moeda-mercadoria, padrão-ouro","Moeda-mercadoria, fiduciária, padrão-ouro"], r:1,
+     e:"Primeiro a mercadoria com valor intrínseco, depois o certificado lastreado em ouro e, por fim, a moeda sem lastro que vale pela confiança. A <b>escritural</b> é um desenvolvimento posterior, ligado ao sistema bancário."},
+    {t:"mc", p:"São características desejáveis da moeda, EXCETO:",
+     o:["Alta durabilidade e divisibilidade","Difícil de falsificar e homogeneidade","Alto custo de estocagem","Transportável e manuseável"], r:2,
+     e:"O desejável é o <b>baixo</b> custo de estocagem, assim como o baixo custo de transação. A lista de atributos não é rígida e cai bem menos em prova do que as três funções."},
+    {t:"mc", p:"A moeda torna possível:",
+     o:["Eliminar a inflação","Separar uma troca de mercadorias em duas partes, uma compra e uma venda","Fixar os preços relativos entre bens","Garantir o poder de compra ao longo do tempo"], r:1,
+     e:"Essa é a conclusão que fecha o tópico. Ao intermediar as transações, ela dispensa a coincidência dupla de desejos do escambo e torna o mercado muito mais eficiente."}
+  ]
+},
+
+/* ---- 2.2 */
+{
+  nome: "Demanda e agregados",
+  tag: "Três motivos, PMPP e os agregados M1 a M4",
+  colinha: `
+    <h3>Os três motivos da demanda por moeda</h3>
+    <table class="tabela">
+      <tr><th>Motivo</th><th>Relação</th><th>Lógica</th></tr>
+      <tr><td><b>Transação</b></td><td>Direta com a <b>renda</b></td><td>Quanto mais renda, mais moeda se quer para comprar e vender</td></tr>
+      <tr><td><b>Precaução</b></td><td>Direta com a <b>renda</b></td><td>Guarda-se dinheiro contra imprevistos, e quanto maior a renda, mais se guarda</td></tr>
+      <tr><td><b>Especulação</b></td><td><b>Inversa</b> com a <b>taxa de juros</b></td><td>Juros sobem, cai a demanda por moeda para especulação; juros caem, ela aumenta</td></tr>
+    </table>
+    <p>A demanda por moeda para especulação também é chamada de <b>motivo portfólio</b> ou <b>motivo financeiro</b>, e se relaciona ao <b>custo de oportunidade</b> de manter dinheiro como saldo de caixa. Além disso, para dado nível de renda, a demanda pode ser maior quanto maior for a <b>velocidade de circulação</b> da moeda.</p>
+    <h3>Onde está o papel-moeda</h3>
+    <p>A emissão é atribuição <b>exclusiva</b> do banco central. Do total emitido, uma parte fica com ele, e o resto circula. Do que circula, parte fica no caixa dos bancos comerciais e o que sobra fica com o público:</p>
+    <p><code>PME = PMC + CX<sub>BACEN</sub> = PMPP + CX<sub>BACOMS</sub> + CX<sub>BACEN</sub></code></p>
+    <div class="aviso"><b>Público</b>, aqui, é todo mundo que <b>não</b> é Banco Central nem banco comercial. Bancos de investimento e bancos múltiplos <b>sem</b> carteira comercial são, para esse fim, parte do público.</div>
+    <h3>Os agregados monetários</h3>
+    <table class="tabela">
+      <tr><th>Agregado</th><th>Composição</th></tr>
+      <tr><td><b>M1</b></td><td>Papel-moeda em poder do público <b>+</b> depósitos à vista</td></tr>
+      <tr><td><b>M2</b></td><td>M1 + depósitos de poupança + títulos emitidos por instituições depositárias + depósitos especiais remunerados</td></tr>
+      <tr><td><b>M3</b></td><td>M2 + cotas de fundos de investimento + operações compromissadas com títulos federais (Selic)</td></tr>
+      <tr><td><b>M4</b></td><td>M3 + títulos públicos federais de alta liquidez</td></tr>
+    </table>
+    <p>O <b>M1</b> é chamado de <b>Moeda</b> ou <b>Meios de Pagamento Estritos</b>. Os demais são os meios de pagamento em sentido <b>amplo</b>, e os ativos que os compõem são chamados de <b>quase moeda</b>, por terem menos liquidez que os depósitos à vista. O <b>M4</b> é o conceito mais amplo e recebe o nome de <b>poupança financeira</b>. Mas é o M1 que mais cai.</p>
+    <div class="aviso"><b>O critério de classificação.</b> A classificação antiga era por <b>grau de liquidez</b>. Desde <b>2001</b>, oficialmente, o critério é o <b>sistema emissor</b>: M1 pelo Banco Central e bancos comerciais (emissores de haveres monetários); M2 por outros bancos e instituições financeiras não bancárias; M3 por fundos de investimento; M4 pelo Governo Federal.<br>Em prova: se houver conflito entre apontar <b>sistema emissor</b> ou <b>liquidez</b>, marque <b>emissor</b>. Mas se a questão disser apenas que são classificados por grau de liquidez, não marque errado só por isso.</div>
+  `,
+  qs: [
+    {t:"pool", pool:["Transação","Precaução","Especulação"], p:"Motivo que varia em direção contrária à taxa de juros.", r:2,
+     e:"<b>Especulação.</b> Juros sobem, a demanda por moeda para especular cai; juros caem, ela sobe. Também é chamada de <b>motivo portfólio</b> ou <b>motivo financeiro</b>, e se relaciona ao custo de oportunidade de manter saldo de caixa."},
+    {t:"pool", pool:["Transação","Precaução","Especulação"], p:"Motivo pelo qual as pessoas guardam dinheiro contra imprevistos.", r:1,
+     e:"<b>Precaução.</b> Assim como o motivo transação, varia na <b>mesma direção</b> que a renda: quanto maior a renda, mais se guarda por precaução."},
+    {t:"pool", pool:["Transação","Precaução","Especulação"], p:"Motivo diretamente ligado ao uso da moeda como meio de troca para comprar e vender bens.", r:0,
+     e:"<b>Transação.</b> Varia na mesma direção que a renda. E note um complemento: para dado nível de renda, a demanda por moeda pode ser maior quanto maior for a <b>velocidade de circulação</b> da moeda."},
+    {t:"mc", p:"No contexto dos agregados monetários, o termo público significa:",
+     o:["Apenas as pessoas físicas","Apenas o setor público","Todo agente que não seja Banco Central nem banco comercial, incluindo bancos de investimento","Todas as instituições financeiras"], r:2,
+     e:"Bancos de investimento e bancos múltiplos <b>sem</b> carteira comercial são parte do <b>público</b>, porque não captam depósitos à vista. É um detalhe que decide questões de criação e destruição de moeda."},
+    {t:"mc", p:"O M1 é composto por:",
+     o:["Papel-moeda emitido + depósitos à vista","Papel-moeda em poder do público + depósitos à vista","Papel-moeda em circulação + reservas bancárias","Papel-moeda em poder do público + depósitos de poupança"], r:1,
+     e:"<b>PMPP + depósitos à vista.</b> Cuidado com as alternativas próximas: papel-moeda <b>emitido</b> inclui o que está no caixa do Bacen e dos bancos; papel-moeda em circulação mais reservas é a <b>base monetária</b>."},
+    {t:"pool", pool:["M1","M2","M3","M4"], p:"Acrescenta depósitos de poupança, títulos emitidos por instituições depositárias e depósitos especiais remunerados.", r:1,
+     e:"<b>M2.</b> Pelo critério do sistema emissor, corresponde aos títulos emitidos por outros bancos e instituições financeiras não bancárias."},
+    {t:"pool", pool:["M1","M2","M3","M4"], p:"Acrescenta cotas de fundos de investimento e operações compromissadas com títulos federais.", r:2,
+     e:"<b>M3.</b> Pelo critério do emissor, corresponde aos <b>fundos de investimento</b>."},
+    {t:"pool", pool:["M1","M2","M3","M4"], p:"Acrescenta os títulos públicos federais de alta liquidez e é chamado de poupança financeira.", r:3,
+     e:"<b>M4</b>, o conceito mais amplo de moeda. Pelo critério do emissor, corresponde ao <b>Governo Federal</b>."},
+    {t:"mc", p:"Desde 2001, nas estatísticas do Banco Central, os agregados monetários ampliados são definidos por:",
+     o:["Grau de liquidez dos ativos","Sistema emissor dos componentes","Prazo de vencimento","Natureza jurídica do emissor"], r:1,
+     e:"O critério oficial passou a ser o <b>sistema emissor</b>. Regra prática de prova: se a questão obrigar a escolher entre emissor e liquidez, marque <b>emissor</b>; mas se ela apenas afirmar a classificação por liquidez, não marque errado só por isso, porque de forma geral a ordem de liquidez se mantém."},
+    {t:"mc", p:"Ativos considerados quase moeda são aqueles que:",
+     o:["Não podem ser usados em transações","Não apresentam tanta liquidez quanto os depósitos à vista","São emitidos apenas pelo governo","Compõem a base monetária"], r:1,
+     e:"São os que integram os meios de pagamento em sentido <b>amplo</b> (M2, M3 e M4). Já o <b>M1</b> é o meio de pagamento em sentido <b>estrito</b>, também chamado simplesmente de Moeda."},
+    {t:"mc", p:"Na expressão PME = PMPP + CX_BACOMS + CX_BACEN, o PME representa:",
+     o:["O papel-moeda em poder do público","O papel-moeda emitido pelo Banco Central","O papel-moeda em circulação","A base monetária"], r:1,
+     e:"<b>Papel-moeda emitido.</b> Dele, uma parte fica nos cofres do próprio Bacen; o restante é o papel-moeda em <b>circulação</b> (PMC), que se divide entre o caixa dos bancos comerciais e o que fica em poder do público (PMPP)."}
+  ]
+},
+
+/* ---- 2.3 */
+{
+  nome: "Base monetária e criação de moeda",
+  tag: "Encaixes, reservas e quando a moeda nasce ou morre",
+  pool: ["Criação de moeda","Destruição de moeda","Operação neutra"],
+  colinha: `
+    <h3>Base monetária</h3>
+    <p>Também chamada de <b>passivo monetário do Banco Central</b>:</p>
+    <p><code>BASE MONETÁRIA = PMC + reservas compulsórias + reservas voluntárias</code></p>
+    <p><code>BASE MONETÁRIA = PMC + reservas bancárias</code></p>
+    <ul>
+      <li><b>Reservas compulsórias</b> (recolhimentos compulsórios): parte dos depósitos que os bancos recebem e que deve ser recolhida ao Banco Central;</li>
+      <li><b>Reservas voluntárias</b>: como os recolhimentos são remunerados pelo Bacen, alguns bancos depositam <b>além</b> dos percentuais obrigatórios.</li>
+    </ul>
+    <p>Somando as reservas bancárias ao caixa dos bancos comerciais, obtêm-se os <b>encaixes bancários</b>. O caixa dos bancos também é chamado de <b>encaixes técnicos</b>, o dinheiro que eles deixam para as necessidades operacionais.</p>
+    <p><code>ENCAIXES BANCÁRIOS = reservas bancárias + CX<sub>BACOMS</sub></code></p>
+    <p><code>BASE MONETÁRIA = PMPP + CX<sub>BACOMS</sub> + reservas bancárias = <b>PMPP + encaixes bancários</b></code></p>
+    <h3>Criação e destruição de moeda</h3>
+    <p>Criação e destruição de moeda são, respectivamente, o <b>aumento e a diminuição do M1</b>.</p>
+    <p>O PMPP e os depósitos à vista são os <b>haveres monetários</b> do público, direitos do público junto às instituições emissoras de moeda, que formam o <b>setor bancário</b>: Banco Central, bancos comerciais, bancos múltiplos com carteira comercial e cooperativas de crédito.</p>
+    <table class="tabela">
+      <tr><th>Situação</th><th>Efeito</th></tr>
+      <tr><td>O público recebe haveres <b>monetários</b> do setor bancário em troca de haveres <b>não monetários</b></td><td><b>Criação</b> de moeda</td></tr>
+      <tr><td>O público recebe haveres <b>não monetários</b> em troca de haveres <b>monetários</b></td><td><b>Destruição</b> de moeda</td></tr>
+    </table>
+    <div class="aviso"><b>Somente transações entre o setor bancário e o público criam ou destroem moeda.</b> Transações dentro do setor bancário (Bacen com banco comercial, banco com banco) e transações dentro do público (governo pagando servidores, uma compra e venda qualquer) são <b>neutras</b>.</div>
+    <h3>Exemplos que caem</h3>
+    <table class="tabela">
+      <tr><th>Criação</th><th>Destruição</th><th>Neutra</th></tr>
+      <tr><td>Empresa resgata aplicação financeira</td><td>Bacen vende títulos públicos para empresa pública</td><td>Itaú transfere valores ao Bradesco a título de compensação</td></tr>
+      <tr><td>Bacen compra títulos públicos de <b>banco de investimento</b></td><td>Banco comercial recebe depósito a prazo de empresa privada</td><td>Bacen compra títulos públicos do Santander</td></tr>
+      <tr><td>Pessoa transfere saldo da poupança para a conta corrente</td><td>Pessoa aplica em CDB</td><td>Ministério da Fazenda paga seus servidores</td></tr>
+      <tr><td>Bacen compra dólares de exportadores</td><td>Bacen vende dólares para importadores</td><td>Banco de investimento empresta a uma montadora</td></tr>
+    </table>
+    <p>Repare no par que ensina tudo: o Bacen comprar títulos de um <b>banco de investimento</b> cria moeda (o banco de investimento é público), mas comprar do <b>Santander</b> é neutro (banco comercial é setor bancário).</p>
+  `,
+  qs: [
+    {t:"pool", p:"Uma pessoa transfere o saldo de sua conta poupança para a conta corrente.", r:0,
+     e:"<b>Criação.</b> Ela entregou ao sistema bancário um haver <b>não monetário</b> (poupança) e recebeu um haver <b>monetário</b> (depósito à vista). O M1 aumentou."},
+    {t:"pool", p:"Uma pessoa aplica em CDB, debitando sua conta corrente.", r:1,
+     e:"<b>Destruição.</b> O público entregou haver monetário (depósito à vista) e recebeu haver não monetário (CDB). O M1 diminuiu."},
+    {t:"pool", p:"O Banco Central compra títulos públicos do Santander.", r:2,
+     e:"<b>Neutra.</b> Os dois lados são <b>setor bancário</b>: Banco Central e banco comercial. Sem a participação do público, não há criação nem destruição de moeda."},
+    {t:"pool", p:"O Banco Central compra títulos públicos de um banco de investimento.", r:0,
+     e:"<b>Criação.</b> O banco de investimento <b>não capta depósitos à vista</b> e, portanto, é parte do <b>público</b>. Ele entregou títulos (haver não monetário) e recebeu moeda. Compare com a operação anterior, feita com o Santander: essa é a distinção mais explorada do tema."},
+    {t:"pool", p:"O Ministério da Fazenda paga seus servidores.", r:2,
+     e:"<b>Neutra.</b> Governo e servidores são, ambos, <b>público</b>. A moeda apenas muda de mãos dentro do público."},
+    {t:"pool", p:"O Banco Central compra dólares de exportadores.", r:0,
+     e:"<b>Criação.</b> O exportador é público e entregou um haver não monetário (divisas) ao setor bancário, recebendo moeda em troca. Quando o Bacen <b>vende</b> dólares a importadores, ocorre o inverso: destruição."},
+    {t:"pool", p:"Um banco comercial recebe depósito a prazo de uma empresa privada.", r:1,
+     e:"<b>Destruição.</b> A empresa (público) entregou moeda e recebeu um haver <b>não monetário</b> (depósito a prazo), que não integra o M1."},
+    {t:"pool", p:"O Itaú transfere valores ao Bradesco a título de compensação.", r:2,
+     e:"<b>Neutra.</b> Transação dentro do setor bancário. O M1 não se altera."},
+    {t:"mc", p:"A base monetária é composta por:",
+     o:["Papel-moeda em poder do público mais depósitos à vista","Papel-moeda em circulação mais reservas bancárias","Papel-moeda emitido mais encaixes técnicos","Depósitos à vista mais depósitos a prazo"], r:1,
+     e:"<code>BM = PMC + reservas bancárias</code>, sendo as reservas compulsórias e voluntárias. Equivale também a <code>PMPP + encaixes bancários</code>. A primeira alternativa é o <b>M1</b>."},
+    {t:"mc", p:"Os encaixes bancários correspondem a:",
+     o:["Apenas às reservas compulsórias","Às reservas bancárias mais o caixa dos bancos comerciais","Apenas ao caixa dos bancos comerciais","À base monetária menos o PMPP mais os depósitos à vista"], r:1,
+     e:"<code>Encaixes bancários = reservas bancárias + CX_BACOMS</code>. O caixa dos bancos comerciais também é chamado de <b>encaixes técnicos</b>, o dinheiro deixado para necessidades operacionais."},
+    {t:"mc", p:"Compõem o setor bancário, para fins de criação e destruição de moeda:",
+     o:["Todas as instituições financeiras","Banco Central, bancos comerciais, bancos múltiplos com carteira comercial e cooperativas de crédito","Apenas o Banco Central e os bancos comerciais","Banco Central, bancos comerciais e bancos de investimento"], r:1,
+     e:"O que define a participação é a capacidade de captar <b>depósitos à vista</b>. Por isso as cooperativas de crédito entram e os bancos de investimento ficam de fora, sendo tratados como <b>público</b>."},
+    {t:"mc", p:"Por que as reservas voluntárias existem?",
+     o:["Porque a lei obriga um percentual mínimo adicional","Porque os recolhimentos são remunerados pelo Banco Central, e alguns bancos depositam além do obrigatório","Porque os bancos precisam de caixa operacional","Porque o Banco Central determina caso a caso"], r:1,
+     e:"São depósitos <b>acima</b> dos percentuais obrigatórios, feitos porque o Bacen <b>remunera</b> esses recolhimentos. Junto com as compulsórias, formam as <b>reservas bancárias</b> que compõem a base monetária."}
+  ]
+},
+
+/* ---- 2.4 */
+{
+  nome: "Multiplicador e balancetes",
+  tag: "Reservas fracionárias, a fórmula e as contas do Bacen",
+  colinha: `
+    <h3>O sistema de reservas fracionárias</h3>
+    <p>O exemplo que constrói a intuição. O Bacen coloca R$ 100 em circulação e reduz o compulsório para 30%:</p>
+    <ol>
+      <li>Ana deposita os R$ 100 no banco. O banco recolhe R$ 30 ao Bacen;</li>
+      <li>Empresta R$ 70 a Bruno, depositando na conta dele. Novo recolhimento de R$ 21;</li>
+      <li>Empresta R$ 49 a Carla, que saca o valor.</li>
+    </ol>
+    <p>O M1 foi de R$ 100 para <b>R$ 219</b>: R$ 100 de depósito de Ana, R$ 70 de depósito de Bruno e R$ 49 de papel-moeda com Carla. O que permitiu isso foi o <b>sistema de reservas fracionárias</b>, em que apenas parte dos depósitos é recolhida e o restante pode ser emprestado.</p>
+    <h3>O multiplicador monetário</h3>
+    <p>Por definição, é a quantidade de vezes que os meios de pagamento (M1) são maiores que a base monetária (B).</p>
+    <div class="aviso"><b>m = M1 ÷ B = 1 ÷ [1 − d(1 − r)]</b><br>
+    <b>d</b> = depósitos à vista ÷ M1 (parte dos meios de pagamento mantida em depósitos à vista)<br>
+    <b>r</b> = encaixes totais ÷ depósitos à vista (parte dos depósitos que não será emprestada)<br>
+    Tanto d quanto r assumem valores <b>entre 0 e 1</b>.</div>
+    <p>Há uma forma alternativa, útil quando se conhece <b>c</b>, o percentual de M1 mantido em papel-moeda: <code>m = (c + 1) ÷ (c + r)</code>. Lembrando que <code>c + d = 1</code>, então quanto maior o c, menor o m.</p>
+    <h3>As duas relações</h3>
+    <table class="tabela">
+      <tr><th>Variável</th><th>Relação com m</th><th>Lógica</th></tr>
+      <tr><td><b>d</b> (depósitos à vista)</td><td><b>Direta</b></td><td>Quanto mais as pessoas depositam, mais os bancos têm para emprestar</td></tr>
+      <tr><td><b>r</b> (encaixes)</td><td><b>Inversa</b></td><td>Quanto mais os bancos guardam, menos crédito concedem</td></tr>
+    </table>
+    <p>Dois casos-limite conduzem ao mesmo resultado, <b>m = 1</b>, situação em que a base monetária é exatamente igual aos meios de pagamento:</p>
+    <ul>
+      <li><b>r = 1</b> (encaixes de 100%): tudo o que entra é retido, nada é emprestado;</li>
+      <li><b>d = 0</b> (sem depósitos à vista): todo o M1 fica em papel-moeda.</li>
+    </ul>
+    <p>Exemplos numéricos: d = 0,4 e r = 0,6 dão m = 1,19; d = 0,4 e r = 0,4 dão m = 1,32; d = 0,8 e r = 0,4 dão m = 1,92; d = 0,9 e r = 0,1 dão <b>m = 5,26</b>.</p>
+    <h3>Balancetes</h3>
+    <p><b>Ativos</b> são bens e direitos, ou seja, as <b>aplicações</b>. <b>Passivos</b> são obrigações e fontes de recursos, ou seja, as <b>captações</b>. Pelo método das partidas dobradas, os dois lados têm o mesmo valor.</p>
+    <table class="tabela">
+      <tr><th>Balancete do Banco Central: Ativo</th><th>Passivo</th></tr>
+      <tr><td>Redescontos e empréstimos<br>Títulos públicos<br>Reservas internacionais<br>Outros ativos</td><td><b>Base monetária</b> (papel-moeda em poder do público e reservas bancárias)<br>Empréstimos no exterior<br>Outras fontes</td></tr>
+    </table>
+    <p>Três funções do Bacen se refletem em contas do balancete: <b>emitir papel-moeda</b> aparece na base monetária; <b>emprestador de última instância</b> aparece em redescontos e empréstimos; <b>guardião das reservas internacionais</b> aparece em reservas internacionais, expressas em moeda nacional pela taxa de câmbio.</p>
+    <div class="aviso">O Banco Central do Brasil <b>não pode</b> financiar o governo comprando títulos <b>diretamente</b> do Tesouro: é proibido por lei. Mas pode e efetivamente compra e vende títulos públicos no mercado, nunca diretamente "para" ou "do" governo, para executar a política monetária (operações de mercado aberto).</div>
+    <h3>Bancos comerciais e sistema monetário</h3>
+    <p>Quando um banco concede crédito, ele faz uma operação puramente contábil: registra o valor em <b>depósitos à vista</b> (passivo) e o mesmo valor em <b>empréstimos</b> (ativo). Ou seja, <b>ao conceder crédito, o banco cria moeda escritural</b>. Um banco <b>não precisa receber depósitos antes</b> de emprestar; precisa apenas ser autorizado pelo Bacen a criar depósitos à vista.</p>
+    <p>Ao consolidar os dois balancetes no <b>balancete do sistema monetário</b>, as rubricas que aparecem como passivo de um e ativo do outro se <b>anulam</b> (reservas bancárias, redescontos), enquanto as que aparecem do mesmo lado nos dois se <b>somam</b> (títulos públicos no ativo). No passivo consolidado destacam-se os <b>meios de pagamento</b>: papel-moeda em poder do público e depósitos à vista.</p>
+  `,
+  qs: [
+    {t:"mc", p:"O multiplicador monetário é definido como:",
+     o:["A razão entre a base monetária e o M1","A quantidade de vezes que o M1 é maior que a base monetária","O inverso da taxa de compulsório","A razão entre depósitos à vista e papel-moeda"], r:1,
+     e:"<code>m = M1 ÷ B</code>. A fórmula operacional é <code>m = 1 ÷ [1 − d(1 − r)]</code>, e ela resolve cerca de 90% das questões sobre o tema."},
+    {t:"mc", p:"Com d = 0,8 e r = 0,4, o multiplicador monetário é:",
+     o:["1,19","1,32","1,92","5,26"], r:2,
+     e:"<code>m = 1 ÷ [1 − 0,8(1 − 0,4)] = 1 ÷ [1 − 0,48] = 1 ÷ 0,52 = <b>1,92</b></code>. Faça sempre nessa ordem: resolve o parêntese interno, multiplica por d, subtrai de 1 e inverte."},
+    {t:"num", p:"Com d = 0,9 e r = 0,8, qual o valor do denominador 1 − d(1 − r), multiplicado por 100? (número inteiro)",
+     r:82, e:"<code>1 − 0,9(1 − 0,8) = 1 − 0,9 × 0,2 = 1 − 0,18 = 0,82</code>, ou seja, <b>82</b>. O multiplicador seria 1 ÷ 0,82 = 1,22. Repare: com encaixes altos (r = 0,8), o multiplicador fica próximo de 1."},
+    {t:"pool", pool:["Aumenta o multiplicador","Reduz o multiplicador"], p:"Aumento do percentual dos meios de pagamento mantido em depósitos à vista (d).", r:0,
+     e:"<b>Aumenta.</b> Quanto mais as pessoas depositam nos bancos, mais eles têm para emprestar, e maior é a criação de moeda escritural."},
+    {t:"pool", pool:["Aumenta o multiplicador","Reduz o multiplicador"], p:"Aumento do percentual dos depósitos à vista mantido como encaixe (r).", r:1,
+     e:"<b>Reduz.</b> Quanto mais os bancos guardam, menos crédito concedem. É por isso que elevar o compulsório é um instrumento de <b>contração</b> monetária."},
+    {t:"mc", p:"Se os encaixes forem de 100% (r = 1), o multiplicador será:",
+     o:["0","1","Infinito","Igual a d"], r:1,
+     e:"<code>m = 1 ÷ [1 − d(1 − 1)] = 1 ÷ 1 = <b>1</b></code>. A base monetária passa a ser exatamente igual aos meios de pagamento. O mesmo resultado aparece quando <b>d = 0</b>, ou seja, quando não há depósitos à vista."},
+    {t:"mc", p:"No exemplo das reservas fracionárias, com R$ 100 iniciais e compulsório de 30%, o M1 chegou a:",
+     o:["R$ 100","R$ 130","R$ 219","R$ 333"], r:2,
+     e:"<b>R$ 219</b>: R$ 100 de depósito de Ana, R$ 70 de depósito de Bruno e R$ 49 de papel-moeda com Carla. O processo de emprestar, receber depósito e emprestar de novo segue indefinidamente em sistemas complexos."},
+    {t:"pool", pool:["Ativo do Banco Central","Passivo do Banco Central"], p:"Base monetária.", r:1,
+     e:"<b>Passivo.</b> Ela é justamente o <b>passivo monetário</b> do Banco Central. A prática vem da época do lastro em ouro, quando o papel-moeda emitido era de fato uma obrigação da autoridade monetária. Foi gabarito de questão da Sefaz-PA."},
+    {t:"pool", pool:["Ativo do Banco Central","Passivo do Banco Central"], p:"Reservas internacionais, redescontos e títulos públicos adquiridos.", r:0,
+     e:"<b>Ativo.</b> São as <b>aplicações</b> do Banco Central. No passivo ficam a base monetária, os empréstimos no exterior e outras fontes de recursos."},
+    {t:"mc", p:"Qual função do Banco Central se reflete na conta de redescontos e empréstimos?",
+     o:["Emissor de papel-moeda","Emprestador de última instância","Guardião das reservas internacionais","Banco do governo"], r:1,
+     e:"<b>Emprestador de última instância.</b> A emissão aparece na <b>base monetária</b>, e a guarda das reservas na conta de <b>reservas internacionais</b>, expressa em moeda nacional pela taxa de câmbio."},
+    {t:"mc", p:"Quando um banco comercial concede crédito a um cliente, ele:",
+     o:["Transfere recursos captados de depositantes para o tomador","Cria moeda escritural, registrando o valor em depósitos à vista no passivo e em empréstimos no ativo","Reduz sua base monetária","Precisa recolher previamente o compulsório sobre o valor emprestado"], r:1,
+     e:"É uma operação puramente contábil. E o ponto que mais surpreende: o banco <b>não precisa receber depósitos antes</b> de emprestar. Ele só precisa ser autorizado pelo Bacen a criar depósitos à vista. Toda vez que concede crédito, cria moeda."},
+    {t:"mc", p:"O Banco Central do Brasil pode comprar títulos públicos diretamente do Tesouro Nacional?",
+     o:["Sim, é assim que financia o governo","Não, é proibido por lei; mas pode comprar e vender títulos no mercado para executar a política monetária","Sim, desde que autorizado pelo CMN","Não, e também não pode operar com títulos públicos"], r:1,
+     e:"A compra direta é <b>proibida</b>. Mas as operações de <b>mercado aberto</b> são justamente compra e venda de títulos públicos, nunca diretamente para ou do governo. Foi o erro de uma afirmativa da prova do TCM-SP."}
+  ]
+},
+
+]},
+
+/* ============================================================ MÓDULO 3 */
+{
+nome: "Balanço de Pagamentos",
+subtitulo: "Aula 3 · Estrutura do BPM6, contas, relações fundamentais e lançamentos",
+fases: [
+
+/* ---- 3.1 */
+{
+  nome: "Conceitos e estrutura",
+  tag: "Definição, residentes, BPM6 e o que fica acima e abaixo da linha",
+  colinha: `
+    <div class="aviso">Balanço de Pagamentos é <b>o registro sistemático das transações entre residentes e não residentes de um país durante determinado período de tempo</b> (Simonsen e Cysne). Cada termo dessa definição importa.</div>
+    <h3>Transações, não pagamentos</h3>
+    <p>O nome é impreciso: <b>transações</b> é conceito mais amplo do que pagamentos. O BP registra também operações que <b>não</b> envolvem pagamento, como o auxílio humanitário enviado em produtos ou a remessa que um parente faz do exterior. Os registros são feitos em <b>dólares americanos</b>, pelo alto grau de conversibilidade da moeda, o que permite comparabilidade entre países.</p>
+    <h3>BPM6</h3>
+    <p>O manual do FMI está na <b>6ª edição</b>, adotada pelo Banco Central do Brasil desde <b>abril de 2015</b> para apuração e divulgação das estatísticas do setor externo. Cuidado com questões e materiais anteriores, que ainda aparecem.</p>
+    <h3>Partidas dobradas</h3>
+    <p>Cada registro em uma conta tem outro de mesmo valor em outra conta, um a débito e outro a crédito.</p>
+    <table class="tabela">
+      <tr><th>Lança-se a CRÉDITO</th><th>Lança-se a DÉBITO</th></tr>
+      <tr><td>Exportações de bens e serviços<br>Receitas<br><b>Redução</b> de ativos de reserva<br><b>Aumento</b> de obrigações</td><td>Importações de bens e serviços<br>Despesas<br><b>Aumento</b> de ativos de reserva<br><b>Redução</b> de obrigações</td></tr>
+    </table>
+    <p>Em regra, o lançamento ocorre numa <b>conta operacional</b> (o fato gerador) com contrapartida numa <b>conta de caixa</b> ou de reserva, que registra o movimento dos meios de pagamento internacionais.</p>
+    <h3>Residentes e não residentes</h3>
+    <p>O critério <b>não é morar ou ter sede</b> no país: é ter ali o <b>centro de interesse econômico predominante</b>, ou seja, produzir e consumir o PIB do país. Configura-se quando há atividade por tempo indeterminado ou por prazo determinado <b>superior a 2 anos</b>, ou transação econômica de escala significante.</p>
+    <table class="tabela">
+      <tr><th>Residentes</th><th>Não residentes</th></tr>
+      <tr><td>Pessoas com residência fixa no país, inclusive estrangeiros</td><td>Pessoas a turismo ou negócios no país</td></tr>
+      <tr><td>Pessoas do país no exterior em caráter não permanente</td><td>Pessoas jurídicas instaladas fora do país, <b>inclusive filiais de empresas brasileiras</b></td></tr>
+      <tr><td>Pessoas jurídicas instaladas no país, <b>inclusive filiais de empresas estrangeiras</b></td><td><b>Embaixadas instaladas</b> no país</td></tr>
+      <tr><td><b>Embaixadas do país</b> no exterior e funcionários em serviço no exterior</td><td>Pessoas em trabalho temporário no país</td></tr>
+    </table>
+    <p>Há exceção à regra geral: transações em ativos estrangeiros entre <b>dois residentes</b> de setores diferentes podem ser registradas no BP, mas <b>não causam variação nos ativos de reserva</b>.</p>
+    <h3>A estrutura</h3>
+    <table class="tabela">
+      <tr><th>Conta</th><th>Posição</th></tr>
+      <tr><td>1. Balança comercial<br>2. Balança de serviços<br>3. Renda primária<br>4. Renda secundária</td><td><b>Acima da linha</b>: transações correntes (1+2+3+4)</td></tr>
+      <tr><td>5. Conta capital<br>6. Conta financeira<br>7. Erros e omissões</td><td><b>Abaixo da linha</b>: contas de capitais</td></tr>
+    </table>
+    <p>A "linha" é o <b>saldo em transações correntes</b>, que também aparece como <b>saldo da conta corrente</b> ou <b>saldo do balanço de pagamentos em transações correntes</b>. É tudo a mesma coisa.</p>
+    <table class="tabela">
+      <tr><th>Capitais</th><th>Conteúdo</th></tr>
+      <tr><td><b>Autônomos</b></td><td>Ativos não financeiros não produzidos, transferências de capital, investimentos diretos, investimentos em carteira, derivativos e outros investimentos. Recebem esse nome porque <b>não têm por objetivo precípuo financiar o BP</b>.</td></tr>
+      <tr><td><b>Compensatórios</b></td><td>Movimentos usados precipuamente para <b>financiar o BP</b>: ativos de reserva, empréstimos de organismos internacionais como o FMI e os atrasados. Estes dois últimos são lançados em <b>Outros Investimentos</b>.</td></tr>
+    </table>
+    <p><b>Erros e omissões</b> tem caráter <b>residual</b>: serve para fazer a conta fechar, já que não é possível registrar todas as transações. Também é chamada de <b>conta de chegada</b>.</p>
+  `,
+  qs: [
+    {t:"mc", p:"O Balanço de Pagamentos é o registro sistemático das transações:",
+     o:["Entre empresas financeiras e não financeiras do mesmo país","Entre residentes e não residentes de um país, durante determinado período","Apenas de importações e exportações de mercadorias","Entre o governo e o resto do mundo"], r:1,
+     e:"Foi questão da Vunesp. Repare nos dois erros mais comuns das alternativas: falar em <b>mesmo país como centro de interesse</b> (o BP exige um residente e um não residente) e usar a palavra <b>exclusivamente</b> para importações e exportações, já que a balança comercial é só uma parte do BP."},
+    {t:"mc", p:"O critério para definir se alguém é residente de um país é:",
+     o:["Ter residência ou sede no país","Ter nacionalidade do país","Ter no país seu centro de interesse econômico predominante","Pagar impostos no país"], r:2,
+     e:"<b>Centro de interesse econômico.</b> Na prática, significa <b>produzir e consumir o PIB</b> do país. Configura-se com atividade por tempo indeterminado ou por prazo determinado <b>superior a 2 anos</b>, ou transação de escala significante."},
+    {t:"pool", pool:["Residente no Brasil","Não residente no Brasil"], p:"Filial de uma empresa alemã instalada em território brasileiro.", r:0,
+     e:"<b>Residente.</b> Pessoas jurídicas instaladas no país são residentes, <b>inclusive filiais de empresas estrangeiras</b>. O inverso também vale: a filial de uma empresa brasileira no exterior é <b>não residente</b>."},
+    {t:"pool", pool:["Residente no Brasil","Não residente no Brasil"], p:"A embaixada do Iraque instalada em Brasília.", r:1,
+     e:"<b>Não residente.</b> Embaixadas instaladas no país são não residentes, porque seu centro de interesse é o país de origem. Já as embaixadas brasileiras no exterior são <b>residentes</b> do Brasil, assim como os funcionários em serviço fora."},
+    {t:"pool", pool:["Residente no Brasil","Não residente no Brasil"], p:"Turista argentino passando duas semanas no Rio de Janeiro.", r:1,
+     e:"<b>Não residente.</b> Pessoas físicas a turismo ou negócios no país não cooperam na formação nem no consumo regular do PIB. Por isso os gastos dele por aqui são <b>receita</b> na conta viagens."},
+    {t:"mc", p:"O BPM6 foi adotado pelo Banco Central do Brasil a partir de:",
+     o:["2001","Abril de 2015","2018","2020"], r:1,
+     e:"<b>Abril de 2015.</b> Mesmo anos depois, ainda aparecem questões que adotam a metodologia anterior (BPM5), inclusive em provas recentes. Vale conferir a data da questão."},
+    {t:"pool", pool:["Lança-se a crédito","Lança-se a débito"], p:"Exportação de bens e serviços.", r:0,
+     e:"<b>Crédito.</b> Junto com receitas, <b>redução</b> de ativos de reserva e <b>aumento</b> de obrigações. No débito ficam importações, despesas, <b>aumento</b> de ativos de reserva e <b>redução</b> de obrigações."},
+    {t:"pool", pool:["Lança-se a crédito","Lança-se a débito"], p:"Aumento de ativos de reserva.", r:1,
+     e:"<b>Débito.</b> Segue a lógica da contabilidade geral: quando entra dinheiro no caixa, a conta caixa é <b>debitada</b>. É o que acontece quando o país exporta e recebe divisas."},
+    {t:"mc", p:"O saldo em transações correntes é composto por:",
+     o:["Balança comercial e balança de serviços","Balança comercial, balança de serviços, renda primária e renda secundária","Balança comercial, balança de serviços e conta capital","Todas as contas do BP, exceto erros e omissões"], r:1,
+     e:"<b>1 + 2 + 3 + 4.</b> É a chamada \"linha\" que divide o BP: acima dela ficam as transações correntes; abaixo, as contas de capitais. Também é chamado de saldo da conta corrente."},
+    {t:"pool", pool:["Capital autônomo","Capital compensatório"], p:"Empréstimos contraídos junto ao FMI e atrasados, ambos lançados em Outros Investimentos.", r:1,
+     e:"<b>Compensatórios</b>, porque servem precipuamente para <b>financiar</b> o balanço de pagamentos. Junto com os <b>ativos de reserva</b>, formam esse grupo. Nenhuma das duas categorias registra nada de bom para o país."},
+    {t:"pool", pool:["Capital autônomo","Capital compensatório"], p:"Investimentos diretos, investimentos em carteira e derivativos.", r:0,
+     e:"<b>Autônomos</b>: não têm por objetivo precípuo financiar o BP. Também entram aí os ativos não financeiros não produzidos e as transferências de capital, ambos na conta capital."},
+    {t:"mc", p:"A conta de erros e omissões:",
+     o:["Registra as transações informais e ilegais","Tem caráter residual, servindo para fazer os valores do BP fecharem","Registra apenas divergências cambiais","Foi extinta pelo BPM6"], r:1,
+     e:"É a <b>conta de chegada</b>. As imprecisões normalmente decorrem da <b>Conta Financeira</b>, por isso a ordem de apresentação. Ela elimina as discrepâncias entre as transações registradas e a variação efetivamente observada nas reservas."}
+  ]
+},
+
+/* ---- 3.2 */
+{
+  nome: "Comercial e serviços",
+  tag: "FOB, merchanting, ouro não monetário e as subcontas de serviços",
+  colinha: `
+    <h3>Balança comercial</h3>
+    <p>Registra entradas (importações) e saídas (exportações) de <b>bens e mercadorias, tangíveis ou visíveis</b>. O Brasil usa o método <b>FOB</b> (free on board): cada mercadoria é contabilizada pelo seu valor <b>livre de frete e seguros</b>.</p>
+    <div class="aviso">Smartphone comprado da China por US$ 1.000, com US$ 50 de frete e US$ 10 de seguro: apenas os <b>US$ 1.000</b> vão para a balança comercial. Frete vai para <b>transportes</b> e seguro para <b>seguros</b>, ambos na balança de serviços.</div>
+    <p>Exportações são lançadas a <b>crédito</b> e importações a <b>débito</b>, ambas <b>com sinal positivo</b>. Para obter o saldo, <b>subtraem-se</b> as importações das exportações. Até o BPM5 as importações eram lançadas com sinal negativo, de modo que o saldo era obtido <b>somando</b> as duas. É mera questão matemática, mas pode ser explorada em prova.</p>
+    <h3>As três subcontas da balança comercial</h3>
+    <table class="tabela">
+      <tr><th>Subconta</th><th>Conteúdo</th></tr>
+      <tr><td><b>Merchanting</b></td><td>Bens comprados e revendidos <b>fora</b> do país, sem entrar nem sair fisicamente do território. Se a operação resultar em valor negativo, será considerada uma <b>exportação negativa</b>. Até o BPM5 era registrada na <b>balança de serviços</b>.</td></tr>
+      <tr><td><b>Ouro não monetário</b></td><td>Ouro como mercadoria comum. O <b>ouro monetário</b>, mantido como reserva pela autoridade monetária, vai para <b>ativos de reserva</b>, na conta financeira.</td></tr>
+      <tr><td><b>Mercadorias em geral</b></td><td>Tudo o mais que sai ou entra no território e não é ouro. É, de longe, a categoria mais relevante.</td></tr>
+    </table>
+    <p>A balança comercial brasileira é <b>historicamente positiva</b>: apenas em 2014 as importações superaram as exportações.</p>
+    <h3>Balança de serviços</h3>
+    <p>Registra receitas e despesas com serviços, por definição <b>invisíveis ou intangíveis</b>. Serviço prestado por residente a não residente é <b>crédito</b>; o contrário é <b>débito</b>.</p>
+    <table class="tabela">
+      <tr><th>Subconta</th><th>Conteúdo e armadilhas</th></tr>
+      <tr><td><b>Manufatura</b></td><td>Modificação do bem em grau relevante sobre insumos de propriedade de outro. Era <b>balança comercial</b> no BPM5.</td></tr>
+      <tr><td><b>Manutenção e reparo</b></td><td>Também migrou da balança comercial para serviços com o BPM6.</td></tr>
+      <tr><td><b>Transportes</b></td><td>Frete internacional, <b>passagens</b>, manutenção e operação dos meios de transporte. Aéreo, marítimo e terrestre.</td></tr>
+      <tr><td><b>Viagens</b></td><td>Bens e serviços adquiridos <b>no país</b> por viajantes estrangeiros (receita) e gastos de brasileiros no exterior (despesa). <b>Não inclui passagens</b>, que vão para transportes.</td></tr>
+      <tr><td><b>Construção</b></td><td>Projetos de engenharia e montagens sob encomenda.</td></tr>
+      <tr><td><b>Seguros</b></td><td>Registra <b>parte</b> dos prêmios. A outra parte dos prêmios e a <b>totalidade dos sinistros</b> vão para <b>renda secundária</b>.</td></tr>
+      <tr><td><b>Serviços financeiros</b></td><td>Corretagens, tarifas, comissões e garantias bancárias. Desdobra-se em tarifas explícitas e no <b>SIFIM</b>, serviços de intermediação financeira indiretamente medidos.</td></tr>
+      <tr><td><b>Propriedade intelectual</b></td><td>Licenças de patentes e marcas, franquias, direitos autorais. Chamava-se <b>Royalties e licenças</b> no BPM5: mudou só o nome.</td></tr>
+      <tr><td><b>Telecomunicação, computação e informações</b></td><td>O BPM6 <b>agrupou</b> as antigas contas de comunicações e de computação e informação.</td></tr>
+      <tr><td><b>Outros serviços de negócios</b></td><td>Honorários de profissionais liberais, <b>passes de atletas</b>, publicidade, arquitetura e engenharia, comissões de agentes, armazenagem, arbitragem, peritagem.</td></tr>
+      <tr><td><b>Serviços governamentais</b></td><td>Gastos com representações: militares, embaixadas e consulados. É conta <b>residual</b>: gastos do governo com cursos vão para serviços culturais, com transporte de servidores vão para transportes.</td></tr>
+    </table>
+    <div class="aviso"><b>O SIFIM é novidade do BPM6.</b> Parte dos juros das operações financeiras, antes integralmente registrada em rendas, passou a ser considerada uma tarifa embutida e foi para a balança de serviços. Como sai de uma conta e entra em outra, <b>não há alteração no saldo de transações correntes</b>.</div>
+  `,
+  qs: [
+    {t:"mc", p:"O método FOB significa que a mercadoria é contabilizada:",
+     o:["Com frete e seguros incluídos","Livre de frete e seguros","Pelo preço de venda ao consumidor final","Pelo valor da nota fiscal de origem"], r:1,
+     e:"<b>Free on board</b>: valor livre de frete e seguros. Frete vai para <b>transportes</b> e seguro para <b>seguros</b>, os dois na balança de serviços. É a razão de uma única importação gerar lançamentos em três contas diferentes."},
+    {t:"pool", pool:["Balança comercial","Balança de serviços"], p:"O frete internacional pago por uma empresa brasileira na importação de uma máquina.", r:1,
+     e:"<b>Serviços</b>, subconta <b>transportes</b>. Apenas o valor da máquina, livre de frete e seguro, vai para a balança comercial."},
+    {t:"pool", pool:["Balança comercial","Balança de serviços"], p:"Bens comprados e revendidos fora do país, sem entrar nem sair fisicamente do território nacional (merchanting).", r:0,
+     e:"<b>Balança comercial</b>, no BPM6. Até o BPM5 essas operações eram registradas em <b>serviços</b>. Detalhe adicional: se a operação resultar em valor negativo, ela é considerada uma <b>exportação negativa</b>."},
+    {t:"pool", pool:["Balança comercial","Balança de serviços"], p:"Refino de petróleo bruto de propriedade de uma petrolífera estrangeira, feito pela Petrobras no Brasil.", r:1,
+     e:"<b>Serviços</b>, subconta <b>manufatura sobre insumos físicos de terceiros</b>. Era lançado na balança comercial no BPM5. O mesmo ocorreu com <b>manutenção e reparo</b>."},
+    {t:"pool", pool:["Transportes","Viagens"], p:"A passagem aérea comprada por um brasileiro para viajar ao exterior.", r:0,
+     e:"<b>Transportes.</b> Essa é a armadilha mais explorada do tema: passagens <b>não</b> entram em viagens. Em viagens vão os bens e serviços consumidos <b>durante</b> a estadia."},
+    {t:"pool", pool:["Transportes","Viagens"], p:"Os gastos de um turista estrangeiro com hospedagem e restaurantes no Rio de Janeiro.", r:1,
+     e:"<b>Viagens</b>, e como <b>receita</b> para o Brasil. Os gastos são classificados por motivo: fins educacionais, culturais ou esportivos, funcionários de governo, negócios, saúde, turismo e cartões de crédito."},
+    {t:"mc", p:"O ouro mantido como reserva de valor pela autoridade monetária é registrado:",
+     o:["Na balança comercial, em ouro não monetário","Em ativos de reserva, na conta financeira","Na conta capital","Em renda primária"], r:1,
+     e:"O <b>ouro monetário</b> vai para <b>ativos de reserva</b>. A subconta <b>ouro não monetário</b> da balança comercial registra o ouro como mercadoria comum."},
+    {t:"mc", p:"No BPM6, o saldo da balança comercial é obtido:",
+     o:["Somando exportações e importações, pois as importações têm sinal negativo","Subtraindo as importações das exportações, pois ambas são lançadas com sinal positivo","Pela diferença entre créditos e débitos de toda a conta corrente","Pelo valor CIF das operações"], r:1,
+     e:"No <b>BPM6</b>, receitas e despesas são lançadas com <b>sinal positivo</b>, então se subtrai. Até o BPM5 as importações vinham com sinal negativo e o saldo era obtido <b>somando</b>. Mera aritmética, mas é explorado em prova."},
+    {t:"mc", p:"A conta seguros, na balança de serviços, registra:",
+     o:["A totalidade dos prêmios e dos sinistros","Apenas parte dos prêmios de seguro","Apenas os sinistros","Apenas os seguros de transporte internacional"], r:1,
+     e:"<b>Parte</b> dos prêmios. A outra parte dos prêmios e a <b>totalidade dos sinistros</b> vão para a conta de <b>renda secundária</b>. É um detalhe fino e bastante cobrável."},
+    {t:"mc", p:"O SIFIM, serviços de intermediação financeira indiretamente medidos, é:",
+     o:["Uma conta da renda primária","Uma novidade do BPM6: parte dos juros passa a ser tratada como tarifa embutida e vai para a balança de serviços","Um indicador de liquidez externa","Uma subconta dos ativos de reserva"], r:1,
+     e:"Como o valor <b>sai de rendas e entra em serviços</b>, o <b>saldo de transações correntes não se altera</b>. É a consequência que a banca costuma cobrar junto com a definição."},
+    {t:"mc", p:"Os passes de atletas profissionais são registrados em:",
+     o:["Balança comercial","Outros serviços de negócios","Renda primária","Conta capital"], r:1,
+     e:"<b>Outros serviços de negócios</b>, categoria que reúne serviços profissionais e técnicos: honorários de profissionais liberais, publicidade, arquitetura e engenharia, comissões de agentes de comércio, armazenagem, arbitragem, peritagem e fiscalização."},
+    {t:"mc", p:"Gastos do governo brasileiro com o transporte de servidores ao exterior são lançados em:",
+     o:["Serviços governamentais","Transportes","Viagens","Renda secundária"], r:1,
+     e:"<b>Transportes.</b> A conta <b>serviços governamentais</b> é <b>residual</b>: recebe o que não se classifica em outros itens, principalmente gastos com representações militares, embaixadas e consulados. Gastos do governo com cursos, por exemplo, vão para serviços culturais."}
+  ]
+},
+
+/* ---- 3.3 */
+{
+  nome: "Rendas, capital e financeira",
+  tag: "Renda primária e secundária, os 10%, ativos de reserva e PII",
+  colinha: `
+    <h3>Renda primária</h3>
+    <p>Registra entrada e saída de recursos pela <b>remuneração dos fatores de produção</b>: <b>lucros</b> (capital de risco), <b>juros</b> (capital de empréstimo) e <b>salários</b> (trabalho).</p>
+    <div class="aviso">A <b>RLEE</b> das Contas Nacionais é o <b>saldo inverso</b> da renda primária. Se a conta tem saldo <b>negativo</b>, o país está <b>enviando</b> renda líquida ao exterior.</div>
+    <p>Regra que organiza tudo: em renda primária e secundária lançam-se <b>receitas e despesas</b> da operação; o <b>valor principal</b> vai para a <b>conta financeira</b>. Quem paga US$ 150 por US$ 100 emprestados registra US$ 50 de juros em renda primária e US$ 100 na conta financeira.</p>
+    <p>Subcontas: <b>renda de investimento direto</b> (lucros e dividendos de participações, lucros reinvestidos, juros de operações intercompanhia), <b>renda de investimento em carteira</b>, <b>renda de outros investimentos</b> e <b>renda de reservas</b>.</p>
+    <h3>Renda secundária</h3>
+    <p>Chamava-se <b>Transferências Unilaterais</b> antes do BPM6. Apresenta a renda gerada em uma economia e distribuída para outra. O item mais importante são as <b>transferências pessoais</b>, expansão do antigo conceito de "manutenção de residentes".</p>
+    <ul>
+      <li>A mensuração mudou: antes, vinculava-se a geração dos recursos ao <b>trabalho</b>. No BPM6, basta que emissor e receptor sejam <b>pessoas físicas</b>, não importando como os recursos foram gerados. O escopo foi <b>ampliado</b>;</li>
+      <li>Desde o BPM6, o <b>patrimônio de migrantes</b> não é registrado no BP, porque <b>não há mudança de titularidade</b>;</li>
+      <li>Entram aqui também as <b>doações em dinheiro</b>.</li>
+    </ul>
+    <h3>Conta capital</h3>
+    <p>Registra apenas capitais <b>autônomos</b>, em dois itens:</p>
+    <ul>
+      <li><b>Transferências de capital</b>: a propriedade de um ativo (exceto dinheiro ou estoques) muda de residente para não residente e vice-versa; também transações que obriguem à aquisição ou alienação de um ativo, ou o <b>perdão</b> de uma obrigação pelo credor;</li>
+      <li><b>Ativos não financeiros não produzidos</b>: recursos naturais, contratos e licenças, e marketing assets como marcas e patentes.</li>
+    </ul>
+    <h3>Conta financeira</h3>
+    <p>Registra as aquisições de <b>ativos e passivos</b>, com os mesmos nomes da renda primária, mas aqui entram os <b>valores principais</b>.</p>
+    <table class="tabela">
+      <tr><th>Subconta</th><th>Conteúdo</th></tr>
+      <tr><td><b>Investimento direto</b></td><td>Capitais de longo prazo, definidos como os que representam <b>10% ou mais do poder de voto</b>. No ativo, investimento direto no exterior; no passivo, investimento direto no país (IED). Dividem-se em participação no capital (equity) e dívida intercompanhia.</td></tr>
+      <tr><td><b>Investimento em carteira</b></td><td>Títulos de renda fixa ou variável. Ações só entram aqui se <b>não</b> atingirem os 10% do capital votante.</td></tr>
+      <tr><td><b>Derivativos</b></td><td>Futuros, termo e opções, usados para hedge ou alavancagem.</td></tr>
+      <tr><td><b>Outros investimentos</b></td><td>Conta <b>residual</b>: empréstimos de curto e longo prazo, moedas e depósitos. Destacam-se os <b>atrasados</b> (moratória) e os <b>empréstimos de regularização</b> (FMI, BIS).</td></tr>
+      <tr><td><b>Ativos de reserva</b></td><td>Recursos à disposição e sob controle do Banco Central para financiar o BP ou intervir no câmbio.</td></tr>
+    </table>
+    <p><b>Greenfield</b> é capital novo, que aumenta o estoque de capital da economia; <b>brownfield</b> é apenas mudança de dono entre residente e não residente. Fusões e aquisições entram em investimento direto sem aumentar o capital produtivo. O BP <b>não diferencia</b> os dois: é classificação da literatura.</p>
+    <h3>Ativos de reserva</h3>
+    <p>Só entram ativos que <b>existem de fato</b> (ativos potenciais não contam) e que tenham <b>liquidez internacional</b>, ou seja, convertam-se facilmente em dólares sem perda de valor. São quatro categorias:</p>
+    <ol>
+      <li><b>Ouro monetário</b>: em poder do Banco Central, com pureza mínima de <b>99,5%</b>;</li>
+      <li><b>Direitos Especiais de Saque (SDR)</b>: criados pelo FMI, com cotação atrelada a uma cesta de moedas (dólar, euro, libra e iene). Representam o direito incondicional de obter moeda estrangeira de <b>outro país membro</b>;</li>
+      <li><b>Posição de reserva no FMI</b>: o saldo que o país pode exigir <b>do próprio FMI</b>, e não dos países membros;</li>
+      <li><b>Outros ativos de reserva</b>: moeda, depósitos, títulos, derivativos, desde que <b>em poder do Banco Central</b>.</li>
+    </ol>
+    <div class="aviso">O saldo da conta ativos de reserva no BP corresponde à <b>variação</b> do estoque de reservas internacionais. A <b>PII</b> é que mostra o <b>saldo</b>.</div>
+    <h3>Posição Internacional de Investimentos</h3>
+    <p>O BP registra <b>fluxos</b>; a PII registra <b>estoques</b>. Ela compara os ativos externos (inclusive reservas) com os passivos externos <b>em determinado momento</b>. No Brasil, como os passivos superam os ativos, a posição é chamada de <b>passivo externo líquido</b>. Apurada e publicada pelo <b>Banco Central</b>, trimestralmente, conforme orientações do FMI.</p>
+    <p>A estrutura repete as contas da conta financeira, com uma diferença: em <b>ativos de reserva</b> a PII registra o <b>valor total</b> das reservas, e não a variação.</p>
+  `,
+  qs: [
+    {t:"mc", p:"A renda líquida enviada ao exterior (RLEE) das Contas Nacionais corresponde:",
+     o:["Ao saldo da renda primária","Ao saldo inverso da renda primária","Ao saldo da renda secundária","Ao saldo em transações correntes"], r:1,
+     e:"<b>Saldo inverso.</b> Se a conta de renda primária tem saldo <b>negativo</b>, o país está <b>enviando</b> renda líquida ao exterior, ou seja, a RLEE é positiva. Foi assim no Brasil em 2018, com renda primária de −36.668."},
+    {t:"mc", p:"Uma empresa brasileira paga US$ 150 ao exterior, sendo US$ 100 de principal e US$ 50 de juros. O registro será:",
+     o:["US$ 150 em renda primária","US$ 150 na conta financeira","US$ 50 em renda primária e US$ 100 na conta financeira","US$ 100 em renda primária e US$ 50 na conta financeira"], r:2,
+     e:"É a regra que organiza as duas contas: em rendas lançam-se <b>receitas e despesas</b> (os juros); o <b>valor principal</b> vai para a <b>conta financeira</b>. A mesma lógica vale para dividendos e para o preço pago pelas ações."},
+    {t:"mc", p:"A conta renda secundária chamava-se, antes do BPM6:",
+     o:["Rendas","Transferências unilaterais","Conta capital","Serviços"], r:1,
+     e:"<b>Transferências unilaterais.</b> E a conta antes chamada de <b>rendas</b> virou <b>renda primária</b>. Se a questão ou o material usar as nomenclaturas antigas, pode estar desatualizado."},
+    {t:"mc", p:"Sobre as transferências pessoais no BPM6:",
+     o:["Exigem que os recursos tenham sido gerados por trabalho","Basta que emissor e receptor sejam pessoas físicas, independentemente de como os recursos foram gerados","Só valem para remessas acima de determinado valor","Foram transferidas para a conta capital"], r:1,
+     e:"O BPM6 <b>ampliou o escopo</b>: caiu a vinculação ao trabalho que existia no conceito de \"manutenção de residentes\". E some o outro ponto: o <b>patrimônio de migrantes</b> deixou de ser registrado no BP, porque não há mudança de titularidade."},
+    {t:"mc", p:"Qual o percentual que define um investimento direto?",
+     o:["5% ou mais do capital total","10% ou mais do poder de voto","20% ou mais do capital votante","51% do capital votante"], r:1,
+     e:"<b>10% ou mais do poder de voto</b>, conforme o BPM6. Abaixo disso, a operação é registrada em <b>investimento em carteira</b>. Esse número organiza tanto a renda primária quanto a conta financeira."},
+    {t:"pool", pool:["Conta capital","Conta financeira"], p:"Aquisição e alienação de ativos não financeiros não produzidos, como recursos naturais, contratos, licenças, marcas e patentes.", r:0,
+     e:"<b>Conta capital.</b> Ela tem apenas dois itens: esse e as <b>transferências de capital</b>, que incluem o perdão de dívida pelo credor. Registra somente capitais <b>autônomos</b>."},
+    {t:"pool", pool:["Conta capital","Conta financeira"], p:"Compra de ações da Petrobras por um investidor europeu, no valor de 10.", r:1,
+     e:"<b>Conta financeira</b>, em investimento em carteira, por ser abaixo de 10% do capital votante. O que iria para renda primária seriam apenas os <b>dividendos</b>, não o preço pago pelas ações."},
+    {t:"pool", pool:["Greenfield","Brownfield"], p:"A Google constrói novas instalações no Brasil.", r:0,
+     e:"<b>Greenfield</b>: capital novo, que efetivamente <b>aumenta o estoque de capital</b> da economia. O <b>brownfield</b>, como a venda de um navio da Petrobras para a filial da Shell, apenas muda de dono entre residente e não residente."},
+    {t:"mc", p:"São ativos de reserva, EXCETO:",
+     o:["Ouro monetário com pureza mínima de 99,5%","Direitos Especiais de Saque (SDR)","Posição de reserva no FMI","Depósitos de bancos comerciais no exterior"], r:3,
+     e:"Moeda, depósitos, títulos e derivativos só entram em <b>ativos de reserva</b> quando estão <b>em poder do Banco Central</b>. Fora disso, vão para <b>outros investimentos</b> na conta financeira. E lembre-se dos dois requisitos: o ativo deve <b>existir de fato</b> e ter <b>liquidez internacional</b>."},
+    {t:"mc", p:"A diferença entre Direitos Especiais de Saque e posição de reserva no FMI é que:",
+     o:["Os SDRs são em ouro e a posição de reserva é em moeda","Os SDRs dão direito de obter moeda de outro país membro; a posição de reserva é o saldo que o país pode exigir do próprio FMI","Os SDRs não são ativos de reserva","A posição de reserva é um passivo"], r:1,
+     e:"Os <b>SDRs</b> são ativos criados pelo FMI, com cotação atrelada a uma cesta de moedas (dólar, euro, libra e iene), e representam direito perante <b>outro país membro</b>. A <b>posição de reserva</b> é crédito contra o <b>próprio Fundo</b>."},
+    {t:"mc", p:"A principal diferença entre a conta ativos de reserva do BP e a da PII é:",
+     o:["Não há diferença","No BP registra-se a variação das reservas; na PII, o valor total (saldo)","No BP registra-se o saldo; na PII, a variação","A PII não registra reservas"], r:1,
+     e:"É a diferença entre <b>fluxo</b> e <b>estoque</b>. O BP mostra quanto variou; a <b>PII</b> mostra a situação patrimonial externa em determinado momento. No Brasil, como o passivo supera o ativo, a PII é chamada de <b>passivo externo líquido</b>."},
+    {t:"mc", p:"Atrasados e empréstimos de regularização são registrados em:",
+     o:["Conta capital","Investimento direto","Outros investimentos, integrando os capitais compensatórios","Ativos de reserva"], r:2,
+     e:"Ambos vão para <b>Outros investimentos</b>, conta residual da financeira, e compõem, junto com os <b>ativos de reserva</b>, os <b>capitais compensatórios</b>. Atrasados são a moratória: debita-se a conta do empréstimo, como se tivesse sido pago, e credita-se atrasados."}
+  ]
+},
+
+/* ---- 3.4 */
+{
+  nome: "Relações e lançamentos",
+  tag: "Poupança externa, saldo do BP, débitos e créditos e indicadores",
+  colinha: `
+    <h3>Primeira relação: transações correntes e poupança externa</h3>
+    <div class="aviso"><b>−TC = S<sub>EXT</sub></b>. O saldo em transações correntes, <b>com sinal invertido</b>, é igual à poupança externa.</div>
+    <p>A lógica é a da conta corrente pessoal. Se o país tem saldo <b>positivo</b> em TC, recebeu mais recursos do que enviou e pode reduzir seu endividamento ou reforçar sua poupança; nesse caso o resto do mundo <b>despoupou</b>, e a poupança externa é <b>negativa</b>. Se o saldo é <b>negativo</b>, o país só conseguiu ficar no vermelho porque o resto do mundo tinha dinheiro sobrando, ou seja, a poupança externa foi <b>positiva</b>.</p>
+    <h3>Segunda relação: o saldo do BP</h3>
+    <p><code>BPTC + CC + EO = CF</code></p>
+    <p>Separando os ativos de reserva da conta financeira (CF* é a financeira sem eles):</p>
+    <p><code>BPTC + CC + EO = CF* + Ativos de Reserva</code></p>
+    <p><code>BPTC + CC + EO − CF* = <b>Ativos de Reserva</b></code></p>
+    <p>O lado esquerdo é o que se convencionou chamar de <b>saldo do Balanço de Pagamentos</b>. Rigorosamente, o saldo do BP é <b>zero</b> na metodologia atual, mas bancas e economistas mantiveram a expressão.</p>
+    <div class="aviso">Se o "saldo do BP" for <b>positivo</b>, a conta ativos de reserva será positiva: houve <b>aquisição líquida</b> de reservas internacionais. Ou seja, o <b>saldo do BP corresponde à variação das reservas</b>.</div>
+    <p>Conferindo com 2018: TC = −41.540; CC = 440; EO = −1.322; CF = −42.422, dos quais ativos de reserva = 2.928, logo CF* = −45.350. Então −41.540 + 440 − 1.322 + 45.350 = <b>2.928</b>. Confere.</p>
+    <h3>Os lançamentos</h3>
+    <p>A conta <b>ativos de reserva</b> é o "caixa" do BP. Quando entra dinheiro, ela é <b>debitada</b>; quando sai, é <b>creditada</b>. Exatamente como na contabilidade geral.</p>
+    <table class="tabela">
+      <tr><th>Operação</th><th>Lançamento</th></tr>
+      <tr><td>Exportação de 50, recebida em moeda estrangeira</td><td>D Ativos de reserva 50 / C Balança comercial (exportações) 50</td></tr>
+      <tr><td>Importação de 5, paga em dinheiro</td><td>D Balança comercial (importações) 5 / C Ativos de reserva 5</td></tr>
+      <tr><td>Turista brasileiro paga diária de hotel em Nova York, 1</td><td>D Serviços (viagens) 1 / C Ativos de reserva 1</td></tr>
+      <tr><td>Pagamento de juros de 5 a banco estrangeiro</td><td>D Renda primária (juros) 5 / C Ativos de reserva 5</td></tr>
+      <tr><td>Empregado de embaixada estrangeira em Brasília recebe salário de 2</td><td>D Ativos de reserva 2 / C Renda primária (remuneração de empregados) 2</td></tr>
+      <tr><td>BMW abre fábrica no Brasil, investindo 20</td><td>D Ativos de reserva 20 / C Conta financeira (investimento direto no país) 20</td></tr>
+      <tr><td>Amortização de 4 e juros de 1 de empréstimo</td><td>D Conta financeira (outros investimentos) 4 / D Renda primária (juros) 1 / C Ativos de reserva 5</td></tr>
+    </table>
+    <h3>Os dois lançamentos especiais</h3>
+    <p><b>Transferência em bens.</b> Um parente no Canadá envia um tablet de 3 para a família no Brasil:</p>
+    <p><code>D Balança comercial (importações) 3 / C Renda secundária 3</code></p>
+    <p>A contrapartida <b>não</b> é em ativos de reserva, porque o país não recebeu meios de pagamento internacionais. Duas conclusões: a operação <b>não altera o saldo de transações correntes</b> (a balança comercial cai e a renda secundária sobe no mesmo valor), nem o saldo do BP, nem as reservas; e, mesmo não sendo uma importação de verdade, ela <b>reduz o saldo da balança comercial</b>.</p>
+    <p><b>Lucro reinvestido.</b> A filial da Fiat apura lucro de 5 e reinveste no Brasil:</p>
+    <p><code>D Renda primária (lucros reinvestidos) 5 / C Conta financeira (investimento direto no país) 5</code></p>
+    <p>Aqui o efeito é o oposto: <b>altera</b> o saldo em transações correntes, mas <b>não altera</b> o saldo do BP nem as reservas, porque o dinheiro não sai do país.</p>
+    <h3>As cinco mudanças do BPM6</h3>
+    <ol>
+      <li><b>Renda primária</b>: a conta rendas do BPM5 muda de nome;</li>
+      <li><b>Renda secundária</b>: as transferências unilaterais mudam de nome;</li>
+      <li><b>Convenção de sinais</b>: no BPM5, crédito era positivo e débito negativo. No BPM6, sinais <b>positivos</b> indicam exportações e importações, receitas e despesas e <b>aumentos</b> de ativos e passivos; sinais <b>negativos</b> só indicam renda negativa (perdas) e <b>reduções</b> de ativos ou passivos;</li>
+      <li><b>Propriedade econômica</b>: distinta da propriedade legal. O registro ocorre quando mudam todos os riscos, responsabilidades, direitos e benefícios;</li>
+      <li><b>Território econômico</b>: área sob efetivo controle econômico de um único governo, <b>dispensando</b> a necessidade de livre circulação de pessoas, bens e capitais exigida no BPM5.</li>
+    </ol>
+    <h3>Indicadores externos</h3>
+    <table class="tabela">
+      <tr><th>Grupo</th><th>Indicador</th><th>O que mede</th></tr>
+      <tr><td rowspan="2"><b>Liquidez</b></td><td>Reservas ÷ dívida externa de curto prazo</td><td>Capacidade de honrar obrigações <b>imediatas</b> e resistir a crises de liquidez</td></tr>
+      <tr><td>Reservas ÷ importações</td><td>Quantos <b>meses</b> de importação as reservas financiam</td></tr>
+      <tr><td rowspan="2"><b>Solvência</b></td><td>Dívida externa ÷ PIB</td><td>Peso do endividamento sobre a capacidade produtiva</td></tr>
+      <tr><td>Dívida externa ÷ exportações</td><td>Capacidade de <b>gerar divisas</b> para pagar a dívida</td></tr>
+      <tr><td rowspan="2"><b>Outros</b></td><td>Saldo em conta corrente ÷ PIB</td><td>Se o país é poupador ou tomador líquido de recursos externos</td></tr>
+      <tr><td>Investimento direto ÷ fluxos totais de capital</td><td><b>Qualidade e estabilidade</b> do financiamento externo</td></tr>
+    </table>
+    <p>A distinção que organiza tudo: <b>liquidez</b> olha o prazo imediato; <b>solvência</b> olha a trajetória intertemporal do endividamento, considerando crescimento, capacidade de exportação e custo do financiamento.</p>
+  `,
+  qs: [
+    {t:"mc", p:"A relação entre saldo em transações correntes e poupança externa é:",
+     o:["TC = S_EXT","−TC = S_EXT","TC = 2 × S_EXT","Não há relação definida"], r:1,
+     e:"<b>Sinal invertido.</b> Déficit em transações correntes significa poupança externa <b>positiva</b>, ou seja, o país está sendo financiado pelo resto do mundo. Superávit significa poupança externa negativa: o país financia o resto do mundo."},
+    {t:"mc", p:"Na metodologia atual, o chamado saldo do Balanço de Pagamentos corresponde:",
+     o:["Ao saldo em transações correntes","À variação dos ativos de reserva, ou seja, das reservas internacionais","Ao saldo da conta financeira","Ao saldo de erros e omissões"], r:1,
+     e:"Da relação <code>BPTC + CC + EO − CF* = Ativos de Reserva</code>. Rigorosamente, o saldo do BP é <b>zero</b> na metodologia atual, mas bancas e economistas mantiveram a expressão para designar a variação das reservas."},
+    {t:"mc", p:"Considerando a relação BPTC + CC + EO = CF, se o país tem TC de −41.540, conta capital de 440 e erros e omissões de −1.322, o saldo da conta financeira será:",
+     o:["+42.422","−42.422","−41.100","+40.658"], r:1,
+     e:"<code>−41.540 + 440 − 1.322 = <b>−42.422</b></code>. O valor negativo na conta financeira indica emissão líquida de <b>passivos</b>, ou seja, entraram dólares no país por meio de não residentes."},
+    {t:"pool", pool:["Debita-se ativos de reserva","Credita-se ativos de reserva"], p:"Exportação de mercadorias com recebimento em moeda estrangeira.", r:0,
+     e:"<b>Débito</b> em ativos de reserva, com crédito em exportações. Segue a contabilidade geral: <b>entrou dinheiro, debita-se o caixa</b>. Isso indica aumento das reservas internacionais."},
+    {t:"pool", pool:["Debita-se ativos de reserva","Credita-se ativos de reserva"], p:"Um turista brasileiro paga a diária de um hotel em Nova York.", r:1,
+     e:"<b>Crédito</b> em ativos de reserva, com débito em serviços (viagens). Saiu dinheiro do caixa, então a conta é creditada, indicando <b>redução</b> das reservas."},
+    {t:"mc", p:"Uma empresa brasileira importa máquina por 10, pagando 1 de frete e 1 de seguro. O lançamento correto é:",
+     o:["D Balança comercial 12 / C Ativos de reserva 12","D Balança comercial 10, D Serviços (transportes) 1, D Serviços (seguros) 1 / C Ativos de reserva 12","D Serviços 12 / C Ativos de reserva 12","D Balança comercial 10 / C Ativos de reserva 10"], r:1,
+     e:"É a aplicação do critério <b>FOB</b>. A operação reduz a balança comercial em 10, a de serviços em 2 e as reservas em 12."},
+    {t:"mc", p:"Um parente no exterior envia um tablet de 3 para a família no Brasil. O lançamento é:",
+     o:["D Ativos de reserva 3 / C Renda secundária 3","D Balança comercial (importações) 3 / C Renda secundária 3","D Renda secundária 3 / C Ativos de reserva 3","Não há lançamento"], r:1,
+     e:"A contrapartida <b>não</b> é em reservas, porque o país não recebeu meios de pagamento internacionais. Duas consequências: não altera o saldo de transações correntes (uma conta cai e a outra sobe no mesmo valor), nem o saldo do BP; mas <b>reduz o saldo da balança comercial</b>, apesar de não ser uma importação de verdade."},
+    {t:"mc", p:"A filial brasileira de uma montadora italiana apura lucro de 5 e decide reinvesti-lo no Brasil. O efeito é:",
+     o:["Altera o saldo do BP e as reservas","Altera o saldo em transações correntes, mas não altera o saldo do BP nem as reservas","Não altera nada","Altera apenas a conta capital"], r:1,
+     e:"O lançamento é <code>D Renda primária (lucros reinvestidos) 5 / C Conta financeira (investimento direto no país) 5</code>. Como o <b>dinheiro não sai do país</b>, não há efeito em reservas. Compare com a transferência em bens, que faz o inverso: não altera TC, mas reduz a balança comercial."},
+    {t:"mc", p:"Sobre a convenção de sinais do BPM6:",
+     o:["Créditos são positivos e débitos negativos, como no BPM5","Sinais positivos indicam exportações, importações, receitas, despesas e aumentos de ativos e passivos; negativos, apenas renda negativa e reduções","Todos os valores são positivos","Apenas as reservas têm sinal"], r:1,
+     e:"Foi uma das <b>cinco mudanças</b> do BPM6, junto com a renomeação de rendas para <b>renda primária</b> e de transferências unilaterais para <b>renda secundária</b>, o conceito de <b>propriedade econômica</b> e a nova definição de <b>território econômico</b>."},
+    {t:"mc", p:"O conceito de território econômico no BPM6:",
+     o:["Exige livre circulação de pessoas, bens e capitais","É a área sob efetivo controle econômico de um único governo, dispensando a exigência de livre circulação","Coincide com o território político","Foi eliminado"], r:1,
+     e:"A exigência de <b>livre circulação</b> existia no BPM5 e foi <b>dispensada</b>. O BPM6 também introduziu a <b>propriedade econômica</b>, distinta da legal: o registro ocorre quando mudam todos os riscos, responsabilidades, direitos e benefícios."},
+    {t:"pool", pool:["Indicador de liquidez externa","Indicador de solvência externa"], p:"Relação entre reservas internacionais e dívida externa de curto prazo.", r:0,
+     e:"<b>Liquidez.</b> Mede a capacidade de honrar obrigações <b>imediatas</b> e resistir a saídas súbitas de capitais. O outro indicador de liquidez é reservas sobre importações, expresso em meses cobertos."},
+    {t:"pool", pool:["Indicador de liquidez externa","Indicador de solvência externa"], p:"Relação entre dívida externa e exportações.", r:1,
+     e:"<b>Solvência.</b> Mede a capacidade de <b>gerar divisas</b> para pagar a dívida. A solvência olha a trajetória <b>intertemporal</b> do endividamento, considerando crescimento, capacidade de exportação e custo do financiamento; a liquidez olha o prazo imediato."}
+  ]
+}
+
+]}
+
+];
+
+
+/* ============================================================
+   MOTOR
+   ============================================================ */
+
+const CHAVE = "fluxo-circular-macro-v1";
+const tela = document.getElementById("tela");
+const placar = document.getElementById("placar");
+const elVidas = document.getElementById("vidas");
+const elXp = document.getElementById("xp");
+const elCombo = document.getElementById("combo");
+const elMarca = document.getElementById("marca");
+
+let salvo = { xp: 0, fases: {}, som: true };
+let jogo = null;
+
+/* ---------- persistência (silenciosa se o navegador bloquear) ---------- */
+function carregar() {
+  try {
+    const bruto = localStorage.getItem(CHAVE);
+    if (bruto) salvo = Object.assign(salvo, JSON.parse(bruto));
+  } catch (e) { /* segue sem salvar */ }
+}
+function gravar() {
+  try { localStorage.setItem(CHAVE, JSON.stringify(salvo)); } catch (e) {}
+}
+function reg(m, f) { return salvo.fases[m + ":" + f]; }
+
+/* ---------- som ---------- */
+let ctxAudio = null;
+function bip(freq, dur, tipo) {
+  if (!salvo.som) return;
+  try {
+    if (!ctxAudio) ctxAudio = new (window.AudioContext || window.webkitAudioContext)();
+    const o = ctxAudio.createOscillator();
+    const g = ctxAudio.createGain();
+    o.type = tipo || "triangle";
+    o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, ctxAudio.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.09, ctxAudio.currentTime + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, ctxAudio.currentTime + dur);
+    o.connect(g); g.connect(ctxAudio.destination);
+    o.start(); o.stop(ctxAudio.currentTime + dur + 0.02);
+  } catch (e) {}
+}
+const somCerto = () => { bip(660, 0.09); setTimeout(() => bip(990, 0.12), 90); };
+const somErro  = () => bip(160, 0.22, "sawtooth");
+const somFase  = () => { [523, 659, 784, 1046].forEach((f, i) => setTimeout(() => bip(f, 0.14), i * 110)); };
+
+/* ---------- utilitários ---------- */
+function embaralhar(a) {
+  const b = a.slice();
+  for (let i = b.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [b[i], b[j]] = [b[j], b[i]];
+  }
+  return b;
+}
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+function semTags(s) { return String(s).replace(/<[^>]+>/g, ""); }
+function opcoesDe(mod, fase, q) {
+  return q.t === "pool" ? (q.pool || fase.pool) : q.o;
+}
+function digitoControle(cod) {
+  const d = String(cod).replace(/\D/g, "");
+  if (d.length !== 9) return null;
+  const pesos = [3, 7, 1, 3, 7, 1, 3, 7, 1];
+  let soma = 0, detalhe = [];
+  for (let i = 0; i < 9; i++) {
+    const alg = Number(d[8 - i]);
+    soma += alg * pesos[i];
+    detalhe.push({ alg: alg, peso: pesos[i], prod: alg * pesos[i] });
+  }
+  const resto = soma % 10;
+  return { soma: soma, resto: resto, dv: resto === 0 ? 0 : 10 - resto, detalhe: detalhe };
+}
+
+/* ---------- progresso ---------- */
+function fasesFeitas(m) {
+  let n = 0;
+  MODULOS[m].fases.forEach(function (_, f) { if (reg(m, f)) n++; });
+  return n;
+}
+function moduloCompleto(m) { return fasesFeitas(m) === MODULOS[m].fases.length; }
+function totalFases() {
+  return MODULOS.reduce(function (a, mo) { return a + mo.fases.length; }, 0);
+}
+function totalFeitas() {
+  return MODULOS.reduce(function (a, _, m) { return a + fasesFeitas(m); }, 0);
+}
+function medalhaDe(pct) { return pct === 100 ? "🏅" : pct >= 80 ? "🥈" : "🥉"; }
+
+/* ---------- barra de status ---------- */
+function pintarPlacar() {
+  if (!jogo) { placar.classList.add("oculto"); return; }
+  placar.classList.remove("oculto");
+  let hp = "";
+  for (let i = 0; i < 3; i++) hp += "<span class='" + (i < jogo.vidas ? "" : "gasta") + "'>◆</span>";
+  elVidas.innerHTML = hp;
+  elXp.textContent = salvo.xp + jogo.xpFase;
+  elCombo.textContent = jogo.seq >= 3 ? "×" + multiplicador() : "";
+}
+function multiplicador() { return jogo.seq >= 6 ? 3 : (jogo.seq >= 3 ? 2 : 1); }
+
+/* ============================================================
+   TELAS
+   ============================================================ */
+
+function telaCapa() {
+  jogo = null; pintarPlacar();
+  elMarca.textContent = "FLUXO CIRCULAR · MACROECONOMIA · BACEN";
+  const feitas = totalFeitas();
+  tela.innerHTML =
+    '<div class="capa">' +
+      '<span class="capa-selo">CADERNO DE ESTUDO · CONCURSO BACEN</span>' +
+      '<h1>Fluxo<br>Circular</h1>' +
+      '<p class="lead">Três aulas de Macroeconomia transformadas em fases: contas nacionais, moeda e sistema monetário, e balanço de pagamentos.</p>' +
+      '<div class="regras">' +
+        '<div class="regra"><b>Três chances por fase</b>Errou, perde uma. Zerou, repete a fase com as perguntas embaralhadas.</div>' +
+        '<div class="regra"><b>Sequência vale mais</b>Três acertos seguidos dobram o XP. Seis seguidos, triplicam.</div>' +
+        '<div class="regra"><b>Toda resposta ensina</b>Certa ou errada, você lê por que, com a redação que a banca usa.</div>' +
+      '</div>' +
+      '<div class="acoes">' +
+        '<button class="btn selo" id="ir">' + (feitas ? "Continuar" : "Começar") + '</button>' +
+      '</div>' +
+    '</div>';
+  document.getElementById("ir").onclick = telaModulos;
+}
+
+function telaModulos() {
+  jogo = null; pintarPlacar();
+  elMarca.textContent = "AULAS · XP " + salvo.xp;
+  let html = '<h2>As aulas</h2><p class="sub">Escolha por onde começar. Dentro de cada aula, as fases abrem em sequência, e cada uma traz a colinha antes de cobrar.</p><div class="mapa">';
+  MODULOS.forEach(function (mo, m) {
+    const feitas = fasesFeitas(m);
+    const total = mo.fases.length;
+    const completo = feitas === total;
+    html +=
+      '<button class="fase-linha" data-m="' + m + '">' +
+        '<span class="fase-num">' + (m + 1) + '</span>' +
+        '<span><span class="fase-nome">' + mo.nome + '</span><span class="fase-tag">' + mo.subtitulo + '</span></span>' +
+        '<span class="fase-status ' + (feitas ? "ok" : "") + '">' +
+          (completo ? '<span class="medalha">🏅</span> ' : "") + feitas + "/" + total +
+        '</span>' +
+      '</button>';
+  });
+  html += '</div>';
+  html += '<p class="sub" style="margin-top:16px">' + totalFeitas() + ' de ' + totalFases() + ' fases concluídas.</p>';
+  if (totalFeitas() === totalFases()) {
+    html += '<div class="acoes"><button class="btn selo" id="dip">Ver o diploma do curso</button></div>';
+  }
+  tela.innerHTML = html;
+  Array.prototype.forEach.call(tela.querySelectorAll(".fase-linha"), function (b) {
+    b.onclick = function () { telaMapa(Number(b.dataset.m)); };
+  });
+  const d = document.getElementById("dip");
+  if (d) d.onclick = telaDiploma;
+  window.scrollTo(0, 0);
+}
+
+function telaMapa(m) {
+  jogo = null; pintarPlacar();
+  const mo = MODULOS[m];
+  elMarca.textContent = mo.nome.toUpperCase() + " · XP " + salvo.xp;
+  let html = '<p class="contexto">' + mo.subtitulo.toUpperCase() + '</p>';
+  html += '<h2>' + mo.nome + '</h2><div class="mapa">';
+  mo.fases.forEach(function (f, i) {
+    const r = reg(m, i);
+    const liberada = i === 0 || !!reg(m, i - 1);
+    html +=
+      '<button class="fase-linha" data-i="' + i + '"' + (liberada ? "" : " disabled") + '>' +
+        '<span class="fase-num">' + (i + 1) + '</span>' +
+        '<span><span class="fase-nome">' + f.nome + '</span><span class="fase-tag">' + f.tag + '</span></span>' +
+        '<span class="fase-status ' + (r ? "ok" : "") + '">' +
+          (r ? '<span class="medalha">' + medalhaDe(r.melhor) + '</span> ' + r.melhor + '%' : (liberada ? "abrir" : "fechada")) +
+        '</span>' +
+      '</button>';
+  });
+  html += '</div>';
+  html += '<div class="acoes">';
+  if (moduloCompleto(m)) html += '<button class="btn selo" id="dipm">Diploma desta aula</button>';
+  html += '<button class="btn fantasma" id="voltar">Todas as aulas</button></div>';
+  tela.innerHTML = html;
+  Array.prototype.forEach.call(tela.querySelectorAll(".fase-linha"), function (b) {
+    if (!b.disabled) b.onclick = function () { telaColinha(m, Number(b.dataset.i)); };
+  });
+  const dm = document.getElementById("dipm");
+  if (dm) dm.onclick = function () { telaDiplomaModulo(m); };
+  document.getElementById("voltar").onclick = telaModulos;
+  window.scrollTo(0, 0);
+}
+
+function telaColinha(m, i) {
+  jogo = null; pintarPlacar();
+  const mo = MODULOS[m];
+  const f = mo.fases[i];
+  elMarca.textContent = mo.nome.toUpperCase() + " · FASE " + (i + 1);
+  tela.innerHTML =
+    '<p class="contexto">' + mo.nome.toUpperCase() + " · FASE " + (i + 1) + " DE " + mo.fases.length + '</p>' +
+    '<h2>' + f.nome + '</h2>' +
+    '<p class="sub">' + f.tag + '</p>' +
+    '<div class="colinha">' + f.colinha + '</div>' +
+    '<div class="acoes"><button class="btn selo" id="jogar">Jogar esta fase</button>' +
+    '<button class="btn fantasma" id="voltar">Voltar às fases</button></div>';
+  document.getElementById("jogar").onclick = function () { comecarFase(m, i); };
+  document.getElementById("voltar").onclick = function () { telaMapa(m); };
+  montarOficina();
+  window.scrollTo(0, 0);
+}
+
+/* oficina do dígito de controle, usada na colinha da Aula 00 */
+function montarOficina() {
+  const alvo = document.getElementById("oficina-dv");
+  if (!alvo) return;
+  alvo.innerHTML =
+    '<label for="cod-dv">Digite os nove dígitos de um código e veja a conta:</label>' +
+    '<input id="cod-dv" maxlength="14" value="1.1.1.00.00.00" inputmode="numeric">' +
+    '<div class="saida" id="saida-dv"></div>';
+  const inp = document.getElementById("cod-dv");
+  const out = document.getElementById("saida-dv");
+  function calcular() {
+    const r = digitoControle(inp.value);
+    if (!r) { out.textContent = "Faltam dígitos: o código precisa ter nove algarismos."; return; }
+    let txt = "algarismo × peso = produto\n";
+    r.detalhe.forEach(function (d) {
+      txt += "    " + d.alg + "   ×  " + d.peso + "  =   " + d.prod + "\n";
+    });
+    txt += "soma = " + r.soma + "   ·   resto de " + r.soma + " ÷ 10 = " + r.resto + "\n";
+    out.innerHTML = esc(txt) + '<span class="dv">dígito de controle = ' +
+      (r.resto === 0 ? "0 (resto zero)" : "10 − " + r.resto + " = " + r.dv) + '</span>';
+  }
+  inp.addEventListener("input", calcular);
+  calcular();
+}
+
+/* ============================================================
+   PARTIDA
+   ============================================================ */
+
+function comecarFase(m, i) {
+  const f = MODULOS[m].fases[i];
+  jogo = {
+    mod: m,
+    fase: i,
+    qs: embaralhar(f.qs),
+    idx: 0,
+    vidas: 3,
+    acertos: 0,
+    seq: 0,
+    xpFase: 0,
+    errados: [],
+    travado: false
+  };
+  elMarca.textContent = MODULOS[m].nome.toUpperCase() + " · " + f.nome.toUpperCase();
+  desenharPergunta();
+}
+
+function desenharPergunta() {
+  const f = MODULOS[jogo.mod].fases[jogo.fase];
+  const q = jogo.qs[jogo.idx];
+  jogo.travado = false;
+  pintarPlacar();
+
+  let html = '<div class="trilho"><i style="width:' + (jogo.idx / jogo.qs.length * 100) + '%"></i></div>';
+  html += '<p class="contexto">PERGUNTA ' + (jogo.idx + 1) + " DE " + jogo.qs.length + " · " + f.nome.toUpperCase() + '</p>';
+  html += '<p class="enunciado">' + q.p + '</p>';
+
+  if (q.lanc) {
+    html += '<div class="lancamento">';
+    q.lanc.forEach(function (l) {
+      html += '<div class="lin"><span class="dc ' + (l[0] === "D" ? "d" : "c") + '">' + l[0] + '</span>' +
+              '<span>' + l[1] + '</span><span>R$ ' + l[2] + '</span></div>';
+    });
+    html += '</div>';
+  }
+
+  if (q.t === "num") {
+    html += '<div class="campo-num"><input id="resp-num" inputmode="numeric" maxlength="3" autocomplete="off">' +
+            '<button class="btn" id="conf-num">Conferir</button></div>';
+  } else {
+    const opcoes = opcoesDe(jogo.mod, f, q);
+    const ordem = q.t === "pool" ? opcoes.map(function (_, k) { return k; }) : embaralhar(opcoes.map(function (_, k) { return k; }));
+    const teclas = ["A", "B", "C", "D", "E", "F", "G", "H"];
+    html += '<div class="opcoes' + (opcoes.length > 4 ? " grade" : "") + '" id="opcoes">';
+    ordem.forEach(function (orig, pos) {
+      html += '<button class="op" data-orig="' + orig + '">' +
+              '<span class="tecla">' + teclas[pos] + '</span><span>' + opcoes[orig] + '</span></button>';
+    });
+    html += '</div>';
+  }
+
+  html += '<div id="area-resposta"></div>';
+  tela.innerHTML = html;
+
+  if (q.t === "num") {
+    const inp = document.getElementById("resp-num");
+    inp.focus();
+    const enviarNum = function () {
+      if (inp.value.trim() === "") { inp.focus(); return; }
+      responder(Number(inp.value), q.r);
+    };
+    document.getElementById("conf-num").onclick = enviarNum;
+    inp.addEventListener("keydown", function (ev) {
+      if (ev.key === "Enter") { ev.preventDefault(); enviarNum(); }
+    });
+  } else {
+    Array.prototype.forEach.call(tela.querySelectorAll(".op"), function (b) {
+      b.onclick = function () { responder(Number(b.dataset.orig), q.r); };
+    });
+  }
+  window.scrollTo(0, 0);
+}
+
+function responder(escolha, correta) {
+  if (jogo.travado) return;
+  jogo.travado = true;
+  const q = jogo.qs[jogo.idx];
+  const acertou = escolha === correta;
+
+  if (q.t !== "num") {
+    Array.prototype.forEach.call(tela.querySelectorAll(".op"), function (b) {
+      const o = Number(b.dataset.orig);
+      b.disabled = true;
+      if (o === correta) b.classList.add("certa");
+      else if (o === escolha) b.classList.add("errada");
+      else b.classList.add("apagada");
+    });
+  } else {
+    document.getElementById("resp-num").disabled = true;
+    document.getElementById("conf-num").disabled = true;
+  }
+
+  if (acertou) {
+    jogo.acertos++;
+    jogo.seq++;
+    jogo.xpFase += 10 * multiplicador();
+    somCerto();
+  } else {
+    jogo.seq = 0;
+    jogo.vidas--;
+    jogo.errados.push(q);
+    somErro();
+  }
+  pintarPlacar();
+
+  const area = document.getElementById("area-resposta");
+  area.innerHTML =
+    '<div class="resposta" role="status">' +
+      '<span class="carimbo ' + (acertou ? "ok" : "nao") + ' bate">' + (acertou ? "FECHOU" : "NÃO FECHOU") + '</span>' +
+      '<p class="explica">' + q.e + '</p>' +
+      '<div class="acoes"><button class="btn" id="seguir">' +
+        (jogo.vidas === 0 ? "Ver o resultado" : (jogo.idx + 1 >= jogo.qs.length ? "Encerrar a fase" : "Próxima")) +
+      '</button></div>' +
+    '</div>';
+  const b = document.getElementById("seguir");
+  b.onclick = avancar;
+  b.focus();
+}
+
+function avancar() {
+  if (jogo.vidas === 0) return telaFimFase(false);
+  jogo.idx++;
+  if (jogo.idx >= jogo.qs.length) return telaFimFase(true);
+  desenharPergunta();
+}
+
+function telaFimFase(concluiu) {
+  const m = jogo.mod;
+  const i = jogo.fase;
+  const mo = MODULOS[m];
+  const total = jogo.qs.length;
+  const pct = Math.round(jogo.acertos / total * 100);
+  const errados = jogo.errados.slice();
+  const parciais = jogo.idx + 1;
+  const acertos = jogo.acertos;
+  const xpFase = jogo.xpFase;
+
+  if (concluiu) {
+    salvo.xp += xpFase;
+    const r = reg(m, i);
+    salvo.fases[m + ":" + i] = { melhor: r ? Math.max(r.melhor, pct) : pct };
+    gravar();
+    somFase();
+  }
+
+  let html = '<p class="contexto">' + mo.nome.toUpperCase() + " · FASE " + (i + 1) + " · " + mo.fases[i].nome.toUpperCase() + '</p>';
+
+  if (concluiu) {
+    html += '<div class="nota">' + pct + '%<small>' + acertos + " de " + total +
+            " · " + xpFase + ' XP ganhos · ' + medalhaDe(pct) + '</small></div>';
+  } else {
+    html += '<h2>Acabaram as chances</h2><p class="sub">Você acertou ' + acertos + ' de ' + parciais +
+            ' antes de perder as três. A fase reabre com as perguntas embaralhadas, e você já sabe onde tropeçou.</p>';
+  }
+
+  if (errados.length) {
+    html += '<div class="revisar"><h3>Para revisar</h3><ul>';
+    errados.forEach(function (q) {
+      html += '<li><b>' + semTags(q.p) + '</b><br>' + q.e + '</li>';
+    });
+    html += '</ul></div>';
+  } else if (concluiu) {
+    html += '<p class="sub" style="margin-top:14px">Fase limpa, sem nenhum erro. Guarde essa sensação para a prova.</p>';
+  }
+
+  const proxima = i + 1 < mo.fases.length;
+  html += '<div class="acoes">';
+  if (concluiu && proxima) html += '<button class="btn selo" id="prox">Fase ' + (i + 2) + ': ' + mo.fases[i + 1].nome + '</button>';
+  if (concluiu && !proxima) html += '<button class="btn selo" id="dipm">Diploma desta aula</button>';
+  html += '<button class="btn fantasma" id="rep">Refazer a fase</button>';
+  html += '<button class="btn fantasma" id="col">Reler a colinha</button>';
+  html += '<button class="btn fantasma" id="mapa">Fases da aula</button></div>';
+
+  jogo = null; pintarPlacar();
+  tela.innerHTML = html;
+  elMarca.textContent = mo.nome.toUpperCase() + " · XP " + salvo.xp;
+
+  const p = document.getElementById("prox"); if (p) p.onclick = function () { telaColinha(m, i + 1); };
+  const dm = document.getElementById("dipm"); if (dm) dm.onclick = function () { telaDiplomaModulo(m); };
+  document.getElementById("rep").onclick = function () { comecarFase(m, i); };
+  document.getElementById("col").onclick = function () { telaColinha(m, i); };
+  document.getElementById("mapa").onclick = function () { telaMapa(m); };
+  window.scrollTo(0, 0);
+}
+
+function telaDiplomaModulo(m) {
+  jogo = null; pintarPlacar();
+  const mo = MODULOS[m];
+  const notas = mo.fases.map(function (_, i) { const r = reg(m, i); return r ? r.melhor : 0; });
+  const media = Math.round(notas.reduce(function (a, b) { return a + b; }, 0) / notas.length);
+  const fracas = mo.fases.filter(function (_, i) { return notas[i] < 80; });
+  elMarca.textContent = "DIPLOMA · " + mo.nome.toUpperCase();
+
+  let html =
+    '<div class="diploma">' +
+      '<p class="contexto" style="margin-bottom:16px">' + mo.subtitulo.toUpperCase() + '</p>' +
+      '<h2>' + mo.nome + '</h2>' +
+      '<div class="nota" style="margin:18px 0">' + media + '%<small>média das melhores notas nas ' + mo.fases.length + ' fases · ' + salvo.xp + ' XP acumulados</small></div>' +
+      '<span class="selo-final">AULA CONCLUÍDA</span>' +
+    '</div>';
+
+  if (fracas.length) {
+    html += '<div class="revisar"><h3>Onde ainda vale voltar</h3><ul>';
+    fracas.forEach(function (f) { html += '<li><b>' + f.nome + '</b>: ' + f.tag + '</li>'; });
+    html += '</ul></div>';
+  }
+
+  const proxMod = m + 1 < MODULOS.length;
+  html += '<div class="acoes">';
+  if (proxMod) html += '<button class="btn selo" id="prox">Aula ' + (m + 2) + ': ' + MODULOS[m + 1].nome + '</button>';
+  html += '<button class="btn fantasma" id="mapa">Fases desta aula</button>';
+  html += '<button class="btn fantasma" id="todas">Todas as aulas</button></div>';
+  tela.innerHTML = html;
+  const p = document.getElementById("prox"); if (p) p.onclick = function () { telaMapa(m + 1); };
+  document.getElementById("mapa").onclick = function () { telaMapa(m); };
+  document.getElementById("todas").onclick = telaModulos;
+  window.scrollTo(0, 0);
+}
+
+function telaDiploma() {
+  jogo = null; pintarPlacar();
+  let soma = 0, n = 0;
+  const fracas = [];
+  MODULOS.forEach(function (mo, m) {
+    mo.fases.forEach(function (f, i) {
+      const r = reg(m, i);
+      const nota = r ? r.melhor : 0;
+      soma += nota; n++;
+      if (nota < 80) fracas.push(mo.nome + " · " + f.nome);
+    });
+  });
+  const media = Math.round(soma / n);
+  elMarca.textContent = "DIPLOMA DO CURSO · XP " + salvo.xp;
+
+  let html =
+    '<div class="diploma">' +
+      '<p class="contexto" style="margin-bottom:16px">FLUXO CIRCULAR · MACROECONOMIA · AULAS 1 A 3</p>' +
+      '<h2>As três aulas, fase por fase</h2>' +
+      '<div class="nota" style="margin:18px 0">' + media + '%<small>média das melhores notas em ' + n + ' fases · ' + salvo.xp + ' XP acumulados</small></div>' +
+      '<span class="selo-final">PRONTA PARA A PROVA</span>' +
+    '</div>';
+
+  if (fracas.length) {
+    html += '<div class="revisar"><h3>Onde ainda vale voltar</h3><ul>';
+    fracas.forEach(function (t) { html += '<li>' + t + '</li>'; });
+    html += '</ul></div>';
+  }
+
+  html += '<p class="sub" style="margin-top:18px">Revisão espaçada funciona: refaça daqui a dois dias, e de novo em uma semana, as fases de mensurações do produto, criação e destruição de moeda, multiplicador e lançamentos do BP. São as que mais rendem em prova.</p>';
+  html += '<div class="acoes"><button class="btn fantasma" id="todas">Todas as aulas</button></div>';
+  tela.innerHTML = html;
+  document.getElementById("todas").onclick = telaModulos;
+  window.scrollTo(0, 0);
+}
+
+/* ============================================================
+   ATALHOS E RODAPÉ
+   ============================================================ */
+
+document.addEventListener("keydown", function (ev) {
+  const seguir = document.getElementById("seguir");
+  if (ev.key === "Enter" && seguir) { ev.preventDefault(); seguir.click(); return; }
+  if (!jogo || jogo.travado) return;
+  const teclas = { "1": 0, "2": 1, "3": 2, "4": 3, "5": 4, "6": 5, "7": 6, "8": 7,
+                   "a": 0, "b": 1, "c": 2, "d": 3, "e": 4, "f": 5, "g": 6, "h": 7 };
+  const pos = teclas[ev.key.toLowerCase()];
+  if (pos === undefined) return;
+  const botoes = tela.querySelectorAll(".op");
+  if (botoes[pos]) { ev.preventDefault(); botoes[pos].click(); }
+});
+
+const btnSom = document.getElementById("btn-som");
+btnSom.onclick = function () {
+  salvo.som = !salvo.som;
+  btnSom.textContent = "som: " + (salvo.som ? "ligado" : "desligado");
+  gravar();
+  if (salvo.som) bip(880, 0.08);
+};
+
+document.getElementById("btn-zerar").onclick = function () {
+  if (!confirm("Apagar todo o progresso e recomeçar do zero?")) return;
+  salvo = { xp: 0, fases: {}, som: salvo.som };
+  gravar();
+  telaCapa();
+};
+
+/* ---------- início ---------- */
+carregar();
+btnSom.textContent = "som: " + (salvo.som ? "ligado" : "desligado");
+telaCapa();
+</script>
+</body>
+</html>
