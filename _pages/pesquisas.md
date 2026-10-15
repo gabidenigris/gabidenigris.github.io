@@ -5,7 +5,6 @@ permalink: /pesquisas/
 author_profile: true
 ---
 
-Here I share selected work combining econometric methods, policy analysis, and data-driven modeling, rom regulatory impact assessments to applied research using Brazilian microdata.
 
 ---
 ## Academic
