@@ -8,15 +8,13 @@ redirect_from:
   - /about.html
 ---
 
-**Gabriela De Nigris** works on economic analysis for public policy, with a focus on how legislation affects the commerce and services sector in Brazil.
+**Gabriela De Nigris** works on economic analysis, with a focus on how legislation affects the commerce and services sector in Brazil.
 
-She is part of the economic research team (GEADE) at the **National Confederation of Commerce of Goods, Services and Tourism (CNC)**, where she writes economic opinions and legislative impact assessments that support the Confederation's government relations work. Her role is to turn microdata and quantitative models into evidence for CNC's positions on bills in Congress.
-
-Her work combines applied econometrics in **R** and **Python** with clear technical writing. Her undergraduate thesis uses a difference-in-differences design to estimate the impact of the "Taxa das Blusinhas" import tax on formal employment in Brazil.
+She is part of the economic research team (GEADE) at the **National Confederation of Commerce of Goods, Services and Tourism (CNC)**, where she writes economic reports and legislative impact assessments that support the Confederation's government relations work. Her role is to turn microdata and quantitative models into evidence for CNC's positions on bills in Congress.
 
 Previously, she was a Legislative Advisor at the **Chamber of Deputies**, where she reviewed the merits of bills and worked directly with stakeholders during the legislative process.
 
-She studied **Economics** at **Ibmec Brasília** (2022-2026), where she was a member of the research group at IbMacro, the university's macroeconomics league. She will start a **Master's in Economics at FGV EPPGE** in the second half of 2027.
+She studied **Economics** at **Ibmec Brasília** (2022-2026), where she was a member of the research group at IbMacro, the university's macroeconomics league. She will start a **Master's in Economics at FGV EPPG** in the second half of 2027.
 
 <iframe src="{{ '/teia.html' | relative_url }}" title="Knowledge web" loading="lazy" style="width:100%; height:740px; border:0; display:block; margin:1.5rem 0;"></iframe>
 
@@ -58,6 +56,6 @@ She studied **Economics** at **Ibmec Brasília** (2022-2026), where she was a me
 
 ## Consulting
 
-Gabriela develops applied economic analysis for companies, industry associations, law firms and institutions that need solid empirical evidence to support strategic decisions. This includes legislative and regulatory impact assessments, policy evaluation with microdata, and technical reports on sector trends.
+Gabriela develops applied economic analysis for companies, associations, law firms and institutions that need solid empirical evidence to support strategic decisions. This includes legislative and regulatory impact assessments, policy evaluation with microdata, and technical reports on sector trends.
 
 [Contact](mailto:denigriscontato@gmail.com){: .btn .btn--primary}
