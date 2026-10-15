@@ -5,9 +5,6 @@ main:
   - title: "Articles"
     url: /blog/
 
-  - title: "Projects"
-    url: /pesquisas/
-
   - title: "CV"
     url: /files/CV_Gabriela_De_Nigris.pdf
 
